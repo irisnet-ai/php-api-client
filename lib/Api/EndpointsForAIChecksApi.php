@@ -126,7 +126,7 @@ class EndpointsForAIChecksApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Irisnet\API\Client\Model\IrisNet|\Irisnet\API\Client\Model\INError
+     * @return \Irisnet\API\Client\Model\INError|\Irisnet\API\Client\Model\IrisNet
      */
     public function checkImage($licenseKey, $detail = 1, $file = null)
     {
@@ -145,7 +145,7 @@ class EndpointsForAIChecksApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Irisnet\API\Client\Model\IrisNet|\Irisnet\API\Client\Model\INError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Irisnet\API\Client\Model\INError|\Irisnet\API\Client\Model\IrisNet, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkImageWithHttpInfo($licenseKey, $detail = 1, $file = null)
     {
@@ -181,18 +181,6 @@ class EndpointsForAIChecksApi
 
             $responseBody = $response->getBody();
             switch($statusCode) {
-                case 200:
-                    if ('\Irisnet\API\Client\Model\IrisNet' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\IrisNet', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 402:
                     if ('\Irisnet\API\Client\Model\INError' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
@@ -202,6 +190,18 @@ class EndpointsForAIChecksApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\INError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 200:
+                    if ('\Irisnet\API\Client\Model\IrisNet' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\IrisNet', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -223,18 +223,18 @@ class EndpointsForAIChecksApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Irisnet\API\Client\Model\IrisNet',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 402:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\INError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\IrisNet',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -445,7 +445,7 @@ class EndpointsForAIChecksApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Irisnet\API\Client\Model\IrisNet|\Irisnet\API\Client\Model\INError
+     * @return \Irisnet\API\Client\Model\INError|\Irisnet\API\Client\Model\IrisNet
      */
     public function checkImageUrl($url, $licenseKey, $detail = 1)
     {
@@ -464,7 +464,7 @@ class EndpointsForAIChecksApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Irisnet\API\Client\Model\IrisNet|\Irisnet\API\Client\Model\INError, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Irisnet\API\Client\Model\INError|\Irisnet\API\Client\Model\IrisNet, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkImageUrlWithHttpInfo($url, $licenseKey, $detail = 1)
     {
@@ -500,18 +500,6 @@ class EndpointsForAIChecksApi
 
             $responseBody = $response->getBody();
             switch($statusCode) {
-                case 200:
-                    if ('\Irisnet\API\Client\Model\IrisNet' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\IrisNet', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 402:
                     if ('\Irisnet\API\Client\Model\INError' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
@@ -521,6 +509,18 @@ class EndpointsForAIChecksApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\INError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 200:
+                    if ('\Irisnet\API\Client\Model\IrisNet' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\IrisNet', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -542,18 +542,18 @@ class EndpointsForAIChecksApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Irisnet\API\Client\Model\IrisNet',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 402:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\INError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\IrisNet',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);

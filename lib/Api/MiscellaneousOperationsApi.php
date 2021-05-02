@@ -416,7 +416,7 @@ class MiscellaneousOperationsApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Irisnet\API\Client\Model\INError|int
+     * @return int|\Irisnet\API\Client\Model\INError
      */
     public function getAICost()
     {
@@ -432,7 +432,7 @@ class MiscellaneousOperationsApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Irisnet\API\Client\Model\INError|int, HTTP status code, HTTP response headers (array of strings)
+     * @return array of int|\Irisnet\API\Client\Model\INError, HTTP status code, HTTP response headers (array of strings)
      */
     public function getAICostWithHttpInfo()
     {
@@ -468,18 +468,6 @@ class MiscellaneousOperationsApi
 
             $responseBody = $response->getBody();
             switch($statusCode) {
-                case 429:
-                    if ('\Irisnet\API\Client\Model\INError' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\INError', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('int' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
@@ -489,6 +477,18 @@ class MiscellaneousOperationsApi
 
                     return [
                         ObjectSerializer::deserialize($content, 'int', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 429:
+                    if ('\Irisnet\API\Client\Model\INError' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\INError', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -510,18 +510,18 @@ class MiscellaneousOperationsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 429:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Irisnet\API\Client\Model\INError',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         'int',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 429:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\INError',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
