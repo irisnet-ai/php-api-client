@@ -59,6 +59,8 @@ class INObject implements ModelInterface, ArrayAccess
       */
     protected static $openAPITypes = [
         'inClass' => 'string',
+        'inGroup' => 'string',
+        'inId' => 'string',
         'x0' => 'float',
         'y0' => 'float',
         'width' => 'float',
@@ -73,6 +75,8 @@ class INObject implements ModelInterface, ArrayAccess
       */
     protected static $openAPIFormats = [
         'inClass' => null,
+        'inGroup' => null,
+        'inId' => null,
         'x0' => 'float',
         'y0' => 'float',
         'width' => 'float',
@@ -108,6 +112,8 @@ class INObject implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'inClass' => 'inClass',
+        'inGroup' => 'inGroup',
+        'inId' => 'inId',
         'x0' => 'x0',
         'y0' => 'y0',
         'width' => 'width',
@@ -122,6 +128,8 @@ class INObject implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'inClass' => 'setInClass',
+        'inGroup' => 'setInGroup',
+        'inId' => 'setInId',
         'x0' => 'setX0',
         'y0' => 'setY0',
         'width' => 'setWidth',
@@ -136,6 +144,8 @@ class INObject implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'inClass' => 'getInClass',
+        'inGroup' => 'getInGroup',
+        'inId' => 'getInId',
         'x0' => 'getX0',
         'y0' => 'getY0',
         'width' => 'getWidth',
@@ -204,6 +214,8 @@ class INObject implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['inClass'] = isset($data['inClass']) ? $data['inClass'] : null;
+        $this->container['inGroup'] = isset($data['inGroup']) ? $data['inGroup'] : null;
+        $this->container['inId'] = isset($data['inId']) ? $data['inId'] : null;
         $this->container['x0'] = isset($data['x0']) ? $data['x0'] : null;
         $this->container['y0'] = isset($data['y0']) ? $data['y0'] : null;
         $this->container['width'] = isset($data['width']) ? $data['width'] : null;
@@ -255,6 +267,54 @@ class INObject implements ModelInterface, ArrayAccess
     public function setInClass($inClass)
     {
         $this->container['inClass'] = $inClass;
+
+        return $this;
+    }
+
+    /**
+     * Gets inGroup
+     *
+     * @return string|null
+     */
+    public function getInGroup()
+    {
+        return $this->container['inGroup'];
+    }
+
+    /**
+     * Sets inGroup
+     *
+     * @param string|null $inGroup The group of the classification.
+     *
+     * @return $this
+     */
+    public function setInGroup($inGroup)
+    {
+        $this->container['inGroup'] = $inGroup;
+
+        return $this;
+    }
+
+    /**
+     * Gets inId
+     *
+     * @return string|null
+     */
+    public function getInId()
+    {
+        return $this->container['inId'];
+    }
+
+    /**
+     * Sets inId
+     *
+     * @param string|null $inId The group of the classification.
+     *
+     * @return $this
+     */
+    public function setInId($inId)
+    {
+        $this->container['inId'] = $inId;
 
         return $this;
     }

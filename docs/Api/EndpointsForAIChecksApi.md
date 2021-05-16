@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## checkImage
 
-> \Irisnet\API\Client\Model\IrisNet checkImage($licenseKey, $detail, $file)
+> \Irisnet\API\Client\Model\IrisNet checkImage($licenseKey, $file, $detail)
 
 Upload and check image against previously chosen configuration.
 
@@ -28,11 +28,11 @@ $apiInstance = new Irisnet\API\Client\Api\EndpointsForAIChecksApi(
     new GuzzleHttp\Client()
 );
 $licenseKey = 'licenseKey_example'; // string | License obtained from irisnet.de shop.
-$detail = 1; // int | Sets the response details.  * _1_ - The response body informs you if the image is ok or not ok (better API performance) * _2_ - In addition the response body lists all broken rules. * _3_ - In addition to the first two options, this will show all objects with positional information.
 $file = "/path/to/file.txt"; // \SplFileObject | 
+$detail = 1; // int | Sets the response details.  * _1_ - The response body informs you if the image is ok or not ok (better API performance) * _2_ - In addition the response body lists all broken rules. * _3_ - In addition to the first two options, this will show all objects with positional information.
 
 try {
-    $result = $apiInstance->checkImage($licenseKey, $detail, $file);
+    $result = $apiInstance->checkImage($licenseKey, $file, $detail);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling EndpointsForAIChecksApi->checkImage: ', $e->getMessage(), PHP_EOL;
@@ -46,8 +46,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **licenseKey** | **string**| License obtained from irisnet.de shop. |
+ **file** | **\SplFileObject****\SplFileObject**|  |
  **detail** | **int**| Sets the response details.  * _1_ - The response body informs you if the image is ok or not ok (better API performance) * _2_ - In addition the response body lists all broken rules. * _3_ - In addition to the first two options, this will show all objects with positional information. | [optional] [default to 1]
- **file** | **\SplFileObject****\SplFileObject**|  | [optional]
 
 ### Return type
 

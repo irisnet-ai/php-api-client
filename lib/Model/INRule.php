@@ -59,6 +59,7 @@ class INRule implements ModelInterface, ArrayAccess
       */
     protected static $openAPITypes = [
         'inClass' => 'string',
+        'inGroup' => 'string',
         'found' => 'int',
         'min' => 'int',
         'max' => 'int'
@@ -71,6 +72,7 @@ class INRule implements ModelInterface, ArrayAccess
       */
     protected static $openAPIFormats = [
         'inClass' => null,
+        'inGroup' => null,
         'found' => 'int32',
         'min' => 'int32',
         'max' => 'int32'
@@ -104,6 +106,7 @@ class INRule implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'inClass' => 'inClass',
+        'inGroup' => 'inGroup',
         'found' => 'found',
         'min' => 'min',
         'max' => 'max'
@@ -116,6 +119,7 @@ class INRule implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'inClass' => 'setInClass',
+        'inGroup' => 'setInGroup',
         'found' => 'setFound',
         'min' => 'setMin',
         'max' => 'setMax'
@@ -128,6 +132,7 @@ class INRule implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'inClass' => 'getInClass',
+        'inGroup' => 'getInGroup',
         'found' => 'getFound',
         'min' => 'getMin',
         'max' => 'getMax'
@@ -194,6 +199,7 @@ class INRule implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['inClass'] = isset($data['inClass']) ? $data['inClass'] : null;
+        $this->container['inGroup'] = isset($data['inGroup']) ? $data['inGroup'] : null;
         $this->container['found'] = isset($data['found']) ? $data['found'] : null;
         $this->container['min'] = isset($data['min']) ? $data['min'] : null;
         $this->container['max'] = isset($data['max']) ? $data['max'] : null;
@@ -243,6 +249,30 @@ class INRule implements ModelInterface, ArrayAccess
     public function setInClass($inClass)
     {
         $this->container['inClass'] = $inClass;
+
+        return $this;
+    }
+
+    /**
+     * Gets inGroup
+     *
+     * @return string|null
+     */
+    public function getInGroup()
+    {
+        return $this->container['inGroup'];
+    }
+
+    /**
+     * Sets inGroup
+     *
+     * @param string|null $inGroup The group of the classification.
+     *
+     * @return $this
+     */
+    public function setInGroup($inGroup)
+    {
+        $this->container['inGroup'] = $inGroup;
 
         return $this;
     }
