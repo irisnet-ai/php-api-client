@@ -33,8 +33,9 @@ $iNDefineAI = <?xml version="1.0" encoding="UTF-8"?>
 <inDefineAI>
 	<inImage proto="nudityCheck"/>
 	<inImage proto="ageEstimation"/>
-	<inImage proto="textRecognition"/>
 	<inImage proto="illegalSymbols"/>
+	<inImage proto="attributesCheck"/>
+	<inImage proto="textRecognition"/>
 </inDefineAI>; // \Irisnet\API\Client\Model\INDefineAI | 
 
 try {

@@ -132,7 +132,7 @@ $apiInstance = new Irisnet\API\Client\Api\MiscellaneousOperationsApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$licenseKey = 'licenseKey_example'; // string | License obtained from the https://www.irisnet.de/prices shop.
+$licenseKey = 'licenseKey_example'; // string | License obtained from the https://irisnet.de/subscribe shop.
 
 try {
     $result = $apiInstance->getLicenseInfo($licenseKey);
@@ -148,7 +148,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **licenseKey** | **string**| License obtained from the https://www.irisnet.de/prices shop. |
+ **licenseKey** | **string**| License obtained from the https://irisnet.de/subscribe shop. |
 
 ### Return type
 
