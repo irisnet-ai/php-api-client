@@ -1,17 +1,18 @@
 # Irisnet\API\Client\EndpointsToSetupTheAIApi
 
-All URIs are relative to *https://api.irisnet.de*
+All URIs are relative to https://api.irisnet.de.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**setINDefine**](EndpointsToSetupTheAIApi.md#setINDefine) | **POST** /v1/set-definition | Set definitions via pre-defined prototypes.
-[**setINParams**](EndpointsToSetupTheAIApi.md#setINParams) | **POST** /v1/set-parameters | Set the behaviour parameters for one object class.
+[**setINDefine()**](EndpointsToSetupTheAIApi.md#setINDefine) | **POST** /v1/set-definition | Set definitions via pre-defined prototypes.
+[**setINParams()**](EndpointsToSetupTheAIApi.md#setINParams) | **POST** /v1/set-parameters | Set the behaviour parameters for one object class.
 
 
+## `setINDefine()`
 
-## setINDefine
-
-> setINDefine($iNDefineAI)
+```php
+setINDefine($iNDefineAI)
+```
 
 Set definitions via pre-defined prototypes.
 
@@ -22,6 +23,7 @@ Each available prototype groups together a pre-defined set of parameters that wi
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Irisnet\API\Client\Api\EndpointsToSetupTheAIApi(
@@ -36,18 +38,16 @@ $iNDefineAI = <?xml version="1.0" encoding="UTF-8"?>
 	<inImage proto="illegalSymbols"/>
 	<inImage proto="attributesCheck"/>
 	<inImage proto="textRecognition"/>
-</inDefineAI>; // \Irisnet\API\Client\Model\INDefineAI | 
+</inDefineAI>; // \Irisnet\API\Client\Model\INDefineAI
 
 try {
     $apiInstance->setINDefine($iNDefineAI);
 } catch (Exception $e) {
     echo 'Exception when calling EndpointsToSetupTheAIApi->setINDefine: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -63,17 +63,18 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/xml, application/json
+- **Content-Type**: `application/xml`, `application/json`
 - **Accept**: Not defined
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `setINParams()`
 
-## setINParams
-
-> setINParams($iNParams)
+```php
+setINParams($iNParams)
+```
 
 Set the behaviour parameters for one object class.
 
@@ -84,6 +85,7 @@ Overwrites or extends the default configuration of the AI. By setting precise be
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Irisnet\API\Client\Api\EndpointsToSetupTheAIApi(
@@ -105,18 +107,16 @@ $iNParams = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 	<inParam inClass="toy" min="0" max="0" drawMode="2" grey="127" scale="1.0" severity="100"/>
 	<inParam inClass="oral" min="0" max="0" drawMode="2" grey="127" scale="1.0" severity="100"/>
 	<inParam inClass="penetration" min="0" max="0" drawMode="2" grey="127" scale="1.0" severity="100"/>
-</inParams>; // \Irisnet\API\Client\Model\INParams | 
+</inParams>; // \Irisnet\API\Client\Model\INParams
 
 try {
     $apiInstance->setINParams($iNParams);
 } catch (Exception $e) {
     echo 'Exception when calling EndpointsToSetupTheAIApi->setINParams: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -132,10 +132,9 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/xml, application/json
+- **Content-Type**: `application/xml`, `application/json`
 - **Accept**: Not defined
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

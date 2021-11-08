@@ -1,18 +1,19 @@
 # Irisnet\API\Client\MiscellaneousOperationsApi
 
-All URIs are relative to *https://api.irisnet.de*
+All URIs are relative to https://api.irisnet.de.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**downloadProcessed**](MiscellaneousOperationsApi.md#downloadProcessed) | **GET** /v1/download/{filename} | Get the resulting media file.
-[**getAICost**](MiscellaneousOperationsApi.md#getAICost) | **GET** /v1/cost | Get the cost per image check of the previously set parameters. The cost of the configuration is subtracted from the license key during each check.
-[**getLicenseInfo**](MiscellaneousOperationsApi.md#getLicenseInfo) | **GET** /v1/info/{licenseKey} | Get information from given license key.
+[**downloadProcessed()**](MiscellaneousOperationsApi.md#downloadProcessed) | **GET** /v1/download/{filename} | Get the resulting media file.
+[**getAICost()**](MiscellaneousOperationsApi.md#getAICost) | **GET** /v1/cost | Get the cost per image check of the previously set parameters. The cost of the configuration is subtracted from the license key during each check.
+[**getLicenseInfo()**](MiscellaneousOperationsApi.md#getLicenseInfo) | **GET** /v1/info/{licenseKey} | Get information from given license key.
 
 
+## `downloadProcessed()`
 
-## downloadProcessed
-
-> \SplFileObject downloadProcessed($filename)
+```php
+downloadProcessed($filename): \SplFileObject
+```
 
 Get the resulting media file.
 
@@ -23,12 +24,13 @@ Get the resulting media file.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Irisnet\API\Client\Api\MiscellaneousOperationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$filename = 'filename_example'; // string | 
+$filename = 'filename_example'; // string
 
 try {
     $result = $apiInstance->downloadProcessed($filename);
@@ -36,11 +38,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling MiscellaneousOperationsApi->downloadProcessed: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\SplFileObject**](../Model/\SplFileObject.md)
+**\SplFileObject**
 
 ### Authorization
 
@@ -57,16 +57,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/octet-stream
+- **Accept**: `application/octet-stream`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getAICost()`
 
-## getAICost
-
-> int getAICost()
+```php
+getAICost(): int
+```
 
 Get the cost per image check of the previously set parameters. The cost of the configuration is subtracted from the license key during each check.
 
@@ -75,6 +76,7 @@ Get the cost per image check of the previously set parameters. The cost of the c
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Irisnet\API\Client\Api\MiscellaneousOperationsApi(
@@ -89,7 +91,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling MiscellaneousOperationsApi->getAICost: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -107,16 +108,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: */*
+- **Accept**: `*/*`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getLicenseInfo()`
 
-## getLicenseInfo
-
-> \Irisnet\API\Client\Model\LicenseInfo getLicenseInfo($licenseKey)
+```php
+getLicenseInfo($licenseKey): \Irisnet\API\Client\Model\LicenseInfo
+```
 
 Get information from given license key.
 
@@ -125,6 +127,7 @@ Get information from given license key.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Irisnet\API\Client\Api\MiscellaneousOperationsApi(
@@ -140,11 +143,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling MiscellaneousOperationsApi->getLicenseInfo: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -161,9 +162,8 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/xml, application/json
+- **Accept**: `application/xml`, `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-
