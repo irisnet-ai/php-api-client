@@ -61,8 +61,10 @@ class INParam implements ModelInterface, ArrayAccess
         'inClass' => 'string',
         'min' => 'int',
         'max' => 'int',
+        'severity' => 'int',
         'drawMode' => 'int',
-        'grey' => 'int'
+        'grey' => 'int',
+        'scale' => 'float'
     ];
 
     /**
@@ -74,8 +76,10 @@ class INParam implements ModelInterface, ArrayAccess
         'inClass' => null,
         'min' => 'int32',
         'max' => 'int32',
+        'severity' => 'int32',
         'drawMode' => 'int32',
-        'grey' => 'int32'
+        'grey' => 'int32',
+        'scale' => 'float'
     ];
 
     /**
@@ -108,8 +112,10 @@ class INParam implements ModelInterface, ArrayAccess
         'inClass' => 'inClass',
         'min' => 'min',
         'max' => 'max',
+        'severity' => 'severity',
         'drawMode' => 'drawMode',
-        'grey' => 'grey'
+        'grey' => 'grey',
+        'scale' => 'scale'
     ];
 
     /**
@@ -121,8 +127,10 @@ class INParam implements ModelInterface, ArrayAccess
         'inClass' => 'setInClass',
         'min' => 'setMin',
         'max' => 'setMax',
+        'severity' => 'setSeverity',
         'drawMode' => 'setDrawMode',
-        'grey' => 'setGrey'
+        'grey' => 'setGrey',
+        'scale' => 'setScale'
     ];
 
     /**
@@ -134,8 +142,10 @@ class INParam implements ModelInterface, ArrayAccess
         'inClass' => 'getInClass',
         'min' => 'getMin',
         'max' => 'getMax',
+        'severity' => 'getSeverity',
         'drawMode' => 'getDrawMode',
-        'grey' => 'getGrey'
+        'grey' => 'getGrey',
+        'scale' => 'getScale'
     ];
 
     /**
@@ -278,8 +288,10 @@ class INParam implements ModelInterface, ArrayAccess
         $this->container['inClass'] = isset($data['inClass']) ? $data['inClass'] : null;
         $this->container['min'] = isset($data['min']) ? $data['min'] : null;
         $this->container['max'] = isset($data['max']) ? $data['max'] : null;
+        $this->container['severity'] = isset($data['severity']) ? $data['severity'] : 100;
         $this->container['drawMode'] = isset($data['drawMode']) ? $data['drawMode'] : null;
         $this->container['grey'] = isset($data['grey']) ? $data['grey'] : 127;
+        $this->container['scale'] = isset($data['scale']) ? $data['scale'] : 1.0;
     }
 
     /**
@@ -299,6 +311,14 @@ class INParam implements ModelInterface, ArrayAccess
             );
         }
 
+        if (!is_null($this->container['severity']) && ($this->container['severity'] > 1000)) {
+            $invalidProperties[] = "invalid value for 'severity', must be smaller than or equal to 1000.";
+        }
+
+        if (!is_null($this->container['severity']) && ($this->container['severity'] < 0)) {
+            $invalidProperties[] = "invalid value for 'severity', must be bigger than or equal to 0.";
+        }
+
         if (!is_null($this->container['drawMode']) && ($this->container['drawMode'] > 7)) {
             $invalidProperties[] = "invalid value for 'drawMode', must be smaller than or equal to 7.";
         }
@@ -313,6 +333,14 @@ class INParam implements ModelInterface, ArrayAccess
 
         if (!is_null($this->container['grey']) && ($this->container['grey'] < 0)) {
             $invalidProperties[] = "invalid value for 'grey', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['scale']) && ($this->container['scale'] > 2.0)) {
+            $invalidProperties[] = "invalid value for 'scale', must be smaller than or equal to 2.0.";
+        }
+
+        if (!is_null($this->container['scale']) && ($this->container['scale'] < 0.5)) {
+            $invalidProperties[] = "invalid value for 'scale', must be bigger than or equal to 0.5.";
         }
 
         return $invalidProperties;
@@ -412,6 +440,38 @@ class INParam implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Gets severity
+     *
+     * @return int|null
+     */
+    public function getSeverity()
+    {
+        return $this->container['severity'];
+    }
+
+    /**
+     * Sets severity
+     *
+     * @param int|null $severity Set a value to define the severity of a broken rule of the given classification object.
+     *
+     * @return $this
+     */
+    public function setSeverity($severity)
+    {
+
+        if (!is_null($severity) && ($severity > 1000)) {
+            throw new \InvalidArgumentException('invalid value for $severity when calling INParam., must be smaller than or equal to 1000.');
+        }
+        if (!is_null($severity) && ($severity < 0)) {
+            throw new \InvalidArgumentException('invalid value for $severity when calling INParam., must be bigger than or equal to 0.');
+        }
+
+        $this->container['severity'] = $severity;
+
+        return $this;
+    }
+
+    /**
      * Gets drawMode
      *
      * @return int|null
@@ -471,6 +531,38 @@ class INParam implements ModelInterface, ArrayAccess
         }
 
         $this->container['grey'] = $grey;
+
+        return $this;
+    }
+
+    /**
+     * Gets scale
+     *
+     * @return float|null
+     */
+    public function getScale()
+    {
+        return $this->container['scale'];
+    }
+
+    /**
+     * Sets scale
+     *
+     * @param float|null $scale Scale of the draw rectangle around the classification object. Specify a value to increase or decrease the size of the border.
+     *
+     * @return $this
+     */
+    public function setScale($scale)
+    {
+
+        if (!is_null($scale) && ($scale > 2.0)) {
+            throw new \InvalidArgumentException('invalid value for $scale when calling INParam., must be smaller than or equal to 2.0.');
+        }
+        if (!is_null($scale) && ($scale < 0.5)) {
+            throw new \InvalidArgumentException('invalid value for $scale when calling INParam., must be bigger than or equal to 0.5.');
+        }
+
+        $this->container['scale'] = $scale;
 
         return $this;
     }

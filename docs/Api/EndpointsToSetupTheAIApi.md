@@ -94,17 +94,17 @@ $apiInstance = new Irisnet\API\Client\Api\EndpointsToSetupTheAIApi(
 $iNParams = <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <inParams>
 	<inDefault thresh="0.5" grey="127"/>
-	<inParam inClass="face" min="-1" max="-1" drawMode="0" grey="127"/>
-	<inParam inClass="hand" min="-1" max="-1" drawMode="0" grey="127"/>
-	<inParam inClass="breast" min="0" max="0" drawMode="2" grey="127"/>
-	<inParam inClass="vulva" min="0" max="0" drawMode="2" grey="127"/>
-	<inParam inClass="penis" min="0" max="0" drawMode="2" grey="127"/>
-	<inParam inClass="vagina" min="0" max="0" drawMode="2" grey="127"/>
-	<inParam inClass="buttocks" min="0" max="0" drawMode="2" grey="127"/>
-	<inParam inClass="anus" min="0" max="0" drawMode="2" grey="127"/>
-	<inParam inClass="toy" min="0" max="0" drawMode="2" grey="127"/>
-	<inParam inClass="oral" min="0" max="0" drawMode="2" grey="127"/>
-	<inParam inClass="penetration" min="0" max="0" drawMode="2" grey="127"/>
+	<inParam inClass="face" min="1" max="3" drawMode="0" grey="127" scale="1.0" severity="100"/>
+	<inParam inClass="hand" min="-1" max="-1" drawMode="0" grey="127" scale="1.0" severity="100"/>
+	<inParam inClass="breast" min="0" max="0" drawMode="2" grey="127" scale="1.0" severity="100"/>
+	<inParam inClass="vulva" min="0" max="0" drawMode="2" grey="127" scale="1.0" severity="100"/>
+	<inParam inClass="penis" min="0" max="0" drawMode="2" grey="127" scale="1.0" severity="100"/>
+	<inParam inClass="vagina" min="0" max="0" drawMode="2" grey="127" scale="1.0" severity="100"/>
+	<inParam inClass="buttocks" min="0" max="0" drawMode="2" grey="127" scale="1.0" severity="100"/>
+	<inParam inClass="anus" min="0" max="0" drawMode="2" grey="127" scale="1.0" severity="100"/>
+	<inParam inClass="toy" min="0" max="0" drawMode="2" grey="127" scale="1.0" severity="100"/>
+	<inParam inClass="oral" min="0" max="0" drawMode="2" grey="127" scale="1.0" severity="100"/>
+	<inParam inClass="penetration" min="0" max="0" drawMode="2" grey="127" scale="1.0" severity="100"/>
 </inParams>; // \Irisnet\API\Client\Model\INParams | 
 
 try {

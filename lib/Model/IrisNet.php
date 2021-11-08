@@ -60,6 +60,7 @@ class IrisNet implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'rulesBroken' => 'int',
         'helpSuggested' => 'int',
+        'severity' => 'int',
         'getnClasses' => 'int',
         'getnObjects' => 'int',
         'inRule' => '\Irisnet\API\Client\Model\INRule[]',
@@ -74,6 +75,7 @@ class IrisNet implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'rulesBroken' => 'int32',
         'helpSuggested' => 'int32',
+        'severity' => 'int32',
         'getnClasses' => 'int32',
         'getnObjects' => 'int32',
         'inRule' => null,
@@ -109,6 +111,7 @@ class IrisNet implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'rulesBroken' => 'rulesBroken',
         'helpSuggested' => 'helpSuggested',
+        'severity' => 'severity',
         'getnClasses' => 'getnClasses',
         'getnObjects' => 'getnObjects',
         'inRule' => 'inRule',
@@ -123,6 +126,7 @@ class IrisNet implements ModelInterface, ArrayAccess
     protected static $setters = [
         'rulesBroken' => 'setRulesBroken',
         'helpSuggested' => 'setHelpSuggested',
+        'severity' => 'setSeverity',
         'getnClasses' => 'setGetnClasses',
         'getnObjects' => 'setGetnObjects',
         'inRule' => 'setInRule',
@@ -137,6 +141,7 @@ class IrisNet implements ModelInterface, ArrayAccess
     protected static $getters = [
         'rulesBroken' => 'getRulesBroken',
         'helpSuggested' => 'getHelpSuggested',
+        'severity' => 'getSeverity',
         'getnClasses' => 'getGetnClasses',
         'getnObjects' => 'getGetnObjects',
         'inRule' => 'getInRule',
@@ -205,6 +210,7 @@ class IrisNet implements ModelInterface, ArrayAccess
     {
         $this->container['rulesBroken'] = isset($data['rulesBroken']) ? $data['rulesBroken'] : null;
         $this->container['helpSuggested'] = isset($data['helpSuggested']) ? $data['helpSuggested'] : null;
+        $this->container['severity'] = isset($data['severity']) ? $data['severity'] : null;
         $this->container['getnClasses'] = isset($data['getnClasses']) ? $data['getnClasses'] : null;
         $this->container['getnObjects'] = isset($data['getnObjects']) ? $data['getnObjects'] : null;
         $this->container['inRule'] = isset($data['inRule']) ? $data['inRule'] : null;
@@ -279,6 +285,30 @@ class IrisNet implements ModelInterface, ArrayAccess
     public function setHelpSuggested($helpSuggested)
     {
         $this->container['helpSuggested'] = $helpSuggested;
+
+        return $this;
+    }
+
+    /**
+     * Gets severity
+     *
+     * @return int|null
+     */
+    public function getSeverity()
+    {
+        return $this->container['severity'];
+    }
+
+    /**
+     * Sets severity
+     *
+     * @param int|null $severity The highest severity value found amongst the broken rules.
+     *
+     * @return $this
+     */
+    public function setSeverity($severity)
+    {
+        $this->container['severity'] = $severity;
 
         return $this;
     }

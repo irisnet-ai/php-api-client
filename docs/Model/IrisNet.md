@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **rulesBroken** | **int** | The amount of broken rules that are contained in the source media. | [optional] 
 **helpSuggested** | **int** | In cases where the AI is uncertain, this attribute is set (1), indication that it could be useful to double check the source media by a human. | [optional] 
+**severity** | **int** | The highest severity value found amongst the broken rules. | [optional] 
 **getnClasses** | **int** | The amount of classification objects that were checked against on the source media. This does not mean that all of the classifications were found. | [optional] 
 **getnObjects** | **int** | The amount of objects that were recognized on the source image. | [optional] 
 **inRule** | [**\Irisnet\API\Client\Model\INRule[]**](INRule.md) | This list contains one rule per classification. Rules for classification objects that were not found, are omitted. | [optional] 
