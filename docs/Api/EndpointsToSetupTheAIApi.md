@@ -37,6 +37,7 @@ $iNDefineAI = <?xml version="1.0" encoding="UTF-8"?>
 	<inImage proto="ageEstimation"/>
 	<inImage proto="illegalSymbols"/>
 	<inImage proto="attributesCheck"/>
+	<inImage proto="nippleCheck"/>
 	<inImage proto="textRecognition"/>
 </inDefineAI>; // \Irisnet\API\Client\Model\INDefineAI
 
@@ -78,7 +79,7 @@ setINParams($iNParams)
 
 Set the behaviour parameters for one object class.
 
-Overwrites or extends the default configuration of the AI. By setting precise behaviour parameters, the AI can be fine tuned for specific use cases. To reset the parameters to their default values, make a post request to 'set-definition'.
+Overwrites or extends the default configuration of the AI. By setting precise behaviour parameters, the AI can be fine tuned for specific use cases. See inParam schema to learn more about the classification objects. To reset the parameters to their default values, make a post request to 'set-definition'.
 
 ### Example
 
