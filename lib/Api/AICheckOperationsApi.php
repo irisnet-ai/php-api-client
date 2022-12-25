@@ -205,7 +205,7 @@ class AICheckOperationsApi
             }
 
             switch($statusCode) {
-                case 402:
+                case 404:
                     if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -235,7 +235,7 @@ class AICheckOperationsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 404:
+                case 402:
                     if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -270,7 +270,7 @@ class AICheckOperationsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 402:
+                case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\ApiNotice',
@@ -286,7 +286,7 @@ class AICheckOperationsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 404:
+                case 402:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\ApiNotice',
@@ -598,7 +598,7 @@ class AICheckOperationsApi
             }
 
             switch($statusCode) {
-                case 402:
+                case 404:
                     if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -628,7 +628,7 @@ class AICheckOperationsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 404:
+                case 402:
                     if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
@@ -663,7 +663,7 @@ class AICheckOperationsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 402:
+                case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\ApiNotice',
@@ -679,7 +679,7 @@ class AICheckOperationsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 404:
+                case 402:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\ApiNotice',
@@ -1008,7 +1008,7 @@ class AICheckOperationsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 402:
+                case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\ApiNotice',
@@ -1016,7 +1016,7 @@ class AICheckOperationsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 404:
+                case 402:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\ApiNotice',

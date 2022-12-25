@@ -381,7 +381,7 @@ class DetailedConfigurationParametersApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ParamSet
+     * @return \Irisnet\API\Client\Model\ParamSet|\Irisnet\API\Client\Model\ApiNotice
      */
     public function getParameters($configId, string $contentType = self::contentTypes['getParameters'][0])
     {
@@ -399,7 +399,7 @@ class DetailedConfigurationParametersApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ParamSet, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Irisnet\API\Client\Model\ParamSet|\Irisnet\API\Client\Model\ApiNotice, HTTP status code, HTTP response headers (array of strings)
      */
     public function getParametersWithHttpInfo($configId, string $contentType = self::contentTypes['getParameters'][0])
     {
@@ -441,21 +441,6 @@ class DetailedConfigurationParametersApi
             }
 
             switch($statusCode) {
-                case 404:
-                    if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Irisnet\API\Client\Model\ApiNotice' !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ApiNotice', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\Irisnet\API\Client\Model\ParamSet' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -468,6 +453,21 @@ class DetailedConfigurationParametersApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ParamSet', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Irisnet\API\Client\Model\ApiNotice' !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ApiNotice', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -491,18 +491,18 @@ class DetailedConfigurationParametersApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Irisnet\API\Client\Model\ApiNotice',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\ParamSet',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\ApiNotice',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -693,7 +693,7 @@ class DetailedConfigurationParametersApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return |\Irisnet\API\Client\Model\ParamSet|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice
+     * @return \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ParamSet
      */
     public function setParameters($configId, $paramSet, string $contentType = self::contentTypes['setParameters'][0])
     {
@@ -712,7 +712,7 @@ class DetailedConfigurationParametersApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of |\Irisnet\API\Client\Model\ParamSet|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ParamSet, HTTP status code, HTTP response headers (array of strings)
      */
     public function setParametersWithHttpInfo($configId, $paramSet, string $contentType = self::contentTypes['setParameters'][0])
     {
@@ -754,18 +754,18 @@ class DetailedConfigurationParametersApi
             }
 
             switch($statusCode) {
-                case 200:
-                    if ('\Irisnet\API\Client\Model\ParamSet' === '\SplFileObject') {
+                case 400:
+                    if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Irisnet\API\Client\Model\ParamSet' !== 'string') {
+                        if ('\Irisnet\API\Client\Model\ApiNotice' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ParamSet', []),
+                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ApiNotice', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -784,18 +784,18 @@ class DetailedConfigurationParametersApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 400:
-                    if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
+                case 200:
+                    if ('\Irisnet\API\Client\Model\ParamSet' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Irisnet\API\Client\Model\ApiNotice' !== 'string') {
+                        if ('\Irisnet\API\Client\Model\ParamSet' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ApiNotice', []),
+                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ParamSet', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -819,10 +819,10 @@ class DetailedConfigurationParametersApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 200:
+                case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Irisnet\API\Client\Model\ParamSet',
+                        '\Irisnet\API\Client\Model\ApiNotice',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -835,10 +835,10 @@ class DetailedConfigurationParametersApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 400:
+                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Irisnet\API\Client\Model\ApiNotice',
+                        '\Irisnet\API\Client\Model\ParamSet',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
