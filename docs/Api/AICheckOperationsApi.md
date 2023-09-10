@@ -12,7 +12,7 @@ All URIs are relative to https://api.irisnet.de, except if the operation defines
 ## `checkImage()`
 
 ```php
-checkImage($configId, $url, $detail, $imageEncode): \Irisnet\API\Client\Model\CheckResult
+checkImage($configId, $url, $data, $detail, $imageEncode): \Irisnet\API\Client\Model\CheckResult
 ```
 
 Check an image with the AI.
@@ -39,12 +39,13 @@ $apiInstance = new Irisnet\API\Client\Api\AICheckOperationsApi(
     $config
 );
 $configId = 'configId_example'; // string | The configuration id from the Basic Configuration operations.
-$url = 'url_example'; // string | The url to the image that needs to be checked.
+$url = 'url_example'; // string | <s>The url to the image that needs to be checked.</s> Deprecated: Use 'data' parameter instead. <b>This parameter will be removed in future releases.</b>
+$data = 'data_example'; // string | The http(s) url or base64 encoded data uri of the image that needs to be checked.
 $detail = 1; // int | Set the detail level of the response.  * _1_ - The response only contains the _Summary_ and possibly the _Encoded_ schemas for basic information's (better API performance). * _2_ - Additionally lists all broken rules (_BrokenRule_ schema) according to the configuration parameters that were requested. * _3_ - Also shows detections (e.g. _BaseDetection_ schema) that contains extended features to each found object.
 $imageEncode = false; // bool | Specifies whether or not to draw an output image that will be delivered in the response body as base64 encoded string. The _Encoded_ schema will be available in the response.
 
 try {
-    $result = $apiInstance->checkImage($configId, $url, $detail, $imageEncode);
+    $result = $apiInstance->checkImage($configId, $url, $data, $detail, $imageEncode);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling AICheckOperationsApi->checkImage: ', $e->getMessage(), PHP_EOL;
@@ -56,7 +57,8 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **configId** | **string**| The configuration id from the Basic Configuration operations. | |
-| **url** | **string**| The url to the image that needs to be checked. | |
+| **url** | **string**| &lt;s&gt;The url to the image that needs to be checked.&lt;/s&gt; Deprecated: Use &#39;data&#39; parameter instead. &lt;b&gt;This parameter will be removed in future releases.&lt;/b&gt; | [optional] |
+| **data** | **string**| The http(s) url or base64 encoded data uri of the image that needs to be checked. | [optional] |
 | **detail** | **int**| Set the detail level of the response.  * _1_ - The response only contains the _Summary_ and possibly the _Encoded_ schemas for basic information&#39;s (better API performance). * _2_ - Additionally lists all broken rules (_BrokenRule_ schema) according to the configuration parameters that were requested. * _3_ - Also shows detections (e.g. _BaseDetection_ schema) that contains extended features to each found object. | [optional] [default to 1] |
 | **imageEncode** | **bool**| Specifies whether or not to draw an output image that will be delivered in the response body as base64 encoded string. The _Encoded_ schema will be available in the response. | [optional] [default to false] |
 
@@ -150,7 +152,7 @@ try {
 ## `checkVideo()`
 
 ```php
-checkVideo($configId, $url, $callback, $detail, $imageEncode, $checkRate)
+checkVideo($configId, $url, $config, $detail, $imageEncode, $checkRate)
 ```
 
 Check a video with the AI.
@@ -178,13 +180,13 @@ $apiInstance = new Irisnet\API\Client\Api\AICheckOperationsApi(
 );
 $configId = 'configId_example'; // string | The configuration id from the Basic Configuration operations.
 $url = 'url_example'; // string | The url to the video that needs to be checked.
-$callback = new \Irisnet\API\Client\Model\Callback(); // \Irisnet\API\Client\Model\Callback
+$config = {"callbackUrl":"http://www.example.com/callback?video","headers":{"Authorization":"Basic Rm9yemEgTmFwb2xpLCBzZW1wcmUh"}}; // \Irisnet\API\Client\Model\Config
 $detail = 1; // int | Set the detail level of the response.  * _1_ - The response only contains the _Summary_ and possibly the _Encoded_ schemas for basic information's (better API performance). * _2_ - Additionally lists all broken rules (_BrokenRule_ schema) according to the configuration parameters that were requested. * _3_ - Also shows events (_Event_ schema) that contains extended features to each found object.
 $imageEncode = false; // bool | Specifies whether or not to draw an output video that can be downloaded afterwards. The _Encoded_ schema will be available in the response.
 $checkRate = 0; // int | The milliseconds between each AI check. E.g. The AI will check 1 frame per second when checkRate is set to '1000'.
 
 try {
-    $apiInstance->checkVideo($configId, $url, $callback, $detail, $imageEncode, $checkRate);
+    $apiInstance->checkVideo($configId, $url, $config, $detail, $imageEncode, $checkRate);
 } catch (Exception $e) {
     echo 'Exception when calling AICheckOperationsApi->checkVideo: ', $e->getMessage(), PHP_EOL;
 }
@@ -196,7 +198,7 @@ try {
 | ------------- | ------------- | ------------- | ------------- |
 | **configId** | **string**| The configuration id from the Basic Configuration operations. | |
 | **url** | **string**| The url to the video that needs to be checked. | |
-| **callback** | [**\Irisnet\API\Client\Model\Callback**](../Model/Callback.md)|  | |
+| **config** | [**\Irisnet\API\Client\Model\Config**](../Model/Config.md)|  | |
 | **detail** | **int**| Set the detail level of the response.  * _1_ - The response only contains the _Summary_ and possibly the _Encoded_ schemas for basic information&#39;s (better API performance). * _2_ - Additionally lists all broken rules (_BrokenRule_ schema) according to the configuration parameters that were requested. * _3_ - Also shows events (_Event_ schema) that contains extended features to each found object. | [optional] [default to 1] |
 | **imageEncode** | **bool**| Specifies whether or not to draw an output video that can be downloaded afterwards. The _Encoded_ schema will be available in the response. | [optional] [default to false] |
 | **checkRate** | **int**| The milliseconds between each AI check. E.g. The AI will check 1 frame per second when checkRate is set to &#39;1000&#39;. | [optional] [default to 0] |

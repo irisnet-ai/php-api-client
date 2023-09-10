@@ -162,7 +162,7 @@ $apiInstance = new Irisnet\API\Client\Api\DetailedConfigurationParametersApi(
     $config
 );
 $configId = 'configId_example'; // string | The id of the configuration where the parameters should be added.
-$paramSet = new \Irisnet\API\Client\Model\ParamSet(); // \Irisnet\API\Client\Model\ParamSet | Define the parameters to use for an AI check operation. View the _ParamSet_ and _Param_ schema to see the available parameters.
+$paramSet = {"params":[{"classification":"breast","drawMode":3},{"classification":"vulva","drawMode":3},{"classification":"penis","drawMode":3},{"classification":"vagina","drawMode":3},{"classification":"buttocks","drawMode":3},{"classification":"anus","drawMode":3},{"classification":"toy","drawMode":3},{"classification":"oral","drawMode":3},{"classification":"penetration","drawMode":3}]}; // \Irisnet\API\Client\Model\ParamSet | Define the parameters to use for an AI check operation. View the _ParamSet_ and _Param_ schema to see the available parameters.
 
 try {
     $result = $apiInstance->setParameters($configId, $paramSet);

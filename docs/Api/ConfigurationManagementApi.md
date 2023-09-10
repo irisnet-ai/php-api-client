@@ -221,7 +221,7 @@ $apiInstance = new Irisnet\API\Client\Api\ConfigurationManagementApi(
     new GuzzleHttp\Client(),
     $config
 );
-$config = new \Irisnet\API\Client\Model\Config(); // \Irisnet\API\Client\Model\Config | Define the prototypes to use for an AI check operation. View the _Config_ schema to see the available prototypes.
+$config = {"prototypes":["nudityCheck","ageEstimation","illegalSymbols","attributesCheck","nippleCheck","textRecognition","bodyAttributes","unwantedSubstances","violenceCheck"]}; // \Irisnet\API\Client\Model\Config | Define the prototypes to use for an AI check operation. View the _Config_ schema to see the available prototypes.
 
 try {
     $result = $apiInstance->setConfig($config);

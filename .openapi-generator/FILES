@@ -11,9 +11,7 @@ docs/Model/ApiNotice.md
 docs/Model/BaseAttribute.md
 docs/Model/BaseDetection.md
 docs/Model/BreastDetection.md
-docs/Model/BreastDetectionAllOf.md
 docs/Model/BrokenRule.md
-docs/Model/Callback.md
 docs/Model/CheckResult.md
 docs/Model/CheckResultDetectionsInner.md
 docs/Model/Config.md
@@ -21,10 +19,8 @@ docs/Model/Coordinates.md
 docs/Model/Encoded.md
 docs/Model/Event.md
 docs/Model/FaceDetection.md
-docs/Model/FaceDetectionAllOf.md
 docs/Model/HairAttribute.md
 docs/Model/HairDetection.md
-docs/Model/HairDetectionAllOf.md
 docs/Model/LicenseInfo.md
 docs/Model/Param.md
 docs/Model/ParamSet.md
@@ -43,9 +39,7 @@ lib/Model/ApiNotice.php
 lib/Model/BaseAttribute.php
 lib/Model/BaseDetection.php
 lib/Model/BreastDetection.php
-lib/Model/BreastDetectionAllOf.php
 lib/Model/BrokenRule.php
-lib/Model/Callback.php
 lib/Model/CheckResult.php
 lib/Model/CheckResultDetectionsInner.php
 lib/Model/Config.php
@@ -53,10 +47,8 @@ lib/Model/Coordinates.php
 lib/Model/Encoded.php
 lib/Model/Event.php
 lib/Model/FaceDetection.php
-lib/Model/FaceDetectionAllOf.php
 lib/Model/HairAttribute.php
 lib/Model/HairDetection.php
-lib/Model/HairDetectionAllOf.php
 lib/Model/LicenseInfo.php
 lib/Model/ModelInterface.php
 lib/Model/Param.php
