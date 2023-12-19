@@ -73,7 +73,7 @@ class AICheckOperationsApi
     /** @var string[] $contentTypes **/
     public const contentTypes = [
         'checkImage' => [
-            'application/json',
+            'application/*',
         ],
         'checkStream' => [
             'application/json',
