@@ -12,10 +12,12 @@ docs/Model/BaseAttribute.md
 docs/Model/BaseDetection.md
 docs/Model/BreastDetection.md
 docs/Model/BrokenRule.md
+docs/Model/Callback.md
 docs/Model/CheckResult.md
 docs/Model/CheckResultDetectionsInner.md
 docs/Model/Config.md
 docs/Model/Coordinates.md
+docs/Model/Data.md
 docs/Model/Encoded.md
 docs/Model/Event.md
 docs/Model/FaceDetection.md
@@ -40,10 +42,12 @@ lib/Model/BaseAttribute.php
 lib/Model/BaseDetection.php
 lib/Model/BreastDetection.php
 lib/Model/BrokenRule.php
+lib/Model/Callback.php
 lib/Model/CheckResult.php
 lib/Model/CheckResultDetectionsInner.php
 lib/Model/Config.php
 lib/Model/Coordinates.php
+lib/Model/Data.php
 lib/Model/Encoded.php
 lib/Model/Event.php
 lib/Model/FaceDetection.php
@@ -58,3 +62,4 @@ lib/Model/Rectangle.php
 lib/Model/Summary.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
+test/Model/DataTest.php

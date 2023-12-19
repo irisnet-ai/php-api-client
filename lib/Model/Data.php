@@ -1,6 +1,6 @@
 <?php
 /**
- * Callback
+ * Data
  *
  * PHP version 7.4
  *
@@ -33,16 +33,16 @@ use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
- * Callback Class Doc Comment
+ * Data Class Doc Comment
  *
  * @category Class
- * @description Callback options to send a response to.
+ * @description The data to be checked.
  * @package  Irisnet\API\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
+class Data implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Callback';
+    protected static $openAPIModelName = 'Data';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,8 +59,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'callbackUrl' => 'string',
-        'headers' => 'array<string,string>'
+        'data' => 'string'
     ];
 
     /**
@@ -71,8 +70,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'callbackUrl' => 'uri',
-        'headers' => null
+        'data' => null
     ];
 
     /**
@@ -81,8 +79,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'callbackUrl' => false,
-		'headers' => false
+        'data' => false
     ];
 
     /**
@@ -171,8 +168,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'callbackUrl' => 'callbackUrl',
-        'headers' => 'headers'
+        'data' => 'data'
     ];
 
     /**
@@ -181,8 +177,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'callbackUrl' => 'setCallbackUrl',
-        'headers' => 'setHeaders'
+        'data' => 'setData'
     ];
 
     /**
@@ -191,8 +186,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'callbackUrl' => 'getCallbackUrl',
-        'headers' => 'getHeaders'
+        'data' => 'getData'
     ];
 
     /**
@@ -252,8 +246,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('callbackUrl', $data ?? [], null);
-        $this->setIfExists('headers', $data ?? [], null);
+        $this->setIfExists('data', $data ?? [], null);
     }
 
     /**
@@ -283,8 +276,8 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['callbackUrl'] === null) {
-            $invalidProperties[] = "'callbackUrl' can't be null";
+        if ($this->container['data'] === null) {
+            $invalidProperties[] = "'data' can't be null";
         }
         return $invalidProperties;
     }
@@ -302,55 +295,28 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets callbackUrl
+     * Gets data
      *
      * @return string
      */
-    public function getCallbackUrl()
+    public function getData()
     {
-        return $this->container['callbackUrl'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets callbackUrl
+     * Sets data
      *
-     * @param string $callbackUrl Define a URL where a response should be sent.
+     * @param string $data The http(s) url or base64 encoded data uri of the image that needs to be checked.
      *
      * @return self
      */
-    public function setCallbackUrl($callbackUrl)
+    public function setData($data)
     {
-        if (is_null($callbackUrl)) {
-            throw new \InvalidArgumentException('non-nullable callbackUrl cannot be null');
+        if (is_null($data)) {
+            throw new \InvalidArgumentException('non-nullable data cannot be null');
         }
-        $this->container['callbackUrl'] = $callbackUrl;
-
-        return $this;
-    }
-
-    /**
-     * Gets headers
-     *
-     * @return array<string,string>|null
-     */
-    public function getHeaders()
-    {
-        return $this->container['headers'];
-    }
-
-    /**
-     * Sets headers
-     *
-     * @param array<string,string>|null $headers Define headers to send to the URL.
-     *
-     * @return self
-     */
-    public function setHeaders($headers)
-    {
-        if (is_null($headers)) {
-            throw new \InvalidArgumentException('non-nullable headers cannot be null');
-        }
-        $this->container['headers'] = $headers;
+        $this->container['data'] = $data;
 
         return $this;
     }
