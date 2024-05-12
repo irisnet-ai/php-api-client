@@ -10,5 +10,6 @@ Name | Type | Description | Notes
 **detections** | [**\Irisnet\API\Client\Model\CheckResultDetectionsInner[]**](CheckResultDetectionsInner.md) |  | [optional]
 **events** | [**\Irisnet\API\Client\Model\Event[]**](Event.md) |  | [optional]
 **notifications** | [**\Irisnet\API\Client\Model\ApiNotice[]**](ApiNotice.md) |  | [optional]
+**checkId** | **string** | The id of the async running check | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -182,7 +182,7 @@ $configId = 'configId_example'; // string | The configuration id from the Basic 
 $url = 'url_example'; // string | The url to the video that needs to be checked.
 $callback = {"callbackUrl":"http://www.example.com/callback?video","headers":{"Authorization":"Basic Rm9yemEgTmFwb2xpLCBzZW1wcmUh"}}; // \Irisnet\API\Client\Model\Callback
 $detail = 1; // int | Set the detail level of the response.  * _1_ - The response only contains the _Summary_ and possibly the _Encoded_ schemas for basic information's (better API performance). * _2_ - Additionally lists all broken rules (_BrokenRule_ schema) according to the configuration parameters that were requested. * _3_ - Also shows events (_Event_ schema) that contains extended features to each found object.
-$imageEncode = false; // bool | Specifies whether or not to draw an output video that can be downloaded afterwards. The _Encoded_ schema will be available in the response.
+$imageEncode = false; // bool | Specifies whether or not to draw an output video that can be downloaded afterwards. The output video format will be MP4 containing H.264 encoding independent of the input format. The _Encoded_ schema will be available in the response.
 $checkRate = 0; // int | The milliseconds between each AI check. E.g. The AI will check 1 frame per second when checkRate is set to '1000'.
 
 try {
@@ -200,7 +200,7 @@ try {
 | **url** | **string**| The url to the video that needs to be checked. | |
 | **callback** | [**\Irisnet\API\Client\Model\Callback**](../Model/Callback.md)|  | |
 | **detail** | **int**| Set the detail level of the response.  * _1_ - The response only contains the _Summary_ and possibly the _Encoded_ schemas for basic information&#39;s (better API performance). * _2_ - Additionally lists all broken rules (_BrokenRule_ schema) according to the configuration parameters that were requested. * _3_ - Also shows events (_Event_ schema) that contains extended features to each found object. | [optional] [default to 1] |
-| **imageEncode** | **bool**| Specifies whether or not to draw an output video that can be downloaded afterwards. The _Encoded_ schema will be available in the response. | [optional] [default to false] |
+| **imageEncode** | **bool**| Specifies whether or not to draw an output video that can be downloaded afterwards. The output video format will be MP4 containing H.264 encoding independent of the input format. The _Encoded_ schema will be available in the response. | [optional] [default to false] |
 | **checkRate** | **int**| The milliseconds between each AI check. E.g. The AI will check 1 frame per second when checkRate is set to &#39;1000&#39;. | [optional] [default to 0] |
 
 ### Return type

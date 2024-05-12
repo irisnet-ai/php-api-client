@@ -1,6 +1,6 @@
 <?php
 /**
- * Config
+ * IdDocumentDetection
  *
  * PHP version 7.4
  *
@@ -28,21 +28,19 @@
  */
 
 namespace Irisnet\API\Client\Model;
-
-use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
- * Config Class Doc Comment
+ * IdDocumentDetection Class Doc Comment
  *
  * @category Class
- * @description Can be used to set a multitude of pre-defined commonly used rules without the need of specifying each parameter set.
+ * @description Contains further characteristics particular to _idDocument_ detection.
  * @package  Irisnet\API\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Config implements ModelInterface, ArrayAccess, \JsonSerializable
+class IdDocumentDetection extends BaseDetection
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +49,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Config';
+    protected static $openAPIModelName = 'IdDocumentDetection';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,8 +57,15 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'prototypes' => 'string[]'
+        'checkId' => 'string',
+        'hasOfficialDocument' => 'bool',
+        'comparable' => 'bool',
+        'faceSimilarity' => 'int',
+        'faceLivenessCheckScore' => 'int',
+        'documentFrontLivenessScore' => 'int',
+        'documentBackLivenessScore' => 'int',
+        'processedChecks' => '\Irisnet\API\Client\Model\IdDocumentSubChecks',
+        'attributes' => '\Irisnet\API\Client\Model\IdDocumentAttribute[]'
     ];
 
     /**
@@ -71,8 +76,15 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => 'uuid',
-        'prototypes' => null
+        'checkId' => null,
+        'hasOfficialDocument' => null,
+        'comparable' => null,
+        'faceSimilarity' => 'int32',
+        'faceLivenessCheckScore' => 'int32',
+        'documentFrontLivenessScore' => 'int32',
+        'documentBackLivenessScore' => 'int32',
+        'processedChecks' => null,
+        'attributes' => null
     ];
 
     /**
@@ -81,8 +93,15 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
-        'prototypes' => false
+        'checkId' => false,
+        'hasOfficialDocument' => false,
+        'comparable' => false,
+        'faceSimilarity' => false,
+        'faceLivenessCheckScore' => false,
+        'documentFrontLivenessScore' => false,
+        'documentBackLivenessScore' => false,
+        'processedChecks' => false,
+        'attributes' => false
     ];
 
     /**
@@ -99,7 +118,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -109,7 +128,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -119,7 +138,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -171,8 +190,15 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'prototypes' => 'prototypes'
+        'checkId' => 'checkId',
+        'hasOfficialDocument' => 'hasOfficialDocument',
+        'comparable' => 'comparable',
+        'faceSimilarity' => 'faceSimilarity',
+        'faceLivenessCheckScore' => 'faceLivenessCheckScore',
+        'documentFrontLivenessScore' => 'documentFrontLivenessScore',
+        'documentBackLivenessScore' => 'documentBackLivenessScore',
+        'processedChecks' => 'processedChecks',
+        'attributes' => 'attributes'
     ];
 
     /**
@@ -181,8 +207,15 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'prototypes' => 'setPrototypes'
+        'checkId' => 'setCheckId',
+        'hasOfficialDocument' => 'setHasOfficialDocument',
+        'comparable' => 'setComparable',
+        'faceSimilarity' => 'setFaceSimilarity',
+        'faceLivenessCheckScore' => 'setFaceLivenessCheckScore',
+        'documentFrontLivenessScore' => 'setDocumentFrontLivenessScore',
+        'documentBackLivenessScore' => 'setDocumentBackLivenessScore',
+        'processedChecks' => 'setProcessedChecks',
+        'attributes' => 'setAttributes'
     ];
 
     /**
@@ -191,8 +224,15 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'prototypes' => 'getPrototypes'
+        'checkId' => 'getCheckId',
+        'hasOfficialDocument' => 'getHasOfficialDocument',
+        'comparable' => 'getComparable',
+        'faceSimilarity' => 'getFaceSimilarity',
+        'faceLivenessCheckScore' => 'getFaceLivenessCheckScore',
+        'documentFrontLivenessScore' => 'getDocumentFrontLivenessScore',
+        'documentBackLivenessScore' => 'getDocumentBackLivenessScore',
+        'processedChecks' => 'getProcessedChecks',
+        'attributes' => 'getAttributes'
     ];
 
     /**
@@ -203,7 +243,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -213,7 +253,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -223,7 +263,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -236,46 +276,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const PROTOTYPES_NUDITY_CHECK = 'nudityCheck';
-    public const PROTOTYPES_AGE_VERIFICATION = 'ageVerification';
-    public const PROTOTYPES_AGE_ESTIMATION = 'ageEstimation';
-    public const PROTOTYPES_ILLEGAL_SYMBOLS = 'illegalSymbols';
-    public const PROTOTYPES_TEXT_RECOGNITION = 'textRecognition';
-    public const PROTOTYPES_ATTRIBUTES_CHECK = 'attributesCheck';
-    public const PROTOTYPES_BODY_ATTRIBUTES = 'bodyAttributes';
-    public const PROTOTYPES_NIPPLE_CHECK = 'nippleCheck';
-    public const PROTOTYPES_UNWANTED_SUBSTANCES = 'unwantedSubstances';
-    public const PROTOTYPES_VIOLENCE_CHECK = 'violenceCheck';
-    public const PROTOTYPES_SELFIE_CHECK = 'selfieCheck';
 
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getPrototypesAllowableValues()
-    {
-        return [
-            self::PROTOTYPES_NUDITY_CHECK,
-            self::PROTOTYPES_AGE_VERIFICATION,
-            self::PROTOTYPES_AGE_ESTIMATION,
-            self::PROTOTYPES_ILLEGAL_SYMBOLS,
-            self::PROTOTYPES_TEXT_RECOGNITION,
-            self::PROTOTYPES_ATTRIBUTES_CHECK,
-            self::PROTOTYPES_BODY_ATTRIBUTES,
-            self::PROTOTYPES_NIPPLE_CHECK,
-            self::PROTOTYPES_UNWANTED_SUBSTANCES,
-            self::PROTOTYPES_VIOLENCE_CHECK,
-            self::PROTOTYPES_SELFIE_CHECK,
-        ];
-    }
-
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -285,8 +286,17 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('prototypes', $data ?? [], null);
+        parent::__construct($data);
+
+        $this->setIfExists('checkId', $data ?? [], null);
+        $this->setIfExists('hasOfficialDocument', $data ?? [], null);
+        $this->setIfExists('comparable', $data ?? [], null);
+        $this->setIfExists('faceSimilarity', $data ?? [], null);
+        $this->setIfExists('faceLivenessCheckScore', $data ?? [], null);
+        $this->setIfExists('documentFrontLivenessScore', $data ?? [], null);
+        $this->setIfExists('documentBackLivenessScore', $data ?? [], null);
+        $this->setIfExists('processedChecks', $data ?? [], null);
+        $this->setIfExists('attributes', $data ?? [], null);
     }
 
     /**
@@ -314,7 +324,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         return $invalidProperties;
     }
@@ -332,66 +342,244 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets id
+     * Gets checkId
      *
      * @return string|null
      */
-    public function getId()
+    public function getCheckId()
     {
-        return $this->container['id'];
+        return $this->container['checkId'];
     }
 
     /**
-     * Sets id
+     * Sets checkId
      *
-     * @param string|null $id The unique identifier for the AI configuration. Use this for any check operation to tell the AI how to behave.
+     * @param string|null $checkId The id of the check that lead to the detection
      *
      * @return self
      */
-    public function setId($id)
+    public function setCheckId($checkId)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($checkId)) {
+            throw new \InvalidArgumentException('non-nullable checkId cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['checkId'] = $checkId;
 
         return $this;
     }
 
     /**
-     * Gets prototypes
+     * Gets hasOfficialDocument
      *
-     * @return string[]|null
+     * @return bool|null
      */
-    public function getPrototypes()
+    public function getHasOfficialDocument()
     {
-        return $this->container['prototypes'];
+        return $this->container['hasOfficialDocument'];
     }
 
     /**
-     * Sets prototypes
+     * Sets hasOfficialDocument
      *
-     * @param string[]|null $prototypes Configures your detection. As there are literally hundreds of parameters, prototypes can be used to get useful behaviour. This includes a default setting for parameters and rules that should be applied to the check operations. You can use multiple prototypes for a single check operation.
+     * @param bool|null $hasOfficialDocument Indicates whether the identified document is official
      *
      * @return self
      */
-    public function setPrototypes($prototypes)
+    public function setHasOfficialDocument($hasOfficialDocument)
     {
-        if (is_null($prototypes)) {
-            throw new \InvalidArgumentException('non-nullable prototypes cannot be null');
+        if (is_null($hasOfficialDocument)) {
+            throw new \InvalidArgumentException('non-nullable hasOfficialDocument cannot be null');
         }
-        $allowedValues = $this->getPrototypesAllowableValues();
-        if (array_diff($prototypes, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'prototypes', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
+        $this->container['hasOfficialDocument'] = $hasOfficialDocument;
+
+        return $this;
+    }
+
+    /**
+     * Gets comparable
+     *
+     * @return bool|null
+     */
+    public function getComparable()
+    {
+        return $this->container['comparable'];
+    }
+
+    /**
+     * Sets comparable
+     *
+     * @param bool|null $comparable Indicates whether the provided selfie-image is comparable to the document
+     *
+     * @return self
+     */
+    public function setComparable($comparable)
+    {
+        if (is_null($comparable)) {
+            throw new \InvalidArgumentException('non-nullable comparable cannot be null');
         }
+        $this->container['comparable'] = $comparable;
 
+        return $this;
+    }
 
-        $this->container['prototypes'] = $prototypes;
+    /**
+     * Gets faceSimilarity
+     *
+     * @return int|null
+     */
+    public function getFaceSimilarity()
+    {
+        return $this->container['faceSimilarity'];
+    }
+
+    /**
+     * Sets faceSimilarity
+     *
+     * @param int|null $faceSimilarity Indicates the similarity-level of whether two faces belong to the same person
+     *
+     * @return self
+     */
+    public function setFaceSimilarity($faceSimilarity)
+    {
+        if (is_null($faceSimilarity)) {
+            throw new \InvalidArgumentException('non-nullable faceSimilarity cannot be null');
+        }
+        $this->container['faceSimilarity'] = $faceSimilarity;
+
+        return $this;
+    }
+
+    /**
+     * Gets faceLivenessCheckScore
+     *
+     * @return int|null
+     */
+    public function getFaceLivenessCheckScore()
+    {
+        return $this->container['faceLivenessCheckScore'];
+    }
+
+    /**
+     * Sets faceLivenessCheckScore
+     *
+     * @param int|null $faceLivenessCheckScore Indicates the liveness score of the selfie image
+     *
+     * @return self
+     */
+    public function setFaceLivenessCheckScore($faceLivenessCheckScore)
+    {
+        if (is_null($faceLivenessCheckScore)) {
+            throw new \InvalidArgumentException('non-nullable faceLivenessCheckScore cannot be null');
+        }
+        $this->container['faceLivenessCheckScore'] = $faceLivenessCheckScore;
+
+        return $this;
+    }
+
+    /**
+     * Gets documentFrontLivenessScore
+     *
+     * @return int|null
+     */
+    public function getDocumentFrontLivenessScore()
+    {
+        return $this->container['documentFrontLivenessScore'];
+    }
+
+    /**
+     * Sets documentFrontLivenessScore
+     *
+     * @param int|null $documentFrontLivenessScore Indicates the liveness score of the front side image of the document
+     *
+     * @return self
+     */
+    public function setDocumentFrontLivenessScore($documentFrontLivenessScore)
+    {
+        if (is_null($documentFrontLivenessScore)) {
+            throw new \InvalidArgumentException('non-nullable documentFrontLivenessScore cannot be null');
+        }
+        $this->container['documentFrontLivenessScore'] = $documentFrontLivenessScore;
+
+        return $this;
+    }
+
+    /**
+     * Gets documentBackLivenessScore
+     *
+     * @return int|null
+     */
+    public function getDocumentBackLivenessScore()
+    {
+        return $this->container['documentBackLivenessScore'];
+    }
+
+    /**
+     * Sets documentBackLivenessScore
+     *
+     * @param int|null $documentBackLivenessScore Indicates the liveness score of the back side image of the document
+     *
+     * @return self
+     */
+    public function setDocumentBackLivenessScore($documentBackLivenessScore)
+    {
+        if (is_null($documentBackLivenessScore)) {
+            throw new \InvalidArgumentException('non-nullable documentBackLivenessScore cannot be null');
+        }
+        $this->container['documentBackLivenessScore'] = $documentBackLivenessScore;
+
+        return $this;
+    }
+
+    /**
+     * Gets processedChecks
+     *
+     * @return \Irisnet\API\Client\Model\IdDocumentSubChecks|null
+     */
+    public function getProcessedChecks()
+    {
+        return $this->container['processedChecks'];
+    }
+
+    /**
+     * Sets processedChecks
+     *
+     * @param \Irisnet\API\Client\Model\IdDocumentSubChecks|null $processedChecks processedChecks
+     *
+     * @return self
+     */
+    public function setProcessedChecks($processedChecks)
+    {
+        if (is_null($processedChecks)) {
+            throw new \InvalidArgumentException('non-nullable processedChecks cannot be null');
+        }
+        $this->container['processedChecks'] = $processedChecks;
+
+        return $this;
+    }
+
+    /**
+     * Gets attributes
+     *
+     * @return \Irisnet\API\Client\Model\IdDocumentAttribute[]|null
+     */
+    public function getAttributes()
+    {
+        return $this->container['attributes'];
+    }
+
+    /**
+     * Sets attributes
+     *
+     * @param \Irisnet\API\Client\Model\IdDocumentAttribute[]|null $attributes Attributes of the _idDocument_ detection.
+     *
+     * @return self
+     */
+    public function setAttributes($attributes)
+    {
+        if (is_null($attributes)) {
+            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+        }
+        $this->container['attributes'] = $attributes;
 
         return $this;
     }

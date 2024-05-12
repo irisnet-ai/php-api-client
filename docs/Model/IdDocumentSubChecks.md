@@ -1,0 +1,22 @@
+# # IdDocumentSubChecks
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**mrzChecksum** | **string** | Indicates whether the MRZ checksum is correct | [optional]
+**mrzFormat** | **string** | Indicates whether the MRZ format is correct | [optional]
+**mrzConsistency** | **string** | Indicates whether the MRZ is consistent with the document type | [optional]
+**expirationDate** | **string** | Indicates whether the expirationDate is valid | [optional]
+**securityElements** | **string** | Indicates whether the document&#39;s security elements are valid | [optional]
+**photoLocation** | **string** | Indicates whether the photo is in the correct location for a given document type | [optional]
+**blacklistCheck** | **string** | Indicates whether a competent authority deny-listed the ID document | [optional]
+**photocopyCheck** | **string** | Indicates whether the document is a photocopy | [optional]
+**tamperingCheck** | **string** | Indicates whether the document image has been digitally tampered with | [optional]
+**specimenCheck** | **string** | Indicates whether the document has been copied from the Internet | [optional]
+**documentModelIdentification** | **string** | Indicates whether the document model has been identified | [optional]
+**documentLivenessCheck** | **string** | Indicates if the document image is genuine and not a photo of an image or of a screen | [optional]
+**spoofedImageAnalysis** | **string** | Indicates whether the selfie image is spoofed, copied from the Internet, or is a known deny-listed image | [optional]
+**faceLivenessCheck** | **string** | Indicates if the selfie image is genuine and not a photo of an image or of a screen | [optional]
+
+[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
