@@ -4,10 +4,75 @@ All URIs are relative to https://api.irisnet.de, except if the operation defines
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**checkIdDocument()**](AICheckOperationsApi.md#checkIdDocument) | **POST** /v2/check-id-document/{configId} | Check an id document with the AI. |
 | [**checkImage()**](AICheckOperationsApi.md#checkImage) | **POST** /v2/check-image/{configId} | Check an image with the AI. |
 | [**checkStream()**](AICheckOperationsApi.md#checkStream) | **POST** /v2/check-stream/{configId} | Check a stream with the AI. |
 | [**checkVideo()**](AICheckOperationsApi.md#checkVideo) | **POST** /v2/check-video/{configId} | Check a video with the AI. |
 
+
+## `checkIdDocument()`
+
+```php
+checkIdDocument($configId, $documentCheckRequestData): \Irisnet\API\Client\Model\CheckResult
+```
+
+Check an id document with the AI.
+
+The response (_CheckResult_ schema) containing only the checkId and possibly ApiNotices is returned immediately after the request. The actual body (_CheckResult_ schema) is send to the _callbackUrl_ after the AI has finished processing.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: LICENSE-KEY
+$config = Irisnet\API\Client\Configuration::getDefaultConfiguration()->setApiKey('LICENSE-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Irisnet\API\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('LICENSE-KEY', 'Bearer');
+
+
+$apiInstance = new Irisnet\API\Client\Api\AICheckOperationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$configId = 'configId_example'; // string | The configuration id from the Basic Configuration operations.
+$documentCheckRequestData = {"callback":{"callbackUrl":"https://www.example.com/callback?idcheck"},"documentCountry":"DE","documentType":"national_identity_card","frontImage":"/9j/4AAQSkZJRgABAQEASABIAAD...","backImage":"/9j/4AAQSkZJRgABAQEASABIAAD...","selfieImage":"/9j/4AAQSkZJRgABAQEASABIAAD..."}; // \Irisnet\API\Client\Model\DocumentCheckRequestData | The DocumentCheckRequestData containing data needed for the id document check.
+
+try {
+    $result = $apiInstance->checkIdDocument($configId, $documentCheckRequestData);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AICheckOperationsApi->checkIdDocument: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **configId** | **string**| The configuration id from the Basic Configuration operations. | |
+| **documentCheckRequestData** | [**\Irisnet\API\Client\Model\DocumentCheckRequestData**](../Model/DocumentCheckRequestData.md)| The DocumentCheckRequestData containing data needed for the id document check. | |
+
+### Return type
+
+[**\Irisnet\API\Client\Model\CheckResult**](../Model/CheckResult.md)
+
+### Authorization
+
+[LICENSE-KEY](../../README.md#LICENSE-KEY)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `checkImage()`
 

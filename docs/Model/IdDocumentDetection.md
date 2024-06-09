@@ -13,5 +13,6 @@ Name | Type | Description | Notes
 **documentBackLivenessScore** | **int** | Indicates the liveness score of the back side image of the document | [optional]
 **processedChecks** | [**\Irisnet\API\Client\Model\IdDocumentSubChecks**](IdDocumentSubChecks.md) |  | [optional]
 **attributes** | [**\Irisnet\API\Client\Model\IdDocumentAttribute[]**](IdDocumentAttribute.md) | Attributes of the _idDocument_ detection. | [optional]
+**documentHolderId** | **string** | The id of the documentHolder | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -1,6 +1,6 @@
 <?php
 /**
- * ParamSet
+ * DocumentCheckRequestData
  *
  * PHP version 7.4
  *
@@ -33,16 +33,15 @@ use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
- * ParamSet Class Doc Comment
+ * DocumentCheckRequestData Class Doc Comment
  *
  * @category Class
- * @description A set of parameters/rules that describe how the AI should behave.
  * @package  Irisnet\API\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
+class DocumentCheckRequestData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +50,7 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ParamSet';
+    protected static $openAPIModelName = 'DocumentCheckRequestData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,11 +58,12 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'thresh' => 'float',
-        'grey' => 'int',
-        'minDuration' => 'int',
-        'abortOnSeverity' => 'int',
-        'params' => '\Irisnet\API\Client\Model\Param[]'
+        'callback' => '\Irisnet\API\Client\Model\Callback',
+        'frontImage' => 'string',
+        'backImage' => 'string',
+        'selfieImage' => 'string',
+        'documentType' => 'string',
+        'documentCountry' => 'string'
     ];
 
     /**
@@ -74,11 +74,12 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'thresh' => 'float',
-        'grey' => 'int32',
-        'minDuration' => 'int32',
-        'abortOnSeverity' => 'int32',
-        'params' => null
+        'callback' => null,
+        'frontImage' => null,
+        'backImage' => null,
+        'selfieImage' => null,
+        'documentType' => null,
+        'documentCountry' => null
     ];
 
     /**
@@ -87,11 +88,12 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'thresh' => false,
-        'grey' => false,
-        'minDuration' => false,
-        'abortOnSeverity' => false,
-        'params' => false
+        'callback' => false,
+        'frontImage' => false,
+        'backImage' => false,
+        'selfieImage' => false,
+        'documentType' => false,
+        'documentCountry' => false
     ];
 
     /**
@@ -180,11 +182,12 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'thresh' => 'thresh',
-        'grey' => 'grey',
-        'minDuration' => 'minDuration',
-        'abortOnSeverity' => 'abortOnSeverity',
-        'params' => 'params'
+        'callback' => 'callback',
+        'frontImage' => 'frontImage',
+        'backImage' => 'backImage',
+        'selfieImage' => 'selfieImage',
+        'documentType' => 'documentType',
+        'documentCountry' => 'documentCountry'
     ];
 
     /**
@@ -193,11 +196,12 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'thresh' => 'setThresh',
-        'grey' => 'setGrey',
-        'minDuration' => 'setMinDuration',
-        'abortOnSeverity' => 'setAbortOnSeverity',
-        'params' => 'setParams'
+        'callback' => 'setCallback',
+        'frontImage' => 'setFrontImage',
+        'backImage' => 'setBackImage',
+        'selfieImage' => 'setSelfieImage',
+        'documentType' => 'setDocumentType',
+        'documentCountry' => 'setDocumentCountry'
     ];
 
     /**
@@ -206,11 +210,12 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'thresh' => 'getThresh',
-        'grey' => 'getGrey',
-        'minDuration' => 'getMinDuration',
-        'abortOnSeverity' => 'getAbortOnSeverity',
-        'params' => 'getParams'
+        'callback' => 'getCallback',
+        'frontImage' => 'getFrontImage',
+        'backImage' => 'getBackImage',
+        'selfieImage' => 'getSelfieImage',
+        'documentType' => 'getDocumentType',
+        'documentCountry' => 'getDocumentCountry'
     ];
 
     /**
@@ -254,6 +259,29 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const DOCUMENT_TYPE_PASSPORT = 'passport';
+    public const DOCUMENT_TYPE_DRIVING_LICENSE = 'driving_license';
+    public const DOCUMENT_TYPE_NATIONAL_IDENTITY_CARD = 'national_identity_card';
+    public const DOCUMENT_TYPE_RESIDENCE_PERMIT = 'residence_permit';
+    public const DOCUMENT_TYPE_VISA = 'visa';
+    public const DOCUMENT_TYPE_UNKNOWN = 'unknown';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getDocumentTypeAllowableValues()
+    {
+        return [
+            self::DOCUMENT_TYPE_PASSPORT,
+            self::DOCUMENT_TYPE_DRIVING_LICENSE,
+            self::DOCUMENT_TYPE_NATIONAL_IDENTITY_CARD,
+            self::DOCUMENT_TYPE_RESIDENCE_PERMIT,
+            self::DOCUMENT_TYPE_VISA,
+            self::DOCUMENT_TYPE_UNKNOWN,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -270,11 +298,12 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('thresh', $data ?? [], 0.5);
-        $this->setIfExists('grey', $data ?? [], 127);
-        $this->setIfExists('minDuration', $data ?? [], 100);
-        $this->setIfExists('abortOnSeverity', $data ?? [], -1);
-        $this->setIfExists('params', $data ?? [], null);
+        $this->setIfExists('callback', $data ?? [], null);
+        $this->setIfExists('frontImage', $data ?? [], null);
+        $this->setIfExists('backImage', $data ?? [], null);
+        $this->setIfExists('selfieImage', $data ?? [], null);
+        $this->setIfExists('documentType', $data ?? [], null);
+        $this->setIfExists('documentCountry', $data ?? [], null);
     }
 
     /**
@@ -304,32 +333,19 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['thresh']) && ($this->container['thresh'] > 1.0)) {
-            $invalidProperties[] = "invalid value for 'thresh', must be smaller than or equal to 1.0.";
+        if ($this->container['callback'] === null) {
+            $invalidProperties[] = "'callback' can't be null";
         }
-
-        if (!is_null($this->container['thresh']) && ($this->container['thresh'] < 0.0)) {
-            $invalidProperties[] = "invalid value for 'thresh', must be bigger than or equal to 0.0.";
+        if ($this->container['frontImage'] === null) {
+            $invalidProperties[] = "'frontImage' can't be null";
         }
-
-        if (!is_null($this->container['grey']) && ($this->container['grey'] > 255)) {
-            $invalidProperties[] = "invalid value for 'grey', must be smaller than or equal to 255.";
-        }
-
-        if (!is_null($this->container['grey']) && ($this->container['grey'] < 0)) {
-            $invalidProperties[] = "invalid value for 'grey', must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['minDuration']) && ($this->container['minDuration'] > 250)) {
-            $invalidProperties[] = "invalid value for 'minDuration', must be smaller than or equal to 250.";
-        }
-
-        if (!is_null($this->container['minDuration']) && ($this->container['minDuration'] < 50)) {
-            $invalidProperties[] = "invalid value for 'minDuration', must be bigger than or equal to 50.";
-        }
-
-        if (!is_null($this->container['abortOnSeverity']) && ($this->container['abortOnSeverity'] < -1)) {
-            $invalidProperties[] = "invalid value for 'abortOnSeverity', must be bigger than or equal to -1.";
+        $allowedValues = $this->getDocumentTypeAllowableValues();
+        if (!is_null($this->container['documentType']) && !in_array($this->container['documentType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'documentType', must be one of '%s'",
+                $this->container['documentType'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -348,165 +364,173 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets thresh
+     * Gets callback
      *
-     * @return float|null
+     * @return \Irisnet\API\Client\Model\Callback
      */
-    public function getThresh()
+    public function getCallback()
     {
-        return $this->container['thresh'];
+        return $this->container['callback'];
     }
 
     /**
-     * Sets thresh
+     * Sets callback
      *
-     * @param float|null $thresh Threshold when an object can be recognized. Lowering the value will increase the probability of recognizing objects. A threshold of 0.5 would mean, that 50% of an object like a face must be visible, to be detected.Setting the value too low however, can cause false positives.
+     * @param \Irisnet\API\Client\Model\Callback $callback callback
      *
      * @return self
      */
-    public function setThresh($thresh)
+    public function setCallback($callback)
     {
-        if (is_null($thresh)) {
-            throw new \InvalidArgumentException('non-nullable thresh cannot be null');
+        if (is_null($callback)) {
+            throw new \InvalidArgumentException('non-nullable callback cannot be null');
         }
-
-        if (($thresh > 1.0)) {
-            throw new \InvalidArgumentException('invalid value for $thresh when calling ParamSet., must be smaller than or equal to 1.0.');
-        }
-        if (($thresh < 0.0)) {
-            throw new \InvalidArgumentException('invalid value for $thresh when calling ParamSet., must be bigger than or equal to 0.0.');
-        }
-
-        $this->container['thresh'] = $thresh;
+        $this->container['callback'] = $callback;
 
         return $this;
     }
 
     /**
-     * Gets grey
+     * Gets frontImage
      *
-     * @return int|null
+     * @return string
      */
-    public function getGrey()
+    public function getFrontImage()
     {
-        return $this->container['grey'];
+        return $this->container['frontImage'];
     }
 
     /**
-     * Sets grey
+     * Sets frontImage
      *
-     * @param int|null $grey A grey scale color to use for frame or masking. '0' will represent black, while the maximum '255' will be white.
+     * @param string $frontImage The base64 encoded front image of the document to be checked in either jpg or png file format
      *
      * @return self
      */
-    public function setGrey($grey)
+    public function setFrontImage($frontImage)
     {
-        if (is_null($grey)) {
-            throw new \InvalidArgumentException('non-nullable grey cannot be null');
+        if (is_null($frontImage)) {
+            throw new \InvalidArgumentException('non-nullable frontImage cannot be null');
         }
-
-        if (($grey > 255)) {
-            throw new \InvalidArgumentException('invalid value for $grey when calling ParamSet., must be smaller than or equal to 255.');
-        }
-        if (($grey < 0)) {
-            throw new \InvalidArgumentException('invalid value for $grey when calling ParamSet., must be bigger than or equal to 0.');
-        }
-
-        $this->container['grey'] = $grey;
+        $this->container['frontImage'] = $frontImage;
 
         return $this;
     }
 
     /**
-     * Gets minDuration
+     * Gets backImage
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getMinDuration()
+    public function getBackImage()
     {
-        return $this->container['minDuration'];
+        return $this->container['backImage'];
     }
 
     /**
-     * Sets minDuration
+     * Sets backImage
      *
-     * @param int|null $minDuration Set the overall minimum duration in milliseconds for a rule to be broken in moving images.
+     * @param string|null $backImage The base64 encoded back image of the document to be checked in either jpg or png file format
      *
      * @return self
      */
-    public function setMinDuration($minDuration)
+    public function setBackImage($backImage)
     {
-        if (is_null($minDuration)) {
-            throw new \InvalidArgumentException('non-nullable minDuration cannot be null');
+        if (is_null($backImage)) {
+            throw new \InvalidArgumentException('non-nullable backImage cannot be null');
         }
-
-        if (($minDuration > 250)) {
-            throw new \InvalidArgumentException('invalid value for $minDuration when calling ParamSet., must be smaller than or equal to 250.');
-        }
-        if (($minDuration < 50)) {
-            throw new \InvalidArgumentException('invalid value for $minDuration when calling ParamSet., must be bigger than or equal to 50.');
-        }
-
-        $this->container['minDuration'] = $minDuration;
+        $this->container['backImage'] = $backImage;
 
         return $this;
     }
 
     /**
-     * Gets abortOnSeverity
+     * Gets selfieImage
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getAbortOnSeverity()
+    public function getSelfieImage()
     {
-        return $this->container['abortOnSeverity'];
+        return $this->container['selfieImage'];
     }
 
     /**
-     * Sets abortOnSeverity
+     * Sets selfieImage
      *
-     * @param int|null $abortOnSeverity Set a severity on which to automatically stop the check operation. Works with moving images.Use '-1' to ignore this option.
+     * @param string|null $selfieImage The base64 encoded selfie image to be checked in either jpg or png file format
      *
      * @return self
      */
-    public function setAbortOnSeverity($abortOnSeverity)
+    public function setSelfieImage($selfieImage)
     {
-        if (is_null($abortOnSeverity)) {
-            throw new \InvalidArgumentException('non-nullable abortOnSeverity cannot be null');
+        if (is_null($selfieImage)) {
+            throw new \InvalidArgumentException('non-nullable selfieImage cannot be null');
         }
-
-        if (($abortOnSeverity < -1)) {
-            throw new \InvalidArgumentException('invalid value for $abortOnSeverity when calling ParamSet., must be bigger than or equal to -1.');
-        }
-
-        $this->container['abortOnSeverity'] = $abortOnSeverity;
+        $this->container['selfieImage'] = $selfieImage;
 
         return $this;
     }
 
     /**
-     * Gets params
+     * Gets documentType
      *
-     * @return \Irisnet\API\Client\Model\Param[]|null
+     * @return string|null
      */
-    public function getParams()
+    public function getDocumentType()
     {
-        return $this->container['params'];
+        return $this->container['documentType'];
     }
 
     /**
-     * Sets params
+     * Sets documentType
      *
-     * @param \Irisnet\API\Client\Model\Param[]|null $params A list of parameter sets that describe the rules of the objects.
+     * @param string|null $documentType The type of the document
      *
      * @return self
      */
-    public function setParams($params)
+    public function setDocumentType($documentType)
     {
-        if (is_null($params)) {
-            throw new \InvalidArgumentException('non-nullable params cannot be null');
+        if (is_null($documentType)) {
+            throw new \InvalidArgumentException('non-nullable documentType cannot be null');
         }
-        $this->container['params'] = $params;
+        $allowedValues = $this->getDocumentTypeAllowableValues();
+        if (!in_array($documentType, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'documentType', must be one of '%s'",
+                    $documentType,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['documentType'] = $documentType;
+
+        return $this;
+    }
+
+    /**
+     * Gets documentCountry
+     *
+     * @return string|null
+     */
+    public function getDocumentCountry()
+    {
+        return $this->container['documentCountry'];
+    }
+
+    /**
+     * Sets documentCountry
+     *
+     * @param string|null $documentCountry The document's country in ISO 3166-1 alpha-2 format
+     *
+     * @return self
+     */
+    public function setDocumentCountry($documentCountry)
+    {
+        if (is_null($documentCountry)) {
+            throw new \InvalidArgumentException('non-nullable documentCountry cannot be null');
+        }
+        $this->container['documentCountry'] = $documentCountry;
 
         return $this;
     }
