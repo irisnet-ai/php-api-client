@@ -729,7 +729,7 @@ class DetailedConfigurationParametersApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ParamSet
+     * @return |\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ParamSet
      */
     public function setParameters($configId, $paramSet, string $contentType = self::contentTypes['setParameters'][0])
     {
@@ -748,7 +748,7 @@ class DetailedConfigurationParametersApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ParamSet, HTTP status code, HTTP response headers (array of strings)
+     * @return array of |\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ParamSet, HTTP status code, HTTP response headers (array of strings)
      */
     public function setParametersWithHttpInfo($configId, $paramSet, string $contentType = self::contentTypes['setParameters'][0])
     {

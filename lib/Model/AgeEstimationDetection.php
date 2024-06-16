@@ -1,6 +1,6 @@
 <?php
 /**
- * BaseDetection
+ * AgeEstimationDetection
  *
  * PHP version 7.4
  *
@@ -28,30 +28,28 @@
  */
 
 namespace Irisnet\API\Client\Model;
-
-use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
- * BaseDetection Class Doc Comment
+ * AgeEstimationDetection Class Doc Comment
  *
  * @category Class
- * @description A detection describes the object found with all its details.
+ * @description Contains further characteristics particular to _ageEstimation_ detection.
  * @package  Irisnet\API\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
+class AgeEstimationDetection extends BaseDetection
 {
-    public const DISCRIMINATOR = 'type';
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BaseDetection';
+    protected static $openAPIModelName = 'AgeEstimationDetection';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,18 +57,11 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'type' => 'string',
-        'attributes' => '\Irisnet\API\Client\Model\AgeEstimationAttribute[]',
         'checkId' => 'string',
-        'hasOfficialDocument' => 'bool',
-        'comparable' => 'bool',
         'faceSimilarity' => 'int',
         'faceLivenessCheckScore' => 'int',
-        'documentFrontLivenessScore' => 'int',
-        'documentBackLivenessScore' => 'int',
         'processedChecks' => '\Irisnet\API\Client\Model\AgeEstimationSubChecks',
-        'documentHolderId' => 'string',
-        'subDetections' => '\Irisnet\API\Client\Model\BaseDetection[]'
+        'attributes' => '\Irisnet\API\Client\Model\AgeEstimationAttribute[]'
     ];
 
     /**
@@ -81,18 +72,11 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'type' => null,
-        'attributes' => null,
         'checkId' => null,
-        'hasOfficialDocument' => null,
-        'comparable' => null,
         'faceSimilarity' => 'int32',
         'faceLivenessCheckScore' => 'int32',
-        'documentFrontLivenessScore' => 'int32',
-        'documentBackLivenessScore' => 'int32',
         'processedChecks' => null,
-        'documentHolderId' => null,
-        'subDetections' => null
+        'attributes' => null
     ];
 
     /**
@@ -101,18 +85,11 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'type' => false,
-        'attributes' => false,
         'checkId' => false,
-        'hasOfficialDocument' => false,
-        'comparable' => false,
         'faceSimilarity' => false,
         'faceLivenessCheckScore' => false,
-        'documentFrontLivenessScore' => false,
-        'documentBackLivenessScore' => false,
         'processedChecks' => false,
-        'documentHolderId' => false,
-        'subDetections' => false
+        'attributes' => false
     ];
 
     /**
@@ -129,7 +106,7 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -139,7 +116,7 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -149,7 +126,7 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -201,18 +178,11 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
-        'attributes' => 'attributes',
         'checkId' => 'checkId',
-        'hasOfficialDocument' => 'hasOfficialDocument',
-        'comparable' => 'comparable',
         'faceSimilarity' => 'faceSimilarity',
         'faceLivenessCheckScore' => 'faceLivenessCheckScore',
-        'documentFrontLivenessScore' => 'documentFrontLivenessScore',
-        'documentBackLivenessScore' => 'documentBackLivenessScore',
         'processedChecks' => 'processedChecks',
-        'documentHolderId' => 'documentHolderId',
-        'subDetections' => 'subDetections'
+        'attributes' => 'attributes'
     ];
 
     /**
@@ -221,18 +191,11 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
-        'attributes' => 'setAttributes',
         'checkId' => 'setCheckId',
-        'hasOfficialDocument' => 'setHasOfficialDocument',
-        'comparable' => 'setComparable',
         'faceSimilarity' => 'setFaceSimilarity',
         'faceLivenessCheckScore' => 'setFaceLivenessCheckScore',
-        'documentFrontLivenessScore' => 'setDocumentFrontLivenessScore',
-        'documentBackLivenessScore' => 'setDocumentBackLivenessScore',
         'processedChecks' => 'setProcessedChecks',
-        'documentHolderId' => 'setDocumentHolderId',
-        'subDetections' => 'setSubDetections'
+        'attributes' => 'setAttributes'
     ];
 
     /**
@@ -241,18 +204,11 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
-        'attributes' => 'getAttributes',
         'checkId' => 'getCheckId',
-        'hasOfficialDocument' => 'getHasOfficialDocument',
-        'comparable' => 'getComparable',
         'faceSimilarity' => 'getFaceSimilarity',
         'faceLivenessCheckScore' => 'getFaceLivenessCheckScore',
-        'documentFrontLivenessScore' => 'getDocumentFrontLivenessScore',
-        'documentBackLivenessScore' => 'getDocumentBackLivenessScore',
         'processedChecks' => 'getProcessedChecks',
-        'documentHolderId' => 'getDocumentHolderId',
-        'subDetections' => 'getSubDetections'
+        'attributes' => 'getAttributes'
     ];
 
     /**
@@ -263,7 +219,7 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -273,7 +229,7 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -283,7 +239,7 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -297,12 +253,6 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -312,21 +262,13 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('attributes', $data ?? [], null);
+        parent::__construct($data);
+
         $this->setIfExists('checkId', $data ?? [], null);
-        $this->setIfExists('hasOfficialDocument', $data ?? [], null);
-        $this->setIfExists('comparable', $data ?? [], null);
         $this->setIfExists('faceSimilarity', $data ?? [], null);
         $this->setIfExists('faceLivenessCheckScore', $data ?? [], null);
-        $this->setIfExists('documentFrontLivenessScore', $data ?? [], null);
-        $this->setIfExists('documentBackLivenessScore', $data ?? [], null);
         $this->setIfExists('processedChecks', $data ?? [], null);
-        $this->setIfExists('documentHolderId', $data ?? [], null);
-        $this->setIfExists('subDetections', $data ?? [], null);
-
-        // Initialize discriminator property with the model name.
-        $this->container['type'] = static::$openAPIModelName;
+        $this->setIfExists('attributes', $data ?? [], null);
     }
 
     /**
@@ -354,11 +296,8 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -373,60 +312,6 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type type
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets attributes
-     *
-     * @return \Irisnet\API\Client\Model\AgeEstimationAttribute[]|null
-     */
-    public function getAttributes()
-    {
-        return $this->container['attributes'];
-    }
-
-    /**
-     * Sets attributes
-     *
-     * @param \Irisnet\API\Client\Model\AgeEstimationAttribute[]|null $attributes Attributes of the _idDocument_ detection.
-     *
-     * @return self
-     */
-    public function setAttributes($attributes)
-    {
-        if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
-        }
-        $this->container['attributes'] = $attributes;
-
-        return $this;
-    }
 
     /**
      * Gets checkId
@@ -451,60 +336,6 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable checkId cannot be null');
         }
         $this->container['checkId'] = $checkId;
-
-        return $this;
-    }
-
-    /**
-     * Gets hasOfficialDocument
-     *
-     * @return bool|null
-     */
-    public function getHasOfficialDocument()
-    {
-        return $this->container['hasOfficialDocument'];
-    }
-
-    /**
-     * Sets hasOfficialDocument
-     *
-     * @param bool|null $hasOfficialDocument Indicates whether the identified document is official
-     *
-     * @return self
-     */
-    public function setHasOfficialDocument($hasOfficialDocument)
-    {
-        if (is_null($hasOfficialDocument)) {
-            throw new \InvalidArgumentException('non-nullable hasOfficialDocument cannot be null');
-        }
-        $this->container['hasOfficialDocument'] = $hasOfficialDocument;
-
-        return $this;
-    }
-
-    /**
-     * Gets comparable
-     *
-     * @return bool|null
-     */
-    public function getComparable()
-    {
-        return $this->container['comparable'];
-    }
-
-    /**
-     * Sets comparable
-     *
-     * @param bool|null $comparable Indicates whether the provided selfie-image is comparable to the document
-     *
-     * @return self
-     */
-    public function setComparable($comparable)
-    {
-        if (is_null($comparable)) {
-            throw new \InvalidArgumentException('non-nullable comparable cannot be null');
-        }
-        $this->container['comparable'] = $comparable;
 
         return $this;
     }
@@ -564,60 +395,6 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets documentFrontLivenessScore
-     *
-     * @return int|null
-     */
-    public function getDocumentFrontLivenessScore()
-    {
-        return $this->container['documentFrontLivenessScore'];
-    }
-
-    /**
-     * Sets documentFrontLivenessScore
-     *
-     * @param int|null $documentFrontLivenessScore Indicates the liveness score of the front side image of the document
-     *
-     * @return self
-     */
-    public function setDocumentFrontLivenessScore($documentFrontLivenessScore)
-    {
-        if (is_null($documentFrontLivenessScore)) {
-            throw new \InvalidArgumentException('non-nullable documentFrontLivenessScore cannot be null');
-        }
-        $this->container['documentFrontLivenessScore'] = $documentFrontLivenessScore;
-
-        return $this;
-    }
-
-    /**
-     * Gets documentBackLivenessScore
-     *
-     * @return int|null
-     */
-    public function getDocumentBackLivenessScore()
-    {
-        return $this->container['documentBackLivenessScore'];
-    }
-
-    /**
-     * Sets documentBackLivenessScore
-     *
-     * @param int|null $documentBackLivenessScore Indicates the liveness score of the back side image of the document
-     *
-     * @return self
-     */
-    public function setDocumentBackLivenessScore($documentBackLivenessScore)
-    {
-        if (is_null($documentBackLivenessScore)) {
-            throw new \InvalidArgumentException('non-nullable documentBackLivenessScore cannot be null');
-        }
-        $this->container['documentBackLivenessScore'] = $documentBackLivenessScore;
-
-        return $this;
-    }
-
-    /**
      * Gets processedChecks
      *
      * @return \Irisnet\API\Client\Model\AgeEstimationSubChecks|null
@@ -645,55 +422,28 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets documentHolderId
+     * Gets attributes
      *
-     * @return string|null
+     * @return \Irisnet\API\Client\Model\AgeEstimationAttribute[]|null
      */
-    public function getDocumentHolderId()
+    public function getAttributes()
     {
-        return $this->container['documentHolderId'];
+        return $this->container['attributes'];
     }
 
     /**
-     * Sets documentHolderId
+     * Sets attributes
      *
-     * @param string|null $documentHolderId The id of the documentHolder
+     * @param \Irisnet\API\Client\Model\AgeEstimationAttribute[]|null $attributes Attributes of the _idDocument_ detection.
      *
      * @return self
      */
-    public function setDocumentHolderId($documentHolderId)
+    public function setAttributes($attributes)
     {
-        if (is_null($documentHolderId)) {
-            throw new \InvalidArgumentException('non-nullable documentHolderId cannot be null');
+        if (is_null($attributes)) {
+            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
         }
-        $this->container['documentHolderId'] = $documentHolderId;
-
-        return $this;
-    }
-
-    /**
-     * Gets subDetections
-     *
-     * @return \Irisnet\API\Client\Model\BaseDetection[]|null
-     */
-    public function getSubDetections()
-    {
-        return $this->container['subDetections'];
-    }
-
-    /**
-     * Sets subDetections
-     *
-     * @param \Irisnet\API\Client\Model\BaseDetection[]|null $subDetections A set of sub-detection that are particular to the _face_ detection. Mainly contains detections that were activated with the _attributesCheck_ prototype.
-     *
-     * @return self
-     */
-    public function setSubDetections($subDetections)
-    {
-        if (is_null($subDetections)) {
-            throw new \InvalidArgumentException('non-nullable subDetections cannot be null');
-        }
-        $this->container['subDetections'] = $subDetections;
+        $this->container['attributes'] = $attributes;
 
         return $this;
     }
