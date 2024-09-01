@@ -70,6 +70,3 @@ lib/Model/Pricing.php
 lib/Model/Summary.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Model/AgeEstimationAttributeTest.php
-test/Model/AgeEstimationDetectionTest.php
-test/Model/AgeEstimationSubChecksTest.php
