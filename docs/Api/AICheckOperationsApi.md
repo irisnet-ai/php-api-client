@@ -8,6 +8,7 @@ All URIs are relative to https://api.irisnet.de, except if the operation defines
 | [**checkImage()**](AICheckOperationsApi.md#checkImage) | **POST** /v2/check-image/{configId} | Check an image with the AI. |
 | [**checkStream()**](AICheckOperationsApi.md#checkStream) | **POST** /v2/check-stream/{configId} | Check a stream with the AI. |
 | [**checkVideo()**](AICheckOperationsApi.md#checkVideo) | **POST** /v2/check-video/{configId} | Check a video with the AI. |
+| [**liveDocumentCheck()**](AICheckOperationsApi.md#liveDocumentCheck) | **POST** /v2/check-live-id-document/{configId} | Start a guided live id document check with the AI. |
 
 
 ## `checkIdDocument()`
@@ -18,7 +19,7 @@ checkIdDocument($configId, $documentCheckRequestData): \Irisnet\API\Client\Model
 
 Check an id document with the AI.
 
-The response (_CheckResult_ schema) containing only the checkId and possibly ApiNotices is returned immediately after the request. The actual body (_CheckResult_ schema) is send to the _callbackUrl_ after the AI has finished processing.
+The response (_CheckResult_ schema) containing only the checkId and possibly ApiNotices is returned immediately after the request. The actual body (_CheckResult_ schema) is sent to the _callbackUrl_ after the AI has finished processing.
 
 ### Example
 
@@ -271,6 +272,70 @@ try {
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+[LICENSE-KEY](../../README.md#LICENSE-KEY)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `liveDocumentCheck()`
+
+```php
+liveDocumentCheck($configId, $liveDocumentCheckRequestData): \Irisnet\API\Client\Model\LiveDocumentCheckResponseData
+```
+
+Start a guided live id document check with the AI.
+
+The synchronous response (_LiveDocumentCheckResponseData_ schema) contains an eventId, possibly a token and an URL to send the enduser to. The actual result (_CheckResult_ schema) of the document check is sent to the provided _callbackUrl_ after the AI has finished processing.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: LICENSE-KEY
+$config = Irisnet\API\Client\Configuration::getDefaultConfiguration()->setApiKey('LICENSE-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Irisnet\API\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('LICENSE-KEY', 'Bearer');
+
+
+$apiInstance = new Irisnet\API\Client\Api\AICheckOperationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$configId = 'configId_example'; // string | The configuration id from the Basic Configuration operations.
+$liveDocumentCheckRequestData = {"callback":{"callbackUrl":"https://www.example.com/callback?liveident"},"endUserRedirectUrl":"https://www.example.com/user"}; // \Irisnet\API\Client\Model\LiveDocumentCheckRequestData | The LiveDocumentCheckRequestData containing data needed for the live id document check.
+
+try {
+    $result = $apiInstance->liveDocumentCheck($configId, $liveDocumentCheckRequestData);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AICheckOperationsApi->liveDocumentCheck: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **configId** | **string**| The configuration id from the Basic Configuration operations. | |
+| **liveDocumentCheckRequestData** | [**\Irisnet\API\Client\Model\LiveDocumentCheckRequestData**](../Model/LiveDocumentCheckRequestData.md)| The LiveDocumentCheckRequestData containing data needed for the live id document check. | |
+
+### Return type
+
+[**\Irisnet\API\Client\Model\LiveDocumentCheckResponseData**](../Model/LiveDocumentCheckResponseData.md)
 
 ### Authorization
 

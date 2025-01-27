@@ -1,6 +1,6 @@
 <?php
 /**
- * BaseDetection
+ * KycUiParameter
  *
  * PHP version 7.4
  *
@@ -28,19 +28,21 @@
  */
 
 namespace Irisnet\API\Client\Model;
+
+use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
- * BaseDetection Class Doc Comment
+ * KycUiParameter Class Doc Comment
  *
  * @category Class
- * @description A detection describes the object found with all its details.
+ * @description A collection of parameters that determine the appearance and behaviour of the user interface (UI).
  * @package  Irisnet\API\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BaseDetection extends Detection
+class KycUiParameter implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +51,7 @@ class BaseDetection extends Detection
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BaseDetection';
+    protected static $openAPIModelName = 'KycUiParameter';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,12 +59,10 @@ class BaseDetection extends Detection
       * @var string[]
       */
     protected static $openAPITypes = [
-        'classification' => 'string',
-        'group' => 'string',
-        'id' => 'int',
-        'probability' => 'int',
-        'coordinates' => '\Irisnet\API\Client\Model\Coordinates',
-        'attributes' => '\Irisnet\API\Client\Model\BaseAttribute[]'
+        'primaryColor' => 'string',
+        'backgroundColor' => 'string',
+        'textColor' => 'string',
+        'logo' => 'string'
     ];
 
     /**
@@ -73,12 +73,10 @@ class BaseDetection extends Detection
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'classification' => null,
-        'group' => null,
-        'id' => 'int32',
-        'probability' => 'int32',
-        'coordinates' => null,
-        'attributes' => null
+        'primaryColor' => null,
+        'backgroundColor' => null,
+        'textColor' => null,
+        'logo' => null
     ];
 
     /**
@@ -87,12 +85,10 @@ class BaseDetection extends Detection
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'classification' => false,
-        'group' => false,
-        'id' => false,
-        'probability' => false,
-        'coordinates' => false,
-        'attributes' => false
+        'primaryColor' => false,
+        'backgroundColor' => false,
+        'textColor' => false,
+        'logo' => false
     ];
 
     /**
@@ -109,7 +105,7 @@ class BaseDetection extends Detection
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes + parent::openAPITypes();
+        return self::$openAPITypes;
     }
 
     /**
@@ -119,7 +115,7 @@ class BaseDetection extends Detection
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats + parent::openAPIFormats();
+        return self::$openAPIFormats;
     }
 
     /**
@@ -129,7 +125,7 @@ class BaseDetection extends Detection
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables + parent::openAPINullables();
+        return self::$openAPINullables;
     }
 
     /**
@@ -181,12 +177,10 @@ class BaseDetection extends Detection
      * @var string[]
      */
     protected static $attributeMap = [
-        'classification' => 'classification',
-        'group' => 'group',
-        'id' => 'id',
-        'probability' => 'probability',
-        'coordinates' => 'coordinates',
-        'attributes' => 'attributes'
+        'primaryColor' => 'primaryColor',
+        'backgroundColor' => 'backgroundColor',
+        'textColor' => 'textColor',
+        'logo' => 'logo'
     ];
 
     /**
@@ -195,12 +189,10 @@ class BaseDetection extends Detection
      * @var string[]
      */
     protected static $setters = [
-        'classification' => 'setClassification',
-        'group' => 'setGroup',
-        'id' => 'setId',
-        'probability' => 'setProbability',
-        'coordinates' => 'setCoordinates',
-        'attributes' => 'setAttributes'
+        'primaryColor' => 'setPrimaryColor',
+        'backgroundColor' => 'setBackgroundColor',
+        'textColor' => 'setTextColor',
+        'logo' => 'setLogo'
     ];
 
     /**
@@ -209,12 +201,10 @@ class BaseDetection extends Detection
      * @var string[]
      */
     protected static $getters = [
-        'classification' => 'getClassification',
-        'group' => 'getGroup',
-        'id' => 'getId',
-        'probability' => 'getProbability',
-        'coordinates' => 'getCoordinates',
-        'attributes' => 'getAttributes'
+        'primaryColor' => 'getPrimaryColor',
+        'backgroundColor' => 'getBackgroundColor',
+        'textColor' => 'getTextColor',
+        'logo' => 'getLogo'
     ];
 
     /**
@@ -225,7 +215,7 @@ class BaseDetection extends Detection
      */
     public static function attributeMap()
     {
-        return parent::attributeMap() + self::$attributeMap;
+        return self::$attributeMap;
     }
 
     /**
@@ -235,7 +225,7 @@ class BaseDetection extends Detection
      */
     public static function setters()
     {
-        return parent::setters() + self::$setters;
+        return self::$setters;
     }
 
     /**
@@ -245,7 +235,7 @@ class BaseDetection extends Detection
      */
     public static function getters()
     {
-        return parent::getters() + self::$getters;
+        return self::$getters;
     }
 
     /**
@@ -259,6 +249,12 @@ class BaseDetection extends Detection
     }
 
 
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
 
     /**
      * Constructor
@@ -268,14 +264,10 @@ class BaseDetection extends Detection
      */
     public function __construct(?array $data = null)
     {
-        parent::__construct($data);
-
-        $this->setIfExists('classification', $data ?? [], null);
-        $this->setIfExists('group', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('probability', $data ?? [], null);
-        $this->setIfExists('coordinates', $data ?? [], null);
-        $this->setIfExists('attributes', $data ?? [], null);
+        $this->setIfExists('primaryColor', $data ?? [], '57a632');
+        $this->setIfExists('backgroundColor', $data ?? [], '000000');
+        $this->setIfExists('textColor', $data ?? [], 'ffffff');
+        $this->setIfExists('logo', $data ?? [], null);
     }
 
     /**
@@ -303,7 +295,7 @@ class BaseDetection extends Detection
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = parent::listInvalidProperties();
+        $invalidProperties = [];
 
         return $invalidProperties;
     }
@@ -321,163 +313,109 @@ class BaseDetection extends Detection
 
 
     /**
-     * Gets classification
+     * Gets primaryColor
      *
      * @return string|null
      */
-    public function getClassification()
+    public function getPrimaryColor()
     {
-        return $this->container['classification'];
+        return $this->container['primaryColor'];
     }
 
     /**
-     * Sets classification
+     * Sets primaryColor
      *
-     * @param string|null $classification The classification of the recognized object.
+     * @param string|null $primaryColor The primary color of the UI in hex format (rrggbb).
      *
      * @return self
      */
-    public function setClassification($classification)
+    public function setPrimaryColor($primaryColor)
     {
-        if (is_null($classification)) {
-            throw new \InvalidArgumentException('non-nullable classification cannot be null');
+        if (is_null($primaryColor)) {
+            throw new \InvalidArgumentException('non-nullable primaryColor cannot be null');
         }
-        $this->container['classification'] = $classification;
+        $this->container['primaryColor'] = $primaryColor;
 
         return $this;
     }
 
     /**
-     * Gets group
+     * Gets backgroundColor
      *
      * @return string|null
      */
-    public function getGroup()
+    public function getBackgroundColor()
     {
-        return $this->container['group'];
+        return $this->container['backgroundColor'];
     }
 
     /**
-     * Sets group
+     * Sets backgroundColor
      *
-     * @param string|null $group The group of the classification.
+     * @param string|null $backgroundColor The background color of the UI in hex format (rrggbb).
      *
      * @return self
      */
-    public function setGroup($group)
+    public function setBackgroundColor($backgroundColor)
     {
-        if (is_null($group)) {
-            throw new \InvalidArgumentException('non-nullable group cannot be null');
+        if (is_null($backgroundColor)) {
+            throw new \InvalidArgumentException('non-nullable backgroundColor cannot be null');
         }
-        $this->container['group'] = $group;
+        $this->container['backgroundColor'] = $backgroundColor;
 
         return $this;
     }
 
     /**
-     * Gets id
+     * Gets textColor
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getId()
+    public function getTextColor()
     {
-        return $this->container['id'];
+        return $this->container['textColor'];
     }
 
     /**
-     * Sets id
+     * Sets textColor
      *
-     * @param int|null $id The id of the detection object.
+     * @param string|null $textColor The text color of the UI in hex format (rrggbb).
      *
      * @return self
      */
-    public function setId($id)
+    public function setTextColor($textColor)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($textColor)) {
+            throw new \InvalidArgumentException('non-nullable textColor cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['textColor'] = $textColor;
 
         return $this;
     }
 
     /**
-     * Gets probability
+     * Gets logo
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getProbability()
+    public function getLogo()
     {
-        return $this->container['probability'];
+        return $this->container['logo'];
     }
 
     /**
-     * Sets probability
+     * Sets logo
      *
-     * @param int|null $probability The probability that the object found matches the classification.
+     * @param string|null $logo The company logo for the UI in PNG fileformat (512 px * 512 px) as a base64 encoded string.
      *
      * @return self
      */
-    public function setProbability($probability)
+    public function setLogo($logo)
     {
-        if (is_null($probability)) {
-            throw new \InvalidArgumentException('non-nullable probability cannot be null');
+        if (is_null($logo)) {
+            throw new \InvalidArgumentException('non-nullable logo cannot be null');
         }
-        $this->container['probability'] = $probability;
-
-        return $this;
-    }
-
-    /**
-     * Gets coordinates
-     *
-     * @return \Irisnet\API\Client\Model\Coordinates|null
-     */
-    public function getCoordinates()
-    {
-        return $this->container['coordinates'];
-    }
-
-    /**
-     * Sets coordinates
-     *
-     * @param \Irisnet\API\Client\Model\Coordinates|null $coordinates coordinates
-     *
-     * @return self
-     */
-    public function setCoordinates($coordinates)
-    {
-        if (is_null($coordinates)) {
-            throw new \InvalidArgumentException('non-nullable coordinates cannot be null');
-        }
-        $this->container['coordinates'] = $coordinates;
-
-        return $this;
-    }
-
-    /**
-     * Gets attributes
-     *
-     * @return \Irisnet\API\Client\Model\BaseAttribute[]|null
-     */
-    public function getAttributes()
-    {
-        return $this->container['attributes'];
-    }
-
-    /**
-     * Sets attributes
-     *
-     * @param \Irisnet\API\Client\Model\BaseAttribute[]|null $attributes Attributes characterizing the _base_ detection.
-     *
-     * @return self
-     */
-    public function setAttributes($attributes)
-    {
-        if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
-        }
-        $this->container['attributes'] = $attributes;
+        $this->container['logo'] = $logo;
 
         return $this;
     }

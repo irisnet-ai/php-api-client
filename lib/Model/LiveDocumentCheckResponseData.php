@@ -1,6 +1,6 @@
 <?php
 /**
- * BaseDetection
+ * LiveDocumentCheckResponseData
  *
  * PHP version 7.4
  *
@@ -28,19 +28,21 @@
  */
 
 namespace Irisnet\API\Client\Model;
+
+use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
- * BaseDetection Class Doc Comment
+ * LiveDocumentCheckResponseData Class Doc Comment
  *
  * @category Class
- * @description A detection describes the object found with all its details.
+ * @description Response object containing neccessary information to start the enduser live document check on the client side.
  * @package  Irisnet\API\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BaseDetection extends Detection
+class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +51,7 @@ class BaseDetection extends Detection
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BaseDetection';
+    protected static $openAPIModelName = 'LiveDocumentCheckResponseData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,12 +59,9 @@ class BaseDetection extends Detection
       * @var string[]
       */
     protected static $openAPITypes = [
-        'classification' => 'string',
-        'group' => 'string',
-        'id' => 'int',
-        'probability' => 'int',
-        'coordinates' => '\Irisnet\API\Client\Model\Coordinates',
-        'attributes' => '\Irisnet\API\Client\Model\BaseAttribute[]'
+        'eventId' => 'string',
+        'identToken' => 'string',
+        'endUserIdentUrl' => 'string'
     ];
 
     /**
@@ -73,12 +72,9 @@ class BaseDetection extends Detection
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'classification' => null,
-        'group' => null,
-        'id' => 'int32',
-        'probability' => 'int32',
-        'coordinates' => null,
-        'attributes' => null
+        'eventId' => null,
+        'identToken' => null,
+        'endUserIdentUrl' => 'uri'
     ];
 
     /**
@@ -87,12 +83,9 @@ class BaseDetection extends Detection
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'classification' => false,
-        'group' => false,
-        'id' => false,
-        'probability' => false,
-        'coordinates' => false,
-        'attributes' => false
+        'eventId' => false,
+        'identToken' => false,
+        'endUserIdentUrl' => false
     ];
 
     /**
@@ -109,7 +102,7 @@ class BaseDetection extends Detection
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes + parent::openAPITypes();
+        return self::$openAPITypes;
     }
 
     /**
@@ -119,7 +112,7 @@ class BaseDetection extends Detection
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats + parent::openAPIFormats();
+        return self::$openAPIFormats;
     }
 
     /**
@@ -129,7 +122,7 @@ class BaseDetection extends Detection
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables + parent::openAPINullables();
+        return self::$openAPINullables;
     }
 
     /**
@@ -181,12 +174,9 @@ class BaseDetection extends Detection
      * @var string[]
      */
     protected static $attributeMap = [
-        'classification' => 'classification',
-        'group' => 'group',
-        'id' => 'id',
-        'probability' => 'probability',
-        'coordinates' => 'coordinates',
-        'attributes' => 'attributes'
+        'eventId' => 'eventId',
+        'identToken' => 'identToken',
+        'endUserIdentUrl' => 'endUserIdentUrl'
     ];
 
     /**
@@ -195,12 +185,9 @@ class BaseDetection extends Detection
      * @var string[]
      */
     protected static $setters = [
-        'classification' => 'setClassification',
-        'group' => 'setGroup',
-        'id' => 'setId',
-        'probability' => 'setProbability',
-        'coordinates' => 'setCoordinates',
-        'attributes' => 'setAttributes'
+        'eventId' => 'setEventId',
+        'identToken' => 'setIdentToken',
+        'endUserIdentUrl' => 'setEndUserIdentUrl'
     ];
 
     /**
@@ -209,12 +196,9 @@ class BaseDetection extends Detection
      * @var string[]
      */
     protected static $getters = [
-        'classification' => 'getClassification',
-        'group' => 'getGroup',
-        'id' => 'getId',
-        'probability' => 'getProbability',
-        'coordinates' => 'getCoordinates',
-        'attributes' => 'getAttributes'
+        'eventId' => 'getEventId',
+        'identToken' => 'getIdentToken',
+        'endUserIdentUrl' => 'getEndUserIdentUrl'
     ];
 
     /**
@@ -225,7 +209,7 @@ class BaseDetection extends Detection
      */
     public static function attributeMap()
     {
-        return parent::attributeMap() + self::$attributeMap;
+        return self::$attributeMap;
     }
 
     /**
@@ -235,7 +219,7 @@ class BaseDetection extends Detection
      */
     public static function setters()
     {
-        return parent::setters() + self::$setters;
+        return self::$setters;
     }
 
     /**
@@ -245,7 +229,7 @@ class BaseDetection extends Detection
      */
     public static function getters()
     {
-        return parent::getters() + self::$getters;
+        return self::$getters;
     }
 
     /**
@@ -259,6 +243,12 @@ class BaseDetection extends Detection
     }
 
 
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
 
     /**
      * Constructor
@@ -268,14 +258,9 @@ class BaseDetection extends Detection
      */
     public function __construct(?array $data = null)
     {
-        parent::__construct($data);
-
-        $this->setIfExists('classification', $data ?? [], null);
-        $this->setIfExists('group', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('probability', $data ?? [], null);
-        $this->setIfExists('coordinates', $data ?? [], null);
-        $this->setIfExists('attributes', $data ?? [], null);
+        $this->setIfExists('eventId', $data ?? [], null);
+        $this->setIfExists('identToken', $data ?? [], null);
+        $this->setIfExists('endUserIdentUrl', $data ?? [], null);
     }
 
     /**
@@ -303,7 +288,7 @@ class BaseDetection extends Detection
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = parent::listInvalidProperties();
+        $invalidProperties = [];
 
         return $invalidProperties;
     }
@@ -321,163 +306,82 @@ class BaseDetection extends Detection
 
 
     /**
-     * Gets classification
+     * Gets eventId
      *
      * @return string|null
      */
-    public function getClassification()
+    public function getEventId()
     {
-        return $this->container['classification'];
+        return $this->container['eventId'];
     }
 
     /**
-     * Sets classification
+     * Sets eventId
      *
-     * @param string|null $classification The classification of the recognized object.
+     * @param string|null $eventId unique id of this live document check
      *
      * @return self
      */
-    public function setClassification($classification)
+    public function setEventId($eventId)
     {
-        if (is_null($classification)) {
-            throw new \InvalidArgumentException('non-nullable classification cannot be null');
+        if (is_null($eventId)) {
+            throw new \InvalidArgumentException('non-nullable eventId cannot be null');
         }
-        $this->container['classification'] = $classification;
+        $this->container['eventId'] = $eventId;
 
         return $this;
     }
 
     /**
-     * Gets group
+     * Gets identToken
      *
      * @return string|null
      */
-    public function getGroup()
+    public function getIdentToken()
     {
-        return $this->container['group'];
+        return $this->container['identToken'];
     }
 
     /**
-     * Sets group
+     * Sets identToken
      *
-     * @param string|null $group The group of the classification.
+     * @param string|null $identToken token to secure the live document check, might be null since already incorporated into endUserIdentUrl
      *
      * @return self
      */
-    public function setGroup($group)
+    public function setIdentToken($identToken)
     {
-        if (is_null($group)) {
-            throw new \InvalidArgumentException('non-nullable group cannot be null');
+        if (is_null($identToken)) {
+            throw new \InvalidArgumentException('non-nullable identToken cannot be null');
         }
-        $this->container['group'] = $group;
+        $this->container['identToken'] = $identToken;
 
         return $this;
     }
 
     /**
-     * Gets id
+     * Gets endUserIdentUrl
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getId()
+    public function getEndUserIdentUrl()
     {
-        return $this->container['id'];
+        return $this->container['endUserIdentUrl'];
     }
 
     /**
-     * Sets id
+     * Sets endUserIdentUrl
      *
-     * @param int|null $id The id of the detection object.
+     * @param string|null $endUserIdentUrl URL to send the enduser to, to start the live document check
      *
      * @return self
      */
-    public function setId($id)
+    public function setEndUserIdentUrl($endUserIdentUrl)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($endUserIdentUrl)) {
+            throw new \InvalidArgumentException('non-nullable endUserIdentUrl cannot be null');
         }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets probability
-     *
-     * @return int|null
-     */
-    public function getProbability()
-    {
-        return $this->container['probability'];
-    }
-
-    /**
-     * Sets probability
-     *
-     * @param int|null $probability The probability that the object found matches the classification.
-     *
-     * @return self
-     */
-    public function setProbability($probability)
-    {
-        if (is_null($probability)) {
-            throw new \InvalidArgumentException('non-nullable probability cannot be null');
-        }
-        $this->container['probability'] = $probability;
-
-        return $this;
-    }
-
-    /**
-     * Gets coordinates
-     *
-     * @return \Irisnet\API\Client\Model\Coordinates|null
-     */
-    public function getCoordinates()
-    {
-        return $this->container['coordinates'];
-    }
-
-    /**
-     * Sets coordinates
-     *
-     * @param \Irisnet\API\Client\Model\Coordinates|null $coordinates coordinates
-     *
-     * @return self
-     */
-    public function setCoordinates($coordinates)
-    {
-        if (is_null($coordinates)) {
-            throw new \InvalidArgumentException('non-nullable coordinates cannot be null');
-        }
-        $this->container['coordinates'] = $coordinates;
-
-        return $this;
-    }
-
-    /**
-     * Gets attributes
-     *
-     * @return \Irisnet\API\Client\Model\BaseAttribute[]|null
-     */
-    public function getAttributes()
-    {
-        return $this->container['attributes'];
-    }
-
-    /**
-     * Sets attributes
-     *
-     * @param \Irisnet\API\Client\Model\BaseAttribute[]|null $attributes Attributes characterizing the _base_ detection.
-     *
-     * @return self
-     */
-    public function setAttributes($attributes)
-    {
-        if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
-        }
-        $this->container['attributes'] = $attributes;
+        $this->container['endUserIdentUrl'] = $endUserIdentUrl;
 
         return $this;
     }

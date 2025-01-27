@@ -9,5 +9,7 @@ Name | Type | Description | Notes
 **minDuration** | **int** | Set the overall minimum duration in milliseconds for a rule to be broken in moving images. | [optional] [default to 100]
 **abortOnSeverity** | **int** | Set a severity on which to automatically stop the check operation. Works with moving images.Use &#39;-1&#39; to ignore this option. | [optional] [default to -1]
 **params** | [**\Irisnet\API\Client\Model\Param[]**](Param.md) | A list of parameter sets that describe the rules of the objects. | [optional]
+**kycUiParameters** | [**\Irisnet\API\Client\Model\KycUiParameter**](KycUiParameter.md) |  | [optional]
+**kycDocumentCountryDenyList** | **string** | A comma separated list of country codes (ISO 3166-1 alpha-2) for which id-documents should be rejected. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

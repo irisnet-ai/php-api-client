@@ -1,6 +1,6 @@
 <?php
 /**
- * BaseDetection
+ * KnownFace
  *
  * PHP version 7.4
  *
@@ -28,19 +28,21 @@
  */
 
 namespace Irisnet\API\Client\Model;
+
+use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
- * BaseDetection Class Doc Comment
+ * KnownFace Class Doc Comment
  *
  * @category Class
- * @description A detection describes the object found with all its details.
+ * @description A list of known faces, describing which other documentHolders match this documentHolder with a certain similarity
  * @package  Irisnet\API\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BaseDetection extends Detection
+class KnownFace implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +51,7 @@ class BaseDetection extends Detection
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BaseDetection';
+    protected static $openAPIModelName = 'KnownFace';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,12 +59,8 @@ class BaseDetection extends Detection
       * @var string[]
       */
     protected static $openAPITypes = [
-        'classification' => 'string',
-        'group' => 'string',
-        'id' => 'int',
-        'probability' => 'int',
-        'coordinates' => '\Irisnet\API\Client\Model\Coordinates',
-        'attributes' => '\Irisnet\API\Client\Model\BaseAttribute[]'
+        'documentHolderId' => 'string',
+        'faceSimilarity' => 'int'
     ];
 
     /**
@@ -73,12 +71,8 @@ class BaseDetection extends Detection
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'classification' => null,
-        'group' => null,
-        'id' => 'int32',
-        'probability' => 'int32',
-        'coordinates' => null,
-        'attributes' => null
+        'documentHolderId' => null,
+        'faceSimilarity' => 'int32'
     ];
 
     /**
@@ -87,12 +81,8 @@ class BaseDetection extends Detection
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'classification' => false,
-        'group' => false,
-        'id' => false,
-        'probability' => false,
-        'coordinates' => false,
-        'attributes' => false
+        'documentHolderId' => false,
+        'faceSimilarity' => false
     ];
 
     /**
@@ -109,7 +99,7 @@ class BaseDetection extends Detection
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes + parent::openAPITypes();
+        return self::$openAPITypes;
     }
 
     /**
@@ -119,7 +109,7 @@ class BaseDetection extends Detection
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats + parent::openAPIFormats();
+        return self::$openAPIFormats;
     }
 
     /**
@@ -129,7 +119,7 @@ class BaseDetection extends Detection
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables + parent::openAPINullables();
+        return self::$openAPINullables;
     }
 
     /**
@@ -181,12 +171,8 @@ class BaseDetection extends Detection
      * @var string[]
      */
     protected static $attributeMap = [
-        'classification' => 'classification',
-        'group' => 'group',
-        'id' => 'id',
-        'probability' => 'probability',
-        'coordinates' => 'coordinates',
-        'attributes' => 'attributes'
+        'documentHolderId' => 'documentHolderId',
+        'faceSimilarity' => 'faceSimilarity'
     ];
 
     /**
@@ -195,12 +181,8 @@ class BaseDetection extends Detection
      * @var string[]
      */
     protected static $setters = [
-        'classification' => 'setClassification',
-        'group' => 'setGroup',
-        'id' => 'setId',
-        'probability' => 'setProbability',
-        'coordinates' => 'setCoordinates',
-        'attributes' => 'setAttributes'
+        'documentHolderId' => 'setDocumentHolderId',
+        'faceSimilarity' => 'setFaceSimilarity'
     ];
 
     /**
@@ -209,12 +191,8 @@ class BaseDetection extends Detection
      * @var string[]
      */
     protected static $getters = [
-        'classification' => 'getClassification',
-        'group' => 'getGroup',
-        'id' => 'getId',
-        'probability' => 'getProbability',
-        'coordinates' => 'getCoordinates',
-        'attributes' => 'getAttributes'
+        'documentHolderId' => 'getDocumentHolderId',
+        'faceSimilarity' => 'getFaceSimilarity'
     ];
 
     /**
@@ -225,7 +203,7 @@ class BaseDetection extends Detection
      */
     public static function attributeMap()
     {
-        return parent::attributeMap() + self::$attributeMap;
+        return self::$attributeMap;
     }
 
     /**
@@ -235,7 +213,7 @@ class BaseDetection extends Detection
      */
     public static function setters()
     {
-        return parent::setters() + self::$setters;
+        return self::$setters;
     }
 
     /**
@@ -245,7 +223,7 @@ class BaseDetection extends Detection
      */
     public static function getters()
     {
-        return parent::getters() + self::$getters;
+        return self::$getters;
     }
 
     /**
@@ -259,6 +237,12 @@ class BaseDetection extends Detection
     }
 
 
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
 
     /**
      * Constructor
@@ -268,14 +252,8 @@ class BaseDetection extends Detection
      */
     public function __construct(?array $data = null)
     {
-        parent::__construct($data);
-
-        $this->setIfExists('classification', $data ?? [], null);
-        $this->setIfExists('group', $data ?? [], null);
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('probability', $data ?? [], null);
-        $this->setIfExists('coordinates', $data ?? [], null);
-        $this->setIfExists('attributes', $data ?? [], null);
+        $this->setIfExists('documentHolderId', $data ?? [], null);
+        $this->setIfExists('faceSimilarity', $data ?? [], null);
     }
 
     /**
@@ -303,7 +281,7 @@ class BaseDetection extends Detection
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = parent::listInvalidProperties();
+        $invalidProperties = [];
 
         return $invalidProperties;
     }
@@ -321,163 +299,55 @@ class BaseDetection extends Detection
 
 
     /**
-     * Gets classification
+     * Gets documentHolderId
      *
      * @return string|null
      */
-    public function getClassification()
+    public function getDocumentHolderId()
     {
-        return $this->container['classification'];
+        return $this->container['documentHolderId'];
     }
 
     /**
-     * Sets classification
+     * Sets documentHolderId
      *
-     * @param string|null $classification The classification of the recognized object.
+     * @param string|null $documentHolderId The id of the documentHolder
      *
      * @return self
      */
-    public function setClassification($classification)
+    public function setDocumentHolderId($documentHolderId)
     {
-        if (is_null($classification)) {
-            throw new \InvalidArgumentException('non-nullable classification cannot be null');
+        if (is_null($documentHolderId)) {
+            throw new \InvalidArgumentException('non-nullable documentHolderId cannot be null');
         }
-        $this->container['classification'] = $classification;
+        $this->container['documentHolderId'] = $documentHolderId;
 
         return $this;
     }
 
     /**
-     * Gets group
-     *
-     * @return string|null
-     */
-    public function getGroup()
-    {
-        return $this->container['group'];
-    }
-
-    /**
-     * Sets group
-     *
-     * @param string|null $group The group of the classification.
-     *
-     * @return self
-     */
-    public function setGroup($group)
-    {
-        if (is_null($group)) {
-            throw new \InvalidArgumentException('non-nullable group cannot be null');
-        }
-        $this->container['group'] = $group;
-
-        return $this;
-    }
-
-    /**
-     * Gets id
+     * Gets faceSimilarity
      *
      * @return int|null
      */
-    public function getId()
+    public function getFaceSimilarity()
     {
-        return $this->container['id'];
+        return $this->container['faceSimilarity'];
     }
 
     /**
-     * Sets id
+     * Sets faceSimilarity
      *
-     * @param int|null $id The id of the detection object.
+     * @param int|null $faceSimilarity Indicates the similarity-level between the known face and the documentHolder's selfie
      *
      * @return self
      */
-    public function setId($id)
+    public function setFaceSimilarity($faceSimilarity)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($faceSimilarity)) {
+            throw new \InvalidArgumentException('non-nullable faceSimilarity cannot be null');
         }
-        $this->container['id'] = $id;
-
-        return $this;
-    }
-
-    /**
-     * Gets probability
-     *
-     * @return int|null
-     */
-    public function getProbability()
-    {
-        return $this->container['probability'];
-    }
-
-    /**
-     * Sets probability
-     *
-     * @param int|null $probability The probability that the object found matches the classification.
-     *
-     * @return self
-     */
-    public function setProbability($probability)
-    {
-        if (is_null($probability)) {
-            throw new \InvalidArgumentException('non-nullable probability cannot be null');
-        }
-        $this->container['probability'] = $probability;
-
-        return $this;
-    }
-
-    /**
-     * Gets coordinates
-     *
-     * @return \Irisnet\API\Client\Model\Coordinates|null
-     */
-    public function getCoordinates()
-    {
-        return $this->container['coordinates'];
-    }
-
-    /**
-     * Sets coordinates
-     *
-     * @param \Irisnet\API\Client\Model\Coordinates|null $coordinates coordinates
-     *
-     * @return self
-     */
-    public function setCoordinates($coordinates)
-    {
-        if (is_null($coordinates)) {
-            throw new \InvalidArgumentException('non-nullable coordinates cannot be null');
-        }
-        $this->container['coordinates'] = $coordinates;
-
-        return $this;
-    }
-
-    /**
-     * Gets attributes
-     *
-     * @return \Irisnet\API\Client\Model\BaseAttribute[]|null
-     */
-    public function getAttributes()
-    {
-        return $this->container['attributes'];
-    }
-
-    /**
-     * Sets attributes
-     *
-     * @param \Irisnet\API\Client\Model\BaseAttribute[]|null $attributes Attributes characterizing the _base_ detection.
-     *
-     * @return self
-     */
-    public function setAttributes($attributes)
-    {
-        if (is_null($attributes)) {
-            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
-        }
-        $this->container['attributes'] = $attributes;
+        $this->container['faceSimilarity'] = $faceSimilarity;
 
         return $this;
     }

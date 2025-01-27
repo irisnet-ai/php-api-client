@@ -1,6 +1,6 @@
 <?php
 /**
- * BaseDetection
+ * Detection
  *
  * PHP version 7.4
  *
@@ -28,28 +28,29 @@
  */
 
 namespace Irisnet\API\Client\Model;
+
+use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
- * BaseDetection Class Doc Comment
+ * Detection Class Doc Comment
  *
  * @category Class
- * @description A detection describes the object found with all its details.
  * @package  Irisnet\API\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BaseDetection extends Detection
+class Detection implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = 'type';
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'BaseDetection';
+    protected static $openAPIModelName = 'Detection';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,12 +58,24 @@ class BaseDetection extends Detection
       * @var string[]
       */
     protected static $openAPITypes = [
+        'type' => 'string',
         'classification' => 'string',
         'group' => 'string',
         'id' => 'int',
         'probability' => 'int',
         'coordinates' => '\Irisnet\API\Client\Model\Coordinates',
-        'attributes' => '\Irisnet\API\Client\Model\BaseAttribute[]'
+        'attributes' => '\Irisnet\API\Client\Model\AgeEstimationAttribute[]',
+        'checkId' => 'string',
+        'hasOfficialDocument' => 'bool',
+        'comparable' => 'bool',
+        'faceSimilarity' => 'int',
+        'faceLivenessCheckScore' => 'int',
+        'documentFrontLivenessScore' => 'int',
+        'documentBackLivenessScore' => 'int',
+        'processedChecks' => '\Irisnet\API\Client\Model\AgeEstimationSubChecks',
+        'documentHolderId' => 'string',
+        'knownFaces' => '\Irisnet\API\Client\Model\KnownFace[]',
+        'subDetections' => '\Irisnet\API\Client\Model\Detection[]'
     ];
 
     /**
@@ -73,12 +86,24 @@ class BaseDetection extends Detection
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'type' => null,
         'classification' => null,
         'group' => null,
         'id' => 'int32',
         'probability' => 'int32',
         'coordinates' => null,
-        'attributes' => null
+        'attributes' => null,
+        'checkId' => null,
+        'hasOfficialDocument' => null,
+        'comparable' => null,
+        'faceSimilarity' => 'int32',
+        'faceLivenessCheckScore' => 'int32',
+        'documentFrontLivenessScore' => 'int32',
+        'documentBackLivenessScore' => 'int32',
+        'processedChecks' => null,
+        'documentHolderId' => null,
+        'knownFaces' => null,
+        'subDetections' => null
     ];
 
     /**
@@ -87,12 +112,24 @@ class BaseDetection extends Detection
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'type' => false,
         'classification' => false,
         'group' => false,
         'id' => false,
         'probability' => false,
         'coordinates' => false,
-        'attributes' => false
+        'attributes' => false,
+        'checkId' => false,
+        'hasOfficialDocument' => false,
+        'comparable' => false,
+        'faceSimilarity' => false,
+        'faceLivenessCheckScore' => false,
+        'documentFrontLivenessScore' => false,
+        'documentBackLivenessScore' => false,
+        'processedChecks' => false,
+        'documentHolderId' => false,
+        'knownFaces' => false,
+        'subDetections' => false
     ];
 
     /**
@@ -109,7 +146,7 @@ class BaseDetection extends Detection
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes + parent::openAPITypes();
+        return self::$openAPITypes;
     }
 
     /**
@@ -119,7 +156,7 @@ class BaseDetection extends Detection
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats + parent::openAPIFormats();
+        return self::$openAPIFormats;
     }
 
     /**
@@ -129,7 +166,7 @@ class BaseDetection extends Detection
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables + parent::openAPINullables();
+        return self::$openAPINullables;
     }
 
     /**
@@ -181,12 +218,24 @@ class BaseDetection extends Detection
      * @var string[]
      */
     protected static $attributeMap = [
+        'type' => 'type',
         'classification' => 'classification',
         'group' => 'group',
         'id' => 'id',
         'probability' => 'probability',
         'coordinates' => 'coordinates',
-        'attributes' => 'attributes'
+        'attributes' => 'attributes',
+        'checkId' => 'checkId',
+        'hasOfficialDocument' => 'hasOfficialDocument',
+        'comparable' => 'comparable',
+        'faceSimilarity' => 'faceSimilarity',
+        'faceLivenessCheckScore' => 'faceLivenessCheckScore',
+        'documentFrontLivenessScore' => 'documentFrontLivenessScore',
+        'documentBackLivenessScore' => 'documentBackLivenessScore',
+        'processedChecks' => 'processedChecks',
+        'documentHolderId' => 'documentHolderId',
+        'knownFaces' => 'knownFaces',
+        'subDetections' => 'subDetections'
     ];
 
     /**
@@ -195,12 +244,24 @@ class BaseDetection extends Detection
      * @var string[]
      */
     protected static $setters = [
+        'type' => 'setType',
         'classification' => 'setClassification',
         'group' => 'setGroup',
         'id' => 'setId',
         'probability' => 'setProbability',
         'coordinates' => 'setCoordinates',
-        'attributes' => 'setAttributes'
+        'attributes' => 'setAttributes',
+        'checkId' => 'setCheckId',
+        'hasOfficialDocument' => 'setHasOfficialDocument',
+        'comparable' => 'setComparable',
+        'faceSimilarity' => 'setFaceSimilarity',
+        'faceLivenessCheckScore' => 'setFaceLivenessCheckScore',
+        'documentFrontLivenessScore' => 'setDocumentFrontLivenessScore',
+        'documentBackLivenessScore' => 'setDocumentBackLivenessScore',
+        'processedChecks' => 'setProcessedChecks',
+        'documentHolderId' => 'setDocumentHolderId',
+        'knownFaces' => 'setKnownFaces',
+        'subDetections' => 'setSubDetections'
     ];
 
     /**
@@ -209,12 +270,24 @@ class BaseDetection extends Detection
      * @var string[]
      */
     protected static $getters = [
+        'type' => 'getType',
         'classification' => 'getClassification',
         'group' => 'getGroup',
         'id' => 'getId',
         'probability' => 'getProbability',
         'coordinates' => 'getCoordinates',
-        'attributes' => 'getAttributes'
+        'attributes' => 'getAttributes',
+        'checkId' => 'getCheckId',
+        'hasOfficialDocument' => 'getHasOfficialDocument',
+        'comparable' => 'getComparable',
+        'faceSimilarity' => 'getFaceSimilarity',
+        'faceLivenessCheckScore' => 'getFaceLivenessCheckScore',
+        'documentFrontLivenessScore' => 'getDocumentFrontLivenessScore',
+        'documentBackLivenessScore' => 'getDocumentBackLivenessScore',
+        'processedChecks' => 'getProcessedChecks',
+        'documentHolderId' => 'getDocumentHolderId',
+        'knownFaces' => 'getKnownFaces',
+        'subDetections' => 'getSubDetections'
     ];
 
     /**
@@ -225,7 +298,7 @@ class BaseDetection extends Detection
      */
     public static function attributeMap()
     {
-        return parent::attributeMap() + self::$attributeMap;
+        return self::$attributeMap;
     }
 
     /**
@@ -235,7 +308,7 @@ class BaseDetection extends Detection
      */
     public static function setters()
     {
-        return parent::setters() + self::$setters;
+        return self::$setters;
     }
 
     /**
@@ -245,7 +318,7 @@ class BaseDetection extends Detection
      */
     public static function getters()
     {
-        return parent::getters() + self::$getters;
+        return self::$getters;
     }
 
     /**
@@ -259,6 +332,12 @@ class BaseDetection extends Detection
     }
 
 
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
 
     /**
      * Constructor
@@ -268,14 +347,27 @@ class BaseDetection extends Detection
      */
     public function __construct(?array $data = null)
     {
-        parent::__construct($data);
-
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('classification', $data ?? [], null);
         $this->setIfExists('group', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('probability', $data ?? [], null);
         $this->setIfExists('coordinates', $data ?? [], null);
         $this->setIfExists('attributes', $data ?? [], null);
+        $this->setIfExists('checkId', $data ?? [], null);
+        $this->setIfExists('hasOfficialDocument', $data ?? [], null);
+        $this->setIfExists('comparable', $data ?? [], null);
+        $this->setIfExists('faceSimilarity', $data ?? [], null);
+        $this->setIfExists('faceLivenessCheckScore', $data ?? [], null);
+        $this->setIfExists('documentFrontLivenessScore', $data ?? [], null);
+        $this->setIfExists('documentBackLivenessScore', $data ?? [], null);
+        $this->setIfExists('processedChecks', $data ?? [], null);
+        $this->setIfExists('documentHolderId', $data ?? [], null);
+        $this->setIfExists('knownFaces', $data ?? [], null);
+        $this->setIfExists('subDetections', $data ?? [], null);
+
+        // Initialize discriminator property with the model name.
+        $this->container['type'] = static::$openAPIModelName;
     }
 
     /**
@@ -303,7 +395,7 @@ class BaseDetection extends Detection
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = parent::listInvalidProperties();
+        $invalidProperties = [];
 
         return $invalidProperties;
     }
@@ -319,6 +411,33 @@ class BaseDetection extends Detection
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type Used as a type discriminator for json to object conversion.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
 
     /**
      * Gets classification
@@ -458,7 +577,7 @@ class BaseDetection extends Detection
     /**
      * Gets attributes
      *
-     * @return \Irisnet\API\Client\Model\BaseAttribute[]|null
+     * @return \Irisnet\API\Client\Model\AgeEstimationAttribute[]|null
      */
     public function getAttributes()
     {
@@ -468,7 +587,7 @@ class BaseDetection extends Detection
     /**
      * Sets attributes
      *
-     * @param \Irisnet\API\Client\Model\BaseAttribute[]|null $attributes Attributes characterizing the _base_ detection.
+     * @param \Irisnet\API\Client\Model\AgeEstimationAttribute[]|null $attributes Attributes of the _idDocument_ detection.
      *
      * @return self
      */
@@ -478,6 +597,303 @@ class BaseDetection extends Detection
             throw new \InvalidArgumentException('non-nullable attributes cannot be null');
         }
         $this->container['attributes'] = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * Gets checkId
+     *
+     * @return string|null
+     */
+    public function getCheckId()
+    {
+        return $this->container['checkId'];
+    }
+
+    /**
+     * Sets checkId
+     *
+     * @param string|null $checkId The id of the check that lead to the detection
+     *
+     * @return self
+     */
+    public function setCheckId($checkId)
+    {
+        if (is_null($checkId)) {
+            throw new \InvalidArgumentException('non-nullable checkId cannot be null');
+        }
+        $this->container['checkId'] = $checkId;
+
+        return $this;
+    }
+
+    /**
+     * Gets hasOfficialDocument
+     *
+     * @return bool|null
+     */
+    public function getHasOfficialDocument()
+    {
+        return $this->container['hasOfficialDocument'];
+    }
+
+    /**
+     * Sets hasOfficialDocument
+     *
+     * @param bool|null $hasOfficialDocument Indicates whether the identified document is official
+     *
+     * @return self
+     */
+    public function setHasOfficialDocument($hasOfficialDocument)
+    {
+        if (is_null($hasOfficialDocument)) {
+            throw new \InvalidArgumentException('non-nullable hasOfficialDocument cannot be null');
+        }
+        $this->container['hasOfficialDocument'] = $hasOfficialDocument;
+
+        return $this;
+    }
+
+    /**
+     * Gets comparable
+     *
+     * @return bool|null
+     */
+    public function getComparable()
+    {
+        return $this->container['comparable'];
+    }
+
+    /**
+     * Sets comparable
+     *
+     * @param bool|null $comparable Indicates whether the provided selfie-image is comparable to the document
+     *
+     * @return self
+     */
+    public function setComparable($comparable)
+    {
+        if (is_null($comparable)) {
+            throw new \InvalidArgumentException('non-nullable comparable cannot be null');
+        }
+        $this->container['comparable'] = $comparable;
+
+        return $this;
+    }
+
+    /**
+     * Gets faceSimilarity
+     *
+     * @return int|null
+     */
+    public function getFaceSimilarity()
+    {
+        return $this->container['faceSimilarity'];
+    }
+
+    /**
+     * Sets faceSimilarity
+     *
+     * @param int|null $faceSimilarity Indicates the similarity-level of whether two faces belong to the same person
+     *
+     * @return self
+     */
+    public function setFaceSimilarity($faceSimilarity)
+    {
+        if (is_null($faceSimilarity)) {
+            throw new \InvalidArgumentException('non-nullable faceSimilarity cannot be null');
+        }
+        $this->container['faceSimilarity'] = $faceSimilarity;
+
+        return $this;
+    }
+
+    /**
+     * Gets faceLivenessCheckScore
+     *
+     * @return int|null
+     */
+    public function getFaceLivenessCheckScore()
+    {
+        return $this->container['faceLivenessCheckScore'];
+    }
+
+    /**
+     * Sets faceLivenessCheckScore
+     *
+     * @param int|null $faceLivenessCheckScore Indicates the liveness score of the selfie image
+     *
+     * @return self
+     */
+    public function setFaceLivenessCheckScore($faceLivenessCheckScore)
+    {
+        if (is_null($faceLivenessCheckScore)) {
+            throw new \InvalidArgumentException('non-nullable faceLivenessCheckScore cannot be null');
+        }
+        $this->container['faceLivenessCheckScore'] = $faceLivenessCheckScore;
+
+        return $this;
+    }
+
+    /**
+     * Gets documentFrontLivenessScore
+     *
+     * @return int|null
+     */
+    public function getDocumentFrontLivenessScore()
+    {
+        return $this->container['documentFrontLivenessScore'];
+    }
+
+    /**
+     * Sets documentFrontLivenessScore
+     *
+     * @param int|null $documentFrontLivenessScore Indicates the liveness score of the front side image of the document
+     *
+     * @return self
+     */
+    public function setDocumentFrontLivenessScore($documentFrontLivenessScore)
+    {
+        if (is_null($documentFrontLivenessScore)) {
+            throw new \InvalidArgumentException('non-nullable documentFrontLivenessScore cannot be null');
+        }
+        $this->container['documentFrontLivenessScore'] = $documentFrontLivenessScore;
+
+        return $this;
+    }
+
+    /**
+     * Gets documentBackLivenessScore
+     *
+     * @return int|null
+     */
+    public function getDocumentBackLivenessScore()
+    {
+        return $this->container['documentBackLivenessScore'];
+    }
+
+    /**
+     * Sets documentBackLivenessScore
+     *
+     * @param int|null $documentBackLivenessScore Indicates the liveness score of the back side image of the document
+     *
+     * @return self
+     */
+    public function setDocumentBackLivenessScore($documentBackLivenessScore)
+    {
+        if (is_null($documentBackLivenessScore)) {
+            throw new \InvalidArgumentException('non-nullable documentBackLivenessScore cannot be null');
+        }
+        $this->container['documentBackLivenessScore'] = $documentBackLivenessScore;
+
+        return $this;
+    }
+
+    /**
+     * Gets processedChecks
+     *
+     * @return \Irisnet\API\Client\Model\AgeEstimationSubChecks|null
+     */
+    public function getProcessedChecks()
+    {
+        return $this->container['processedChecks'];
+    }
+
+    /**
+     * Sets processedChecks
+     *
+     * @param \Irisnet\API\Client\Model\AgeEstimationSubChecks|null $processedChecks processedChecks
+     *
+     * @return self
+     */
+    public function setProcessedChecks($processedChecks)
+    {
+        if (is_null($processedChecks)) {
+            throw new \InvalidArgumentException('non-nullable processedChecks cannot be null');
+        }
+        $this->container['processedChecks'] = $processedChecks;
+
+        return $this;
+    }
+
+    /**
+     * Gets documentHolderId
+     *
+     * @return string|null
+     */
+    public function getDocumentHolderId()
+    {
+        return $this->container['documentHolderId'];
+    }
+
+    /**
+     * Sets documentHolderId
+     *
+     * @param string|null $documentHolderId The id of the documentHolder
+     *
+     * @return self
+     */
+    public function setDocumentHolderId($documentHolderId)
+    {
+        if (is_null($documentHolderId)) {
+            throw new \InvalidArgumentException('non-nullable documentHolderId cannot be null');
+        }
+        $this->container['documentHolderId'] = $documentHolderId;
+
+        return $this;
+    }
+
+    /**
+     * Gets knownFaces
+     *
+     * @return \Irisnet\API\Client\Model\KnownFace[]|null
+     */
+    public function getKnownFaces()
+    {
+        return $this->container['knownFaces'];
+    }
+
+    /**
+     * Sets knownFaces
+     *
+     * @param \Irisnet\API\Client\Model\KnownFace[]|null $knownFaces A list of known faces, describing which other documentHolders match this documentHolder with a certain similarity
+     *
+     * @return self
+     */
+    public function setKnownFaces($knownFaces)
+    {
+        if (is_null($knownFaces)) {
+            throw new \InvalidArgumentException('non-nullable knownFaces cannot be null');
+        }
+        $this->container['knownFaces'] = $knownFaces;
+
+        return $this;
+    }
+
+    /**
+     * Gets subDetections
+     *
+     * @return \Irisnet\API\Client\Model\Detection[]|null
+     */
+    public function getSubDetections()
+    {
+        return $this->container['subDetections'];
+    }
+
+    /**
+     * Sets subDetections
+     *
+     * @param \Irisnet\API\Client\Model\Detection[]|null $subDetections A set of sub-detection that are particular to the _face_ detection. Mainly contains detections that were activated with the _attributesCheck_ prototype.
+     *
+     * @return self
+     */
+    public function setSubDetections($subDetections)
+    {
+        if (is_null($subDetections)) {
+            throw new \InvalidArgumentException('non-nullable subDetections cannot be null');
+        }
+        $this->container['subDetections'] = $subDetections;
 
         return $this;
     }

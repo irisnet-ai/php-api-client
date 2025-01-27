@@ -4,6 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**classification** | **string** | The classification of the recognized object. | [optional]
+**group** | **string** | The group of the classification. | [optional]
+**id** | **int** | The id of the detection object. | [optional]
+**probability** | **int** | The probability that the object found matches the classification. | [optional]
+**coordinates** | [**\Irisnet\API\Client\Model\Coordinates**](Coordinates.md) |  | [optional]
 **checkId** | **string** | The id of the check that lead to the detection | [optional]
 **faceSimilarity** | **int** | Indicates the similarity-level of whether two faces belong to the same person | [optional]
 **faceLivenessCheckScore** | **int** | Indicates the liveness score of the selfie image | [optional]
