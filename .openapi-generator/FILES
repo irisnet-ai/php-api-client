@@ -7,9 +7,9 @@ docs/Api/AICheckOperationsApi.md
 docs/Api/BalanceEndpointsApi.md
 docs/Api/ConfigurationManagementApi.md
 docs/Api/DetailedConfigurationParametersApi.md
-docs/Model/AgeEstimationAttribute.md
-docs/Model/AgeEstimationDetection.md
-docs/Model/AgeEstimationSubChecks.md
+docs/Model/AgeVerificationAttribute.md
+docs/Model/AgeVerificationDetection.md
+docs/Model/AgeVerificationSubChecks.md
 docs/Model/ApiNotice.md
 docs/Model/BaseAttribute.md
 docs/Model/BaseDetection.md
@@ -48,9 +48,9 @@ lib/Api/DetailedConfigurationParametersApi.php
 lib/ApiException.php
 lib/Configuration.php
 lib/HeaderSelector.php
-lib/Model/AgeEstimationAttribute.php
-lib/Model/AgeEstimationDetection.php
-lib/Model/AgeEstimationSubChecks.php
+lib/Model/AgeVerificationAttribute.php
+lib/Model/AgeVerificationDetection.php
+lib/Model/AgeVerificationSubChecks.php
 lib/Model/ApiNotice.php
 lib/Model/BaseAttribute.php
 lib/Model/BaseDetection.php
@@ -84,8 +84,6 @@ lib/Model/Rectangle.php
 lib/Model/Summary.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Model/DetectionTest.php
-test/Model/KnownFaceTest.php
-test/Model/KycUiParameterTest.php
-test/Model/LiveDocumentCheckRequestDataTest.php
-test/Model/LiveDocumentCheckResponseDataTest.php
+test/Model/AgeVerificationAttributeTest.php
+test/Model/AgeVerificationDetectionTest.php
+test/Model/AgeVerificationSubChecksTest.php

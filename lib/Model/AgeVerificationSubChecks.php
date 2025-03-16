@@ -1,6 +1,6 @@
 <?php
 /**
- * Callback
+ * AgeVerificationSubChecks
  *
  * PHP version 7.4
  *
@@ -33,16 +33,16 @@ use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
- * Callback Class Doc Comment
+ * AgeVerificationSubChecks Class Doc Comment
  *
  * @category Class
- * @description Callback options to send a response to.
+ * @description Contains information on ageVerification sub-checks
  * @package  Irisnet\API\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
+class AgeVerificationSubChecks implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Callback';
+    protected static $openAPIModelName = 'AgeVerificationSubChecks';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,8 +59,8 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'callbackUrl' => 'string',
-        'headers' => 'array<string,string>'
+        'faceLivenessCheck' => 'string',
+        'ageValidationCheck' => 'string'
     ];
 
     /**
@@ -71,8 +71,8 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'callbackUrl' => 'uri',
-        'headers' => null
+        'faceLivenessCheck' => null,
+        'ageValidationCheck' => null
     ];
 
     /**
@@ -81,8 +81,8 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'callbackUrl' => false,
-        'headers' => false
+        'faceLivenessCheck' => false,
+        'ageValidationCheck' => false
     ];
 
     /**
@@ -171,8 +171,8 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'callbackUrl' => 'callbackUrl',
-        'headers' => 'headers'
+        'faceLivenessCheck' => 'faceLivenessCheck',
+        'ageValidationCheck' => 'ageValidationCheck'
     ];
 
     /**
@@ -181,8 +181,8 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'callbackUrl' => 'setCallbackUrl',
-        'headers' => 'setHeaders'
+        'faceLivenessCheck' => 'setFaceLivenessCheck',
+        'ageValidationCheck' => 'setAgeValidationCheck'
     ];
 
     /**
@@ -191,8 +191,8 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'callbackUrl' => 'getCallbackUrl',
-        'headers' => 'getHeaders'
+        'faceLivenessCheck' => 'getFaceLivenessCheck',
+        'ageValidationCheck' => 'getAgeValidationCheck'
     ];
 
     /**
@@ -236,6 +236,40 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const FACE_LIVENESS_CHECK_PASSED = 'passed';
+    public const FACE_LIVENESS_CHECK_FAILED = 'failed';
+    public const FACE_LIVENESS_CHECK_NOT_PROCESSED = 'not_processed';
+    public const AGE_VALIDATION_CHECK_PASSED = 'passed';
+    public const AGE_VALIDATION_CHECK_FAILED = 'failed';
+    public const AGE_VALIDATION_CHECK_NOT_PROCESSED = 'not_processed';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getFaceLivenessCheckAllowableValues()
+    {
+        return [
+            self::FACE_LIVENESS_CHECK_PASSED,
+            self::FACE_LIVENESS_CHECK_FAILED,
+            self::FACE_LIVENESS_CHECK_NOT_PROCESSED,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAgeValidationCheckAllowableValues()
+    {
+        return [
+            self::AGE_VALIDATION_CHECK_PASSED,
+            self::AGE_VALIDATION_CHECK_FAILED,
+            self::AGE_VALIDATION_CHECK_NOT_PROCESSED,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -252,8 +286,8 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('callbackUrl', $data ?? [], null);
-        $this->setIfExists('headers', $data ?? [], null);
+        $this->setIfExists('faceLivenessCheck', $data ?? [], null);
+        $this->setIfExists('ageValidationCheck', $data ?? [], null);
     }
 
     /**
@@ -283,9 +317,24 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['callbackUrl'] === null) {
-            $invalidProperties[] = "'callbackUrl' can't be null";
+        $allowedValues = $this->getFaceLivenessCheckAllowableValues();
+        if (!is_null($this->container['faceLivenessCheck']) && !in_array($this->container['faceLivenessCheck'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'faceLivenessCheck', must be one of '%s'",
+                $this->container['faceLivenessCheck'],
+                implode("', '", $allowedValues)
+            );
         }
+
+        $allowedValues = $this->getAgeValidationCheckAllowableValues();
+        if (!is_null($this->container['ageValidationCheck']) && !in_array($this->container['ageValidationCheck'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'ageValidationCheck', must be one of '%s'",
+                $this->container['ageValidationCheck'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -302,55 +351,75 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets callbackUrl
+     * Gets faceLivenessCheck
      *
-     * @return string
+     * @return string|null
      */
-    public function getCallbackUrl()
+    public function getFaceLivenessCheck()
     {
-        return $this->container['callbackUrl'];
+        return $this->container['faceLivenessCheck'];
     }
 
     /**
-     * Sets callbackUrl
+     * Sets faceLivenessCheck
      *
-     * @param string $callbackUrl Define a URL where a response should be sent.
+     * @param string|null $faceLivenessCheck Indicates if the selfie image is genuine and not a photo of an image or of a screen
      *
      * @return self
      */
-    public function setCallbackUrl($callbackUrl)
+    public function setFaceLivenessCheck($faceLivenessCheck)
     {
-        if (is_null($callbackUrl)) {
-            throw new \InvalidArgumentException('non-nullable callbackUrl cannot be null');
+        if (is_null($faceLivenessCheck)) {
+            throw new \InvalidArgumentException('non-nullable faceLivenessCheck cannot be null');
         }
-        $this->container['callbackUrl'] = $callbackUrl;
+        $allowedValues = $this->getFaceLivenessCheckAllowableValues();
+        if (!in_array($faceLivenessCheck, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'faceLivenessCheck', must be one of '%s'",
+                    $faceLivenessCheck,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['faceLivenessCheck'] = $faceLivenessCheck;
 
         return $this;
     }
 
     /**
-     * Gets headers
+     * Gets ageValidationCheck
      *
-     * @return array<string,string>|null
+     * @return string|null
      */
-    public function getHeaders()
+    public function getAgeValidationCheck()
     {
-        return $this->container['headers'];
+        return $this->container['ageValidationCheck'];
     }
 
     /**
-     * Sets headers
+     * Sets ageValidationCheck
      *
-     * @param array<string,string>|null $headers Define headers to send to the URL.
+     * @param string|null $ageValidationCheck Indicates if the estimated age is greater than or equal to a predefined minimum accepted age
      *
      * @return self
      */
-    public function setHeaders($headers)
+    public function setAgeValidationCheck($ageValidationCheck)
     {
-        if (is_null($headers)) {
-            throw new \InvalidArgumentException('non-nullable headers cannot be null');
+        if (is_null($ageValidationCheck)) {
+            throw new \InvalidArgumentException('non-nullable ageValidationCheck cannot be null');
         }
-        $this->container['headers'] = $headers;
+        $allowedValues = $this->getAgeValidationCheckAllowableValues();
+        if (!in_array($ageValidationCheck, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'ageValidationCheck', must be one of '%s'",
+                    $ageValidationCheck,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['ageValidationCheck'] = $ageValidationCheck;
 
         return $this;
     }

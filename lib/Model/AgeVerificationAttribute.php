@@ -1,6 +1,6 @@
 <?php
 /**
- * Callback
+ * AgeVerificationAttribute
  *
  * PHP version 7.4
  *
@@ -33,16 +33,16 @@ use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
- * Callback Class Doc Comment
+ * AgeVerificationAttribute Class Doc Comment
  *
  * @category Class
- * @description Callback options to send a response to.
+ * @description Attributes qualifying the _ageVerification_ classification.
  * @package  Irisnet\API\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
+class AgeVerificationAttribute implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +51,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Callback';
+    protected static $openAPIModelName = 'AgeVerificationAttribute';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,8 +59,10 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'callbackUrl' => 'string',
-        'headers' => 'array<string,string>'
+        'type' => 'string',
+        'age' => 'int',
+        'ageMin' => 'int',
+        'ageMax' => 'int'
     ];
 
     /**
@@ -71,8 +73,10 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'callbackUrl' => 'uri',
-        'headers' => null
+        'type' => null,
+        'age' => 'int32',
+        'ageMin' => 'int32',
+        'ageMax' => 'int32'
     ];
 
     /**
@@ -81,8 +85,10 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'callbackUrl' => false,
-        'headers' => false
+        'type' => false,
+        'age' => false,
+        'ageMin' => false,
+        'ageMax' => false
     ];
 
     /**
@@ -171,8 +177,10 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'callbackUrl' => 'callbackUrl',
-        'headers' => 'headers'
+        'type' => 'type',
+        'age' => 'age',
+        'ageMin' => 'ageMin',
+        'ageMax' => 'ageMax'
     ];
 
     /**
@@ -181,8 +189,10 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'callbackUrl' => 'setCallbackUrl',
-        'headers' => 'setHeaders'
+        'type' => 'setType',
+        'age' => 'setAge',
+        'ageMin' => 'setAgeMin',
+        'ageMax' => 'setAgeMax'
     ];
 
     /**
@@ -191,8 +201,10 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'callbackUrl' => 'getCallbackUrl',
-        'headers' => 'getHeaders'
+        'type' => 'getType',
+        'age' => 'getAge',
+        'ageMin' => 'getAgeMin',
+        'ageMax' => 'getAgeMax'
     ];
 
     /**
@@ -252,8 +264,10 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('callbackUrl', $data ?? [], null);
-        $this->setIfExists('headers', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('age', $data ?? [], null);
+        $this->setIfExists('ageMin', $data ?? [], null);
+        $this->setIfExists('ageMax', $data ?? [], null);
     }
 
     /**
@@ -283,9 +297,6 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['callbackUrl'] === null) {
-            $invalidProperties[] = "'callbackUrl' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -302,55 +313,109 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets callbackUrl
+     * Gets type
      *
-     * @return string
+     * @return string|null
      */
-    public function getCallbackUrl()
+    public function getType()
     {
-        return $this->container['callbackUrl'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets callbackUrl
+     * Sets type
      *
-     * @param string $callbackUrl Define a URL where a response should be sent.
+     * @param string|null $type Used as a type discriminator for json to object conversion.
      *
      * @return self
      */
-    public function setCallbackUrl($callbackUrl)
+    public function setType($type)
     {
-        if (is_null($callbackUrl)) {
-            throw new \InvalidArgumentException('non-nullable callbackUrl cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['callbackUrl'] = $callbackUrl;
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets headers
+     * Gets age
      *
-     * @return array<string,string>|null
+     * @return int|null
      */
-    public function getHeaders()
+    public function getAge()
     {
-        return $this->container['headers'];
+        return $this->container['age'];
     }
 
     /**
-     * Sets headers
+     * Sets age
      *
-     * @param array<string,string>|null $headers Define headers to send to the URL.
+     * @param int|null $age The estimated age of the person in the selfie in years.
      *
      * @return self
      */
-    public function setHeaders($headers)
+    public function setAge($age)
     {
-        if (is_null($headers)) {
-            throw new \InvalidArgumentException('non-nullable headers cannot be null');
+        if (is_null($age)) {
+            throw new \InvalidArgumentException('non-nullable age cannot be null');
         }
-        $this->container['headers'] = $headers;
+        $this->container['age'] = $age;
+
+        return $this;
+    }
+
+    /**
+     * Gets ageMin
+     *
+     * @return int|null
+     */
+    public function getAgeMin()
+    {
+        return $this->container['ageMin'];
+    }
+
+    /**
+     * Sets ageMin
+     *
+     * @param int|null $ageMin The estimated minimum age of the person in the selfie in years.
+     *
+     * @return self
+     */
+    public function setAgeMin($ageMin)
+    {
+        if (is_null($ageMin)) {
+            throw new \InvalidArgumentException('non-nullable ageMin cannot be null');
+        }
+        $this->container['ageMin'] = $ageMin;
+
+        return $this;
+    }
+
+    /**
+     * Gets ageMax
+     *
+     * @return int|null
+     */
+    public function getAgeMax()
+    {
+        return $this->container['ageMax'];
+    }
+
+    /**
+     * Sets ageMax
+     *
+     * @param int|null $ageMax The estimated maximum age of the person in the selfie in years.
+     *
+     * @return self
+     */
+    public function setAgeMax($ageMax)
+    {
+        if (is_null($ageMax)) {
+            throw new \InvalidArgumentException('non-nullable ageMax cannot be null');
+        }
+        $this->container['ageMax'] = $ageMax;
 
         return $this;
     }

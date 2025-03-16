@@ -79,7 +79,7 @@ getAllConfigs(): \Irisnet\API\Client\Model\Config[]
 
 List all saved AI configurations.
 
-Returns a list of all configurations with its id's and configured prototypes. There is a limit on how many configurations can be stored per license key. You can find this limit in the response of the info operation.
+Returns a list of all configurations with their ids and configured prototypes. There is a limit to the number of configurations that can be stored per license key. You can find this limit in the response of the info operation.
 
 ### Example
 
@@ -221,7 +221,7 @@ $apiInstance = new Irisnet\API\Client\Api\ConfigurationManagementApi(
     new GuzzleHttp\Client(),
     $config
 );
-$config = {"prototypes":["nudityCheck","ageEstimation","illegalSymbols","attributesCheck","nippleCheck","textRecognition","bodyAttributes","unwantedSubstances","violenceCheck","selfieCheck"]}; // \Irisnet\API\Client\Model\Config | Define the prototypes to use for an AI check operation. View the _Config_ schema to see the available prototypes.
+$config = {"name":"first attempt","prototypes":["nudityCheck","ageEstimation","illegalSymbols","attributesCheck","nippleCheck","textRecognition","bodyAttributes","unwantedSubstances","violenceCheck","selfieCheck"]}; // \Irisnet\API\Client\Model\Config | Define the prototypes to use for an AI check operation. View the _Config_ schema to see the available prototypes.
 
 try {
     $result = $apiInstance->setConfig($config);

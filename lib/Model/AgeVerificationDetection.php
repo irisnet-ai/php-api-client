@@ -1,6 +1,6 @@
 <?php
 /**
- * Callback
+ * AgeVerificationDetection
  *
  * PHP version 7.4
  *
@@ -28,21 +28,19 @@
  */
 
 namespace Irisnet\API\Client\Model;
-
-use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
- * Callback Class Doc Comment
+ * AgeVerificationDetection Class Doc Comment
  *
  * @category Class
- * @description Callback options to send a response to.
+ * @description Contains other features specific to _ageVerification_ detection.
  * @package  Irisnet\API\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
+class AgeVerificationDetection extends Detection
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +49,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Callback';
+    protected static $openAPIModelName = 'AgeVerificationDetection';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,8 +57,16 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'callbackUrl' => 'string',
-        'headers' => 'array<string,string>'
+        'classification' => 'string',
+        'group' => 'string',
+        'id' => 'int',
+        'probability' => 'int',
+        'coordinates' => '\Irisnet\API\Client\Model\Coordinates',
+        'checkId' => 'string',
+        'faceSimilarity' => 'int',
+        'faceLivenessCheckScore' => 'int',
+        'processedChecks' => '\Irisnet\API\Client\Model\AgeVerificationSubChecks',
+        'attributes' => '\Irisnet\API\Client\Model\AgeVerificationAttribute[]'
     ];
 
     /**
@@ -71,8 +77,16 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'callbackUrl' => 'uri',
-        'headers' => null
+        'classification' => null,
+        'group' => null,
+        'id' => 'int32',
+        'probability' => 'int32',
+        'coordinates' => null,
+        'checkId' => null,
+        'faceSimilarity' => 'int32',
+        'faceLivenessCheckScore' => 'int32',
+        'processedChecks' => null,
+        'attributes' => null
     ];
 
     /**
@@ -81,8 +95,16 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'callbackUrl' => false,
-        'headers' => false
+        'classification' => false,
+        'group' => false,
+        'id' => false,
+        'probability' => false,
+        'coordinates' => false,
+        'checkId' => false,
+        'faceSimilarity' => false,
+        'faceLivenessCheckScore' => false,
+        'processedChecks' => false,
+        'attributes' => false
     ];
 
     /**
@@ -99,7 +121,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -109,7 +131,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -119,7 +141,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -171,8 +193,16 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'callbackUrl' => 'callbackUrl',
-        'headers' => 'headers'
+        'classification' => 'classification',
+        'group' => 'group',
+        'id' => 'id',
+        'probability' => 'probability',
+        'coordinates' => 'coordinates',
+        'checkId' => 'checkId',
+        'faceSimilarity' => 'faceSimilarity',
+        'faceLivenessCheckScore' => 'faceLivenessCheckScore',
+        'processedChecks' => 'processedChecks',
+        'attributes' => 'attributes'
     ];
 
     /**
@@ -181,8 +211,16 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'callbackUrl' => 'setCallbackUrl',
-        'headers' => 'setHeaders'
+        'classification' => 'setClassification',
+        'group' => 'setGroup',
+        'id' => 'setId',
+        'probability' => 'setProbability',
+        'coordinates' => 'setCoordinates',
+        'checkId' => 'setCheckId',
+        'faceSimilarity' => 'setFaceSimilarity',
+        'faceLivenessCheckScore' => 'setFaceLivenessCheckScore',
+        'processedChecks' => 'setProcessedChecks',
+        'attributes' => 'setAttributes'
     ];
 
     /**
@@ -191,8 +229,16 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'callbackUrl' => 'getCallbackUrl',
-        'headers' => 'getHeaders'
+        'classification' => 'getClassification',
+        'group' => 'getGroup',
+        'id' => 'getId',
+        'probability' => 'getProbability',
+        'coordinates' => 'getCoordinates',
+        'checkId' => 'getCheckId',
+        'faceSimilarity' => 'getFaceSimilarity',
+        'faceLivenessCheckScore' => 'getFaceLivenessCheckScore',
+        'processedChecks' => 'getProcessedChecks',
+        'attributes' => 'getAttributes'
     ];
 
     /**
@@ -203,7 +249,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -213,7 +259,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -223,7 +269,7 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -237,12 +283,6 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -252,8 +292,18 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('callbackUrl', $data ?? [], null);
-        $this->setIfExists('headers', $data ?? [], null);
+        parent::__construct($data);
+
+        $this->setIfExists('classification', $data ?? [], null);
+        $this->setIfExists('group', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('probability', $data ?? [], null);
+        $this->setIfExists('coordinates', $data ?? [], null);
+        $this->setIfExists('checkId', $data ?? [], null);
+        $this->setIfExists('faceSimilarity', $data ?? [], null);
+        $this->setIfExists('faceLivenessCheckScore', $data ?? [], null);
+        $this->setIfExists('processedChecks', $data ?? [], null);
+        $this->setIfExists('attributes', $data ?? [], null);
     }
 
     /**
@@ -281,11 +331,8 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
-        if ($this->container['callbackUrl'] === null) {
-            $invalidProperties[] = "'callbackUrl' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -302,55 +349,271 @@ class Callback implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets callbackUrl
+     * Gets classification
      *
-     * @return string
+     * @return string|null
      */
-    public function getCallbackUrl()
+    public function getClassification()
     {
-        return $this->container['callbackUrl'];
+        return $this->container['classification'];
     }
 
     /**
-     * Sets callbackUrl
+     * Sets classification
      *
-     * @param string $callbackUrl Define a URL where a response should be sent.
+     * @param string|null $classification The classification of the recognized object.
      *
      * @return self
      */
-    public function setCallbackUrl($callbackUrl)
+    public function setClassification($classification)
     {
-        if (is_null($callbackUrl)) {
-            throw new \InvalidArgumentException('non-nullable callbackUrl cannot be null');
+        if (is_null($classification)) {
+            throw new \InvalidArgumentException('non-nullable classification cannot be null');
         }
-        $this->container['callbackUrl'] = $callbackUrl;
+        $this->container['classification'] = $classification;
 
         return $this;
     }
 
     /**
-     * Gets headers
+     * Gets group
      *
-     * @return array<string,string>|null
+     * @return string|null
      */
-    public function getHeaders()
+    public function getGroup()
     {
-        return $this->container['headers'];
+        return $this->container['group'];
     }
 
     /**
-     * Sets headers
+     * Sets group
      *
-     * @param array<string,string>|null $headers Define headers to send to the URL.
+     * @param string|null $group The group of the classification.
      *
      * @return self
      */
-    public function setHeaders($headers)
+    public function setGroup($group)
     {
-        if (is_null($headers)) {
-            throw new \InvalidArgumentException('non-nullable headers cannot be null');
+        if (is_null($group)) {
+            throw new \InvalidArgumentException('non-nullable group cannot be null');
         }
-        $this->container['headers'] = $headers;
+        $this->container['group'] = $group;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return int|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param int|null $id The id of the detection object.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets probability
+     *
+     * @return int|null
+     */
+    public function getProbability()
+    {
+        return $this->container['probability'];
+    }
+
+    /**
+     * Sets probability
+     *
+     * @param int|null $probability The probability that the object found matches the classification.
+     *
+     * @return self
+     */
+    public function setProbability($probability)
+    {
+        if (is_null($probability)) {
+            throw new \InvalidArgumentException('non-nullable probability cannot be null');
+        }
+        $this->container['probability'] = $probability;
+
+        return $this;
+    }
+
+    /**
+     * Gets coordinates
+     *
+     * @return \Irisnet\API\Client\Model\Coordinates|null
+     */
+    public function getCoordinates()
+    {
+        return $this->container['coordinates'];
+    }
+
+    /**
+     * Sets coordinates
+     *
+     * @param \Irisnet\API\Client\Model\Coordinates|null $coordinates coordinates
+     *
+     * @return self
+     */
+    public function setCoordinates($coordinates)
+    {
+        if (is_null($coordinates)) {
+            throw new \InvalidArgumentException('non-nullable coordinates cannot be null');
+        }
+        $this->container['coordinates'] = $coordinates;
+
+        return $this;
+    }
+
+    /**
+     * Gets checkId
+     *
+     * @return string|null
+     */
+    public function getCheckId()
+    {
+        return $this->container['checkId'];
+    }
+
+    /**
+     * Sets checkId
+     *
+     * @param string|null $checkId The id of the check that lead to the detection
+     *
+     * @return self
+     */
+    public function setCheckId($checkId)
+    {
+        if (is_null($checkId)) {
+            throw new \InvalidArgumentException('non-nullable checkId cannot be null');
+        }
+        $this->container['checkId'] = $checkId;
+
+        return $this;
+    }
+
+    /**
+     * Gets faceSimilarity
+     *
+     * @return int|null
+     */
+    public function getFaceSimilarity()
+    {
+        return $this->container['faceSimilarity'];
+    }
+
+    /**
+     * Sets faceSimilarity
+     *
+     * @param int|null $faceSimilarity Indicates the similarity-level of whether two faces belong to the same person
+     *
+     * @return self
+     */
+    public function setFaceSimilarity($faceSimilarity)
+    {
+        if (is_null($faceSimilarity)) {
+            throw new \InvalidArgumentException('non-nullable faceSimilarity cannot be null');
+        }
+        $this->container['faceSimilarity'] = $faceSimilarity;
+
+        return $this;
+    }
+
+    /**
+     * Gets faceLivenessCheckScore
+     *
+     * @return int|null
+     */
+    public function getFaceLivenessCheckScore()
+    {
+        return $this->container['faceLivenessCheckScore'];
+    }
+
+    /**
+     * Sets faceLivenessCheckScore
+     *
+     * @param int|null $faceLivenessCheckScore Indicates the liveness score of the selfie image
+     *
+     * @return self
+     */
+    public function setFaceLivenessCheckScore($faceLivenessCheckScore)
+    {
+        if (is_null($faceLivenessCheckScore)) {
+            throw new \InvalidArgumentException('non-nullable faceLivenessCheckScore cannot be null');
+        }
+        $this->container['faceLivenessCheckScore'] = $faceLivenessCheckScore;
+
+        return $this;
+    }
+
+    /**
+     * Gets processedChecks
+     *
+     * @return \Irisnet\API\Client\Model\AgeVerificationSubChecks|null
+     */
+    public function getProcessedChecks()
+    {
+        return $this->container['processedChecks'];
+    }
+
+    /**
+     * Sets processedChecks
+     *
+     * @param \Irisnet\API\Client\Model\AgeVerificationSubChecks|null $processedChecks processedChecks
+     *
+     * @return self
+     */
+    public function setProcessedChecks($processedChecks)
+    {
+        if (is_null($processedChecks)) {
+            throw new \InvalidArgumentException('non-nullable processedChecks cannot be null');
+        }
+        $this->container['processedChecks'] = $processedChecks;
+
+        return $this;
+    }
+
+    /**
+     * Gets attributes
+     *
+     * @return \Irisnet\API\Client\Model\AgeVerificationAttribute[]|null
+     */
+    public function getAttributes()
+    {
+        return $this->container['attributes'];
+    }
+
+    /**
+     * Sets attributes
+     *
+     * @param \Irisnet\API\Client\Model\AgeVerificationAttribute[]|null $attributes Attributes of the _ageVerification_ detection.
+     *
+     * @return self
+     */
+    public function setAttributes($attributes)
+    {
+        if (is_null($attributes)) {
+            throw new \InvalidArgumentException('non-nullable attributes cannot be null');
+        }
+        $this->container['attributes'] = $attributes;
 
         return $this;
     }
