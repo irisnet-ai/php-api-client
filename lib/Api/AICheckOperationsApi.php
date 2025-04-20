@@ -72,16 +72,25 @@ class AICheckOperationsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
+        'ageVerification' => [
+            'application/json',
+        ],
         'checkIdDocument' => [
             'application/json',
         ],
         'checkImage' => [
             'application/json',
         ],
+        'checkPoaDocument' => [
+            'application/json',
+        ],
         'checkStream' => [
             'application/json',
         ],
         'checkVideo' => [
+            'application/json',
+        ],
+        'faceAuthentication' => [
             'application/json',
         ],
         'liveDocumentCheck' => [
@@ -136,40 +145,40 @@ class AICheckOperationsApi
     }
 
     /**
-     * Operation checkIdDocument
+     * Operation ageVerification
      *
-     * Check an id document with the AI.
+     * Perform an age verfication check for a given selfie with the AI.
      *
      * @param  string $configId The configuration id from the Basic Configuration operations. (required)
-     * @param  \Irisnet\API\Client\Model\DocumentCheckRequestData $documentCheckRequestData The DocumentCheckRequestData containing data needed for the id document check. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkIdDocument'] to see the possible values for this operation
+     * @param  \Irisnet\API\Client\Model\BiometricCheckRequestData $biometricCheckRequestData The BiometricCheckRequestData containing data needed for the age verification check. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['ageVerification'] to see the possible values for this operation
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult
+     * @return \Irisnet\API\Client\Model\CheckResult|\Irisnet\API\Client\Model\ApiNotice
      */
-    public function checkIdDocument($configId, $documentCheckRequestData, string $contentType = self::contentTypes['checkIdDocument'][0])
+    public function ageVerification($configId, $biometricCheckRequestData, string $contentType = self::contentTypes['ageVerification'][0])
     {
-        list($response) = $this->checkIdDocumentWithHttpInfo($configId, $documentCheckRequestData, $contentType);
+        list($response) = $this->ageVerificationWithHttpInfo($configId, $biometricCheckRequestData, $contentType);
         return $response;
     }
 
     /**
-     * Operation checkIdDocumentWithHttpInfo
+     * Operation ageVerificationWithHttpInfo
      *
-     * Check an id document with the AI.
+     * Perform an age verfication check for a given selfie with the AI.
      *
      * @param  string $configId The configuration id from the Basic Configuration operations. (required)
-     * @param  \Irisnet\API\Client\Model\DocumentCheckRequestData $documentCheckRequestData The DocumentCheckRequestData containing data needed for the id document check. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkIdDocument'] to see the possible values for this operation
+     * @param  \Irisnet\API\Client\Model\BiometricCheckRequestData $biometricCheckRequestData The BiometricCheckRequestData containing data needed for the age verification check. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['ageVerification'] to see the possible values for this operation
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Irisnet\API\Client\Model\CheckResult|\Irisnet\API\Client\Model\ApiNotice, HTTP status code, HTTP response headers (array of strings)
      */
-    public function checkIdDocumentWithHttpInfo($configId, $documentCheckRequestData, string $contentType = self::contentTypes['checkIdDocument'][0])
+    public function ageVerificationWithHttpInfo($configId, $biometricCheckRequestData, string $contentType = self::contentTypes['ageVerification'][0])
     {
-        $request = $this->checkIdDocumentRequest($configId, $documentCheckRequestData, $contentType);
+        $request = $this->ageVerificationRequest($configId, $biometricCheckRequestData, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -195,33 +204,6 @@ class AICheckOperationsApi
 
 
             switch($statusCode) {
-                case 402:
-                    if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Irisnet\API\Client\Model\ApiNotice' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ApiNotice', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 202:
                     if ('\Irisnet\API\Client\Model\CheckResult' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -246,6 +228,33 @@ class AICheckOperationsApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\CheckResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 402:
+                    if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Irisnet\API\Client\Model\ApiNotice' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ApiNotice', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -294,6 +303,14 @@ class AICheckOperationsApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 202:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\CheckResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 402:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -302,10 +319,369 @@ class AICheckOperationsApi
                     );
                     $e->setResponseObject($data);
                     break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation ageVerificationAsync
+     *
+     * Perform an age verfication check for a given selfie with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\BiometricCheckRequestData $biometricCheckRequestData The BiometricCheckRequestData containing data needed for the age verification check. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['ageVerification'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function ageVerificationAsync($configId, $biometricCheckRequestData, string $contentType = self::contentTypes['ageVerification'][0])
+    {
+        return $this->ageVerificationAsyncWithHttpInfo($configId, $biometricCheckRequestData, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation ageVerificationAsyncWithHttpInfo
+     *
+     * Perform an age verfication check for a given selfie with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\BiometricCheckRequestData $biometricCheckRequestData The BiometricCheckRequestData containing data needed for the age verification check. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['ageVerification'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function ageVerificationAsyncWithHttpInfo($configId, $biometricCheckRequestData, string $contentType = self::contentTypes['ageVerification'][0])
+    {
+        $returnType = '\Irisnet\API\Client\Model\CheckResult';
+        $request = $this->ageVerificationRequest($configId, $biometricCheckRequestData, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'ageVerification'
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\BiometricCheckRequestData $biometricCheckRequestData The BiometricCheckRequestData containing data needed for the age verification check. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['ageVerification'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function ageVerificationRequest($configId, $biometricCheckRequestData, string $contentType = self::contentTypes['ageVerification'][0])
+    {
+
+        // verify the required parameter 'configId' is set
+        if ($configId === null || (is_array($configId) && count($configId) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $configId when calling ageVerification'
+            );
+        }
+
+        // verify the required parameter 'biometricCheckRequestData' is set
+        if ($biometricCheckRequestData === null || (is_array($biometricCheckRequestData) && count($biometricCheckRequestData) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $biometricCheckRequestData when calling ageVerification'
+            );
+        }
+
+
+        $resourcePath = '/v2/age-verification/{configId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($configId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'configId' . '}',
+                ObjectSerializer::toPathValue($configId),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($biometricCheckRequestData)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($biometricCheckRequestData));
+            } else {
+                $httpBody = $biometricCheckRequestData;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('LICENSE-KEY');
+        if ($apiKey !== null) {
+            $headers['LICENSE-KEY'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation checkIdDocument
+     *
+     * Check an id document with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\DocumentCheckRequestData $documentCheckRequestData The DocumentCheckRequestData containing data needed for the id document check. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkIdDocument'] to see the possible values for this operation
+     *
+     * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Irisnet\API\Client\Model\CheckResult|\Irisnet\API\Client\Model\ApiNotice
+     */
+    public function checkIdDocument($configId, $documentCheckRequestData, string $contentType = self::contentTypes['checkIdDocument'][0])
+    {
+        list($response) = $this->checkIdDocumentWithHttpInfo($configId, $documentCheckRequestData, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation checkIdDocumentWithHttpInfo
+     *
+     * Check an id document with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\DocumentCheckRequestData $documentCheckRequestData The DocumentCheckRequestData containing data needed for the id document check. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkIdDocument'] to see the possible values for this operation
+     *
+     * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Irisnet\API\Client\Model\CheckResult|\Irisnet\API\Client\Model\ApiNotice, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function checkIdDocumentWithHttpInfo($configId, $documentCheckRequestData, string $contentType = self::contentTypes['checkIdDocument'][0])
+    {
+        $request = $this->checkIdDocumentRequest($configId, $documentCheckRequestData, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 202:
+                    if ('\Irisnet\API\Client\Model\CheckResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Irisnet\API\Client\Model\CheckResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\CheckResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 402:
+                    if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Irisnet\API\Client\Model\ApiNotice' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ApiNotice', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\Irisnet\API\Client\Model\CheckResult';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
                 case 202:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\CheckResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 402:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\ApiNotice',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -516,7 +892,7 @@ class AICheckOperationsApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult
+     * @return \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult|\Irisnet\API\Client\Model\ApiNotice
      */
     public function checkImage($configId, $url = null, $detail = 1, $imageEncode = false, $data = null, string $contentType = self::contentTypes['checkImage'][0])
     {
@@ -538,7 +914,7 @@ class AICheckOperationsApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult|\Irisnet\API\Client\Model\ApiNotice, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkImageWithHttpInfo($configId, $url = null, $detail = 1, $imageEncode = false, $data = null, string $contentType = self::contentTypes['checkImage'][0])
     {
@@ -595,33 +971,6 @@ class AICheckOperationsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 404:
-                    if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Irisnet\API\Client\Model\ApiNotice' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ApiNotice', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\Irisnet\API\Client\Model\CheckResult' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -646,6 +995,33 @@ class AICheckOperationsApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\CheckResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Irisnet\API\Client\Model\ApiNotice' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ApiNotice', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -702,18 +1078,18 @@ class AICheckOperationsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Irisnet\API\Client\Model\ApiNotice',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\CheckResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\ApiNotice',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -950,6 +1326,373 @@ class AICheckOperationsApi
     }
 
     /**
+     * Operation checkPoaDocument
+     *
+     * Perform an proof of address check with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\PoaCheckRequestData $poaCheckRequestData The PoaCheckRequestData containing data needed for the proof of address check. The DocumentType in the request data must be either &#39;utility_bill&#39; or &#39;bank_statement&#39;. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkPoaDocument'] to see the possible values for this operation
+     *
+     * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult
+     */
+    public function checkPoaDocument($configId, $poaCheckRequestData, string $contentType = self::contentTypes['checkPoaDocument'][0])
+    {
+        list($response) = $this->checkPoaDocumentWithHttpInfo($configId, $poaCheckRequestData, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation checkPoaDocumentWithHttpInfo
+     *
+     * Perform an proof of address check with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\PoaCheckRequestData $poaCheckRequestData The PoaCheckRequestData containing data needed for the proof of address check. The DocumentType in the request data must be either &#39;utility_bill&#39; or &#39;bank_statement&#39;. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkPoaDocument'] to see the possible values for this operation
+     *
+     * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function checkPoaDocumentWithHttpInfo($configId, $poaCheckRequestData, string $contentType = self::contentTypes['checkPoaDocument'][0])
+    {
+        $request = $this->checkPoaDocumentRequest($configId, $poaCheckRequestData, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 402:
+                    if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Irisnet\API\Client\Model\ApiNotice' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ApiNotice', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 202:
+                    if ('\Irisnet\API\Client\Model\CheckResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Irisnet\API\Client\Model\CheckResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\CheckResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\Irisnet\API\Client\Model\CheckResult';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 402:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\ApiNotice',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 202:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\CheckResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation checkPoaDocumentAsync
+     *
+     * Perform an proof of address check with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\PoaCheckRequestData $poaCheckRequestData The PoaCheckRequestData containing data needed for the proof of address check. The DocumentType in the request data must be either &#39;utility_bill&#39; or &#39;bank_statement&#39;. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkPoaDocument'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function checkPoaDocumentAsync($configId, $poaCheckRequestData, string $contentType = self::contentTypes['checkPoaDocument'][0])
+    {
+        return $this->checkPoaDocumentAsyncWithHttpInfo($configId, $poaCheckRequestData, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation checkPoaDocumentAsyncWithHttpInfo
+     *
+     * Perform an proof of address check with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\PoaCheckRequestData $poaCheckRequestData The PoaCheckRequestData containing data needed for the proof of address check. The DocumentType in the request data must be either &#39;utility_bill&#39; or &#39;bank_statement&#39;. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkPoaDocument'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function checkPoaDocumentAsyncWithHttpInfo($configId, $poaCheckRequestData, string $contentType = self::contentTypes['checkPoaDocument'][0])
+    {
+        $returnType = '\Irisnet\API\Client\Model\CheckResult';
+        $request = $this->checkPoaDocumentRequest($configId, $poaCheckRequestData, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'checkPoaDocument'
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\PoaCheckRequestData $poaCheckRequestData The PoaCheckRequestData containing data needed for the proof of address check. The DocumentType in the request data must be either &#39;utility_bill&#39; or &#39;bank_statement&#39;. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkPoaDocument'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function checkPoaDocumentRequest($configId, $poaCheckRequestData, string $contentType = self::contentTypes['checkPoaDocument'][0])
+    {
+
+        // verify the required parameter 'configId' is set
+        if ($configId === null || (is_array($configId) && count($configId) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $configId when calling checkPoaDocument'
+            );
+        }
+
+        // verify the required parameter 'poaCheckRequestData' is set
+        if ($poaCheckRequestData === null || (is_array($poaCheckRequestData) && count($poaCheckRequestData) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $poaCheckRequestData when calling checkPoaDocument'
+            );
+        }
+
+
+        $resourcePath = '/v2/check-poa-document/{configId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($configId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'configId' . '}',
+                ObjectSerializer::toPathValue($configId),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($poaCheckRequestData)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($poaCheckRequestData));
+            } else {
+                $httpBody = $poaCheckRequestData;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('LICENSE-KEY');
+        if ($apiKey !== null) {
+            $headers['LICENSE-KEY'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation checkStream
      *
      * Check a stream with the AI.
@@ -963,7 +1706,7 @@ class AICheckOperationsApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult[]
+     * @return \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult[]|\Irisnet\API\Client\Model\ApiNotice
      */
     public function checkStream($configId, $inUrl, $outUrl = null, $cycleLength = 500, $checkRate = 0, string $contentType = self::contentTypes['checkStream'][0])
     {
@@ -985,7 +1728,7 @@ class AICheckOperationsApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult[], HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult[]|\Irisnet\API\Client\Model\ApiNotice, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkStreamWithHttpInfo($configId, $inUrl, $outUrl = null, $cycleLength = 500, $checkRate = 0, string $contentType = self::contentTypes['checkStream'][0])
     {
@@ -1042,33 +1785,6 @@ class AICheckOperationsApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 404:
-                    if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Irisnet\API\Client\Model\ApiNotice' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ApiNotice', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
                 case 200:
                     if ('\Irisnet\API\Client\Model\CheckResult[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1093,6 +1809,33 @@ class AICheckOperationsApi
 
                     return [
                         ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\CheckResult[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 404:
+                    if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Irisnet\API\Client\Model\ApiNotice' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ApiNotice', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1149,18 +1892,18 @@ class AICheckOperationsApi
                     );
                     $e->setResponseObject($data);
                     break;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Irisnet\API\Client\Model\ApiNotice',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\CheckResult[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\ApiNotice',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1684,6 +2427,373 @@ class AICheckOperationsApi
                 $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($callback));
             } else {
                 $httpBody = $callback;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('LICENSE-KEY');
+        if ($apiKey !== null) {
+            $headers['LICENSE-KEY'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation faceAuthentication
+     *
+     * Perform a face authentication for a given selfie with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\BiometricCheckRequestData $biometricCheckRequestData The BiometricCheckRequestData containing data needed for the face authentication. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['faceAuthentication'] to see the possible values for this operation
+     *
+     * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Irisnet\API\Client\Model\CheckResult|\Irisnet\API\Client\Model\ApiNotice
+     */
+    public function faceAuthentication($configId, $biometricCheckRequestData, string $contentType = self::contentTypes['faceAuthentication'][0])
+    {
+        list($response) = $this->faceAuthenticationWithHttpInfo($configId, $biometricCheckRequestData, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation faceAuthenticationWithHttpInfo
+     *
+     * Perform a face authentication for a given selfie with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\BiometricCheckRequestData $biometricCheckRequestData The BiometricCheckRequestData containing data needed for the face authentication. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['faceAuthentication'] to see the possible values for this operation
+     *
+     * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Irisnet\API\Client\Model\CheckResult|\Irisnet\API\Client\Model\ApiNotice, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function faceAuthenticationWithHttpInfo($configId, $biometricCheckRequestData, string $contentType = self::contentTypes['faceAuthentication'][0])
+    {
+        $request = $this->faceAuthenticationRequest($configId, $biometricCheckRequestData, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 202:
+                    if ('\Irisnet\API\Client\Model\CheckResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Irisnet\API\Client\Model\CheckResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\CheckResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 402:
+                    if ('\Irisnet\API\Client\Model\ApiNotice' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Irisnet\API\Client\Model\ApiNotice' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Irisnet\API\Client\Model\ApiNotice', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\Irisnet\API\Client\Model\CheckResult';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 202:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\CheckResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 402:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\ApiNotice',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation faceAuthenticationAsync
+     *
+     * Perform a face authentication for a given selfie with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\BiometricCheckRequestData $biometricCheckRequestData The BiometricCheckRequestData containing data needed for the face authentication. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['faceAuthentication'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function faceAuthenticationAsync($configId, $biometricCheckRequestData, string $contentType = self::contentTypes['faceAuthentication'][0])
+    {
+        return $this->faceAuthenticationAsyncWithHttpInfo($configId, $biometricCheckRequestData, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation faceAuthenticationAsyncWithHttpInfo
+     *
+     * Perform a face authentication for a given selfie with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\BiometricCheckRequestData $biometricCheckRequestData The BiometricCheckRequestData containing data needed for the face authentication. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['faceAuthentication'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function faceAuthenticationAsyncWithHttpInfo($configId, $biometricCheckRequestData, string $contentType = self::contentTypes['faceAuthentication'][0])
+    {
+        $returnType = '\Irisnet\API\Client\Model\CheckResult';
+        $request = $this->faceAuthenticationRequest($configId, $biometricCheckRequestData, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'faceAuthentication'
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\BiometricCheckRequestData $biometricCheckRequestData The BiometricCheckRequestData containing data needed for the face authentication. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['faceAuthentication'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function faceAuthenticationRequest($configId, $biometricCheckRequestData, string $contentType = self::contentTypes['faceAuthentication'][0])
+    {
+
+        // verify the required parameter 'configId' is set
+        if ($configId === null || (is_array($configId) && count($configId) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $configId when calling faceAuthentication'
+            );
+        }
+
+        // verify the required parameter 'biometricCheckRequestData' is set
+        if ($biometricCheckRequestData === null || (is_array($biometricCheckRequestData) && count($biometricCheckRequestData) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $biometricCheckRequestData when calling faceAuthentication'
+            );
+        }
+
+
+        $resourcePath = '/v2/face-authentication/{configId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($configId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'configId' . '}',
+                ObjectSerializer::toPathValue($configId),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($biometricCheckRequestData)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($biometricCheckRequestData));
+            } else {
+                $httpBody = $biometricCheckRequestData;
             }
         } elseif (count($formParams) > 0) {
             if ($multipart) {

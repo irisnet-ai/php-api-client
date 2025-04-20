@@ -450,7 +450,7 @@ class LiveDocumentCheckRequestData implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets documentHolderId
      *
-     * @param string|null $documentHolderId The documentHolderId from a previous successful live identification
+     * @param string|null $documentHolderId The documentHolderId from a previous successful live identification.
      *
      * @return self
      */
@@ -477,7 +477,7 @@ class LiveDocumentCheckRequestData implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets minimumAcceptedAge
      *
-     * @param int|null $minimumAcceptedAge The minimum accepted age in years for a check. Defaults to 18 if not provided
+     * @param int|null $minimumAcceptedAge The minimum age in years accepted for a check, if applicable. Defaults to 18 if not specified.
      *
      * @return self
      */

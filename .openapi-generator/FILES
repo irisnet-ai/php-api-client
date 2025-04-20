@@ -13,6 +13,7 @@ docs/Model/AgeVerificationSubChecks.md
 docs/Model/ApiNotice.md
 docs/Model/BaseAttribute.md
 docs/Model/BaseDetection.md
+docs/Model/BiometricCheckRequestData.md
 docs/Model/BreastDetection.md
 docs/Model/BrokenRule.md
 docs/Model/Callback.md
@@ -37,6 +38,7 @@ docs/Model/LiveDocumentCheckRequestData.md
 docs/Model/LiveDocumentCheckResponseData.md
 docs/Model/Param.md
 docs/Model/ParamSet.md
+docs/Model/PoaCheckRequestData.md
 docs/Model/Pricing.md
 docs/Model/Rectangle.md
 docs/Model/Summary.md
@@ -54,6 +56,7 @@ lib/Model/AgeVerificationSubChecks.php
 lib/Model/ApiNotice.php
 lib/Model/BaseAttribute.php
 lib/Model/BaseDetection.php
+lib/Model/BiometricCheckRequestData.php
 lib/Model/BreastDetection.php
 lib/Model/BrokenRule.php
 lib/Model/Callback.php
@@ -79,11 +82,11 @@ lib/Model/LiveDocumentCheckResponseData.php
 lib/Model/ModelInterface.php
 lib/Model/Param.php
 lib/Model/ParamSet.php
+lib/Model/PoaCheckRequestData.php
 lib/Model/Pricing.php
 lib/Model/Rectangle.php
 lib/Model/Summary.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Model/AgeVerificationAttributeTest.php
-test/Model/AgeVerificationDetectionTest.php
-test/Model/AgeVerificationSubChecksTest.php
+test/Model/BiometricCheckRequestDataTest.php
+test/Model/PoaCheckRequestDataTest.php

@@ -1,6 +1,6 @@
 <?php
 /**
- * LiveDocumentCheckResponseData
+ * PoaCheckRequestData
  *
  * PHP version 7.4
  *
@@ -33,16 +33,15 @@ use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
- * LiveDocumentCheckResponseData Class Doc Comment
+ * PoaCheckRequestData Class Doc Comment
  *
  * @category Class
- * @description Response object containing necessary information to start the enduser live document check on the client side.
  * @package  Irisnet\API\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
+class PoaCheckRequestData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +50,7 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
       *
       * @var string
       */
-    protected static $openAPIModelName = 'LiveDocumentCheckResponseData';
+    protected static $openAPIModelName = 'PoaCheckRequestData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,9 +58,10 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'eventId' => 'string',
-        'identToken' => 'string',
-        'endUserIdentUrl' => 'string'
+        'callback' => '\Irisnet\API\Client\Model\Callback',
+        'frontImage' => 'string',
+        'documentType' => 'string',
+        'documentHolderId' => 'string'
     ];
 
     /**
@@ -72,9 +72,10 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'eventId' => null,
-        'identToken' => null,
-        'endUserIdentUrl' => 'uri'
+        'callback' => null,
+        'frontImage' => null,
+        'documentType' => null,
+        'documentHolderId' => null
     ];
 
     /**
@@ -83,9 +84,10 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'eventId' => false,
-        'identToken' => false,
-        'endUserIdentUrl' => false
+        'callback' => false,
+        'frontImage' => false,
+        'documentType' => false,
+        'documentHolderId' => false
     ];
 
     /**
@@ -174,9 +176,10 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'eventId' => 'eventId',
-        'identToken' => 'identToken',
-        'endUserIdentUrl' => 'endUserIdentUrl'
+        'callback' => 'callback',
+        'frontImage' => 'frontImage',
+        'documentType' => 'documentType',
+        'documentHolderId' => 'documentHolderId'
     ];
 
     /**
@@ -185,9 +188,10 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'eventId' => 'setEventId',
-        'identToken' => 'setIdentToken',
-        'endUserIdentUrl' => 'setEndUserIdentUrl'
+        'callback' => 'setCallback',
+        'frontImage' => 'setFrontImage',
+        'documentType' => 'setDocumentType',
+        'documentHolderId' => 'setDocumentHolderId'
     ];
 
     /**
@@ -196,9 +200,10 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'eventId' => 'getEventId',
-        'identToken' => 'getIdentToken',
-        'endUserIdentUrl' => 'getEndUserIdentUrl'
+        'callback' => 'getCallback',
+        'frontImage' => 'getFrontImage',
+        'documentType' => 'getDocumentType',
+        'documentHolderId' => 'getDocumentHolderId'
     ];
 
     /**
@@ -242,6 +247,37 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
         return self::$openAPIModelName;
     }
 
+    public const DOCUMENT_TYPE_PASSPORT = 'passport';
+    public const DOCUMENT_TYPE_DRIVING_LICENSE = 'driving_license';
+    public const DOCUMENT_TYPE_NATIONAL_IDENTITY_CARD = 'national_identity_card';
+    public const DOCUMENT_TYPE_RESIDENCE_PERMIT = 'residence_permit';
+    public const DOCUMENT_TYPE_VISA = 'visa';
+    public const DOCUMENT_TYPE_BANK_STATEMENT = 'bank_statement';
+    public const DOCUMENT_TYPE_UTILITY_BILL = 'utility_bill';
+    public const DOCUMENT_TYPE_TAX_DOCUMENT = 'tax_document';
+    public const DOCUMENT_TYPE_UNIDENTIFIED = 'unidentified';
+    public const DOCUMENT_TYPE_UNKNOWN = 'unknown';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getDocumentTypeAllowableValues()
+    {
+        return [
+            self::DOCUMENT_TYPE_PASSPORT,
+            self::DOCUMENT_TYPE_DRIVING_LICENSE,
+            self::DOCUMENT_TYPE_NATIONAL_IDENTITY_CARD,
+            self::DOCUMENT_TYPE_RESIDENCE_PERMIT,
+            self::DOCUMENT_TYPE_VISA,
+            self::DOCUMENT_TYPE_BANK_STATEMENT,
+            self::DOCUMENT_TYPE_UTILITY_BILL,
+            self::DOCUMENT_TYPE_TAX_DOCUMENT,
+            self::DOCUMENT_TYPE_UNIDENTIFIED,
+            self::DOCUMENT_TYPE_UNKNOWN,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -258,9 +294,10 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('eventId', $data ?? [], null);
-        $this->setIfExists('identToken', $data ?? [], null);
-        $this->setIfExists('endUserIdentUrl', $data ?? [], null);
+        $this->setIfExists('callback', $data ?? [], null);
+        $this->setIfExists('frontImage', $data ?? [], null);
+        $this->setIfExists('documentType', $data ?? [], null);
+        $this->setIfExists('documentHolderId', $data ?? [], null);
     }
 
     /**
@@ -290,6 +327,21 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
     {
         $invalidProperties = [];
 
+        if ($this->container['callback'] === null) {
+            $invalidProperties[] = "'callback' can't be null";
+        }
+        if ($this->container['documentType'] === null) {
+            $invalidProperties[] = "'documentType' can't be null";
+        }
+        $allowedValues = $this->getDocumentTypeAllowableValues();
+        if (!is_null($this->container['documentType']) && !in_array($this->container['documentType'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'documentType', must be one of '%s'",
+                $this->container['documentType'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -306,82 +358,119 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
 
 
     /**
-     * Gets eventId
+     * Gets callback
      *
-     * @return string|null
+     * @return \Irisnet\API\Client\Model\Callback
      */
-    public function getEventId()
+    public function getCallback()
     {
-        return $this->container['eventId'];
+        return $this->container['callback'];
     }
 
     /**
-     * Sets eventId
+     * Sets callback
      *
-     * @param string|null $eventId unique id of this live document check
+     * @param \Irisnet\API\Client\Model\Callback $callback callback
      *
      * @return self
      */
-    public function setEventId($eventId)
+    public function setCallback($callback)
     {
-        if (is_null($eventId)) {
-            throw new \InvalidArgumentException('non-nullable eventId cannot be null');
+        if (is_null($callback)) {
+            throw new \InvalidArgumentException('non-nullable callback cannot be null');
         }
-        $this->container['eventId'] = $eventId;
+        $this->container['callback'] = $callback;
 
         return $this;
     }
 
     /**
-     * Gets identToken
+     * Gets frontImage
      *
      * @return string|null
      */
-    public function getIdentToken()
+    public function getFrontImage()
     {
-        return $this->container['identToken'];
+        return $this->container['frontImage'];
     }
 
     /**
-     * Sets identToken
+     * Sets frontImage
      *
-     * @param string|null $identToken token to secure the live document check, might be null since already incorporated into endUserIdentUrl
+     * @param string|null $frontImage The base64-encoded front image of the document to be checked in either jpg or png file format.
      *
      * @return self
      */
-    public function setIdentToken($identToken)
+    public function setFrontImage($frontImage)
     {
-        if (is_null($identToken)) {
-            throw new \InvalidArgumentException('non-nullable identToken cannot be null');
+        if (is_null($frontImage)) {
+            throw new \InvalidArgumentException('non-nullable frontImage cannot be null');
         }
-        $this->container['identToken'] = $identToken;
+        $this->container['frontImage'] = $frontImage;
 
         return $this;
     }
 
     /**
-     * Gets endUserIdentUrl
+     * Gets documentType
      *
-     * @return string|null
+     * @return string
      */
-    public function getEndUserIdentUrl()
+    public function getDocumentType()
     {
-        return $this->container['endUserIdentUrl'];
+        return $this->container['documentType'];
     }
 
     /**
-     * Sets endUserIdentUrl
+     * Sets documentType
      *
-     * @param string|null $endUserIdentUrl URL to send the enduser to, to start the live document check
+     * @param string $documentType The type of the document
      *
      * @return self
      */
-    public function setEndUserIdentUrl($endUserIdentUrl)
+    public function setDocumentType($documentType)
     {
-        if (is_null($endUserIdentUrl)) {
-            throw new \InvalidArgumentException('non-nullable endUserIdentUrl cannot be null');
+        if (is_null($documentType)) {
+            throw new \InvalidArgumentException('non-nullable documentType cannot be null');
         }
-        $this->container['endUserIdentUrl'] = $endUserIdentUrl;
+        $allowedValues = $this->getDocumentTypeAllowableValues();
+        if (!in_array($documentType, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'documentType', must be one of '%s'",
+                    $documentType,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['documentType'] = $documentType;
+
+        return $this;
+    }
+
+    /**
+     * Gets documentHolderId
+     *
+     * @return string|null
+     */
+    public function getDocumentHolderId()
+    {
+        return $this->container['documentHolderId'];
+    }
+
+    /**
+     * Sets documentHolderId
+     *
+     * @param string|null $documentHolderId The documentHolderId from a previous successful check.
+     *
+     * @return self
+     */
+    public function setDocumentHolderId($documentHolderId)
+    {
+        if (is_null($documentHolderId)) {
+            throw new \InvalidArgumentException('non-nullable documentHolderId cannot be null');
+        }
+        $this->container['documentHolderId'] = $documentHolderId;
 
         return $this;
     }

@@ -343,6 +343,10 @@ class IdDocumentAttribute implements ModelInterface, ArrayAccess, \JsonSerializa
     public const DOCUMENT_TYPE_NATIONAL_IDENTITY_CARD = 'national_identity_card';
     public const DOCUMENT_TYPE_RESIDENCE_PERMIT = 'residence_permit';
     public const DOCUMENT_TYPE_VISA = 'visa';
+    public const DOCUMENT_TYPE_BANK_STATEMENT = 'bank_statement';
+    public const DOCUMENT_TYPE_UTILITY_BILL = 'utility_bill';
+    public const DOCUMENT_TYPE_TAX_DOCUMENT = 'tax_document';
+    public const DOCUMENT_TYPE_UNIDENTIFIED = 'unidentified';
     public const DOCUMENT_TYPE_UNKNOWN = 'unknown';
     public const GENDER_MALE = 'male';
     public const GENDER_FEMALE = 'female';
@@ -361,6 +365,10 @@ class IdDocumentAttribute implements ModelInterface, ArrayAccess, \JsonSerializa
             self::DOCUMENT_TYPE_NATIONAL_IDENTITY_CARD,
             self::DOCUMENT_TYPE_RESIDENCE_PERMIT,
             self::DOCUMENT_TYPE_VISA,
+            self::DOCUMENT_TYPE_BANK_STATEMENT,
+            self::DOCUMENT_TYPE_UTILITY_BILL,
+            self::DOCUMENT_TYPE_TAX_DOCUMENT,
+            self::DOCUMENT_TYPE_UNIDENTIFIED,
             self::DOCUMENT_TYPE_UNKNOWN,
         ];
     }

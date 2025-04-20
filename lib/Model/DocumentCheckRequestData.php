@@ -270,6 +270,10 @@ class DocumentCheckRequestData implements ModelInterface, ArrayAccess, \JsonSeri
     public const DOCUMENT_TYPE_NATIONAL_IDENTITY_CARD = 'national_identity_card';
     public const DOCUMENT_TYPE_RESIDENCE_PERMIT = 'residence_permit';
     public const DOCUMENT_TYPE_VISA = 'visa';
+    public const DOCUMENT_TYPE_BANK_STATEMENT = 'bank_statement';
+    public const DOCUMENT_TYPE_UTILITY_BILL = 'utility_bill';
+    public const DOCUMENT_TYPE_TAX_DOCUMENT = 'tax_document';
+    public const DOCUMENT_TYPE_UNIDENTIFIED = 'unidentified';
     public const DOCUMENT_TYPE_UNKNOWN = 'unknown';
 
     /**
@@ -285,6 +289,10 @@ class DocumentCheckRequestData implements ModelInterface, ArrayAccess, \JsonSeri
             self::DOCUMENT_TYPE_NATIONAL_IDENTITY_CARD,
             self::DOCUMENT_TYPE_RESIDENCE_PERMIT,
             self::DOCUMENT_TYPE_VISA,
+            self::DOCUMENT_TYPE_BANK_STATEMENT,
+            self::DOCUMENT_TYPE_UTILITY_BILL,
+            self::DOCUMENT_TYPE_TAX_DOCUMENT,
+            self::DOCUMENT_TYPE_UNIDENTIFIED,
             self::DOCUMENT_TYPE_UNKNOWN,
         ];
     }
@@ -410,7 +418,7 @@ class DocumentCheckRequestData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets frontImage
      *
-     * @param string $frontImage The base64 encoded front image of the document to be checked in either jpg or png file format
+     * @param string $frontImage The base64-encoded front image of the document to be checked in either jpg or png file format.
      *
      * @return self
      */
@@ -437,7 +445,7 @@ class DocumentCheckRequestData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets backImage
      *
-     * @param string|null $backImage The base64 encoded back image of the document to be checked in either jpg or png file format
+     * @param string|null $backImage The base64-encoded back image of the document to be checked in either jpg or png file format.
      *
      * @return self
      */
@@ -464,7 +472,7 @@ class DocumentCheckRequestData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets selfieImage
      *
-     * @param string|null $selfieImage The base64 encoded selfie image to be checked in either jpg or png file format
+     * @param string|null $selfieImage The base64-encoded selfie image to be checked in either jpg or png file format.
      *
      * @return self
      */
@@ -491,7 +499,7 @@ class DocumentCheckRequestData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets minimumAcceptedAge
      *
-     * @param int|null $minimumAcceptedAge The minimum accepted age in years for a DocumentCheck. Defaults to 18 if not provided
+     * @param int|null $minimumAcceptedAge The minimum age in years accepted for a DocumentCheck, if applicable. Defaults to 18 if not specified.
      *
      * @return self
      */
@@ -555,7 +563,7 @@ class DocumentCheckRequestData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets documentCountry
      *
-     * @param string|null $documentCountry The document's country in ISO 3166-1 alpha-2 format
+     * @param string|null $documentCountry The country of the document in ISO 3166-1 alpha-2 format.
      *
      * @return self
      */

@@ -1,6 +1,6 @@
 <?php
 /**
- * LiveDocumentCheckResponseData
+ * BiometricCheckRequestData
  *
  * PHP version 7.4
  *
@@ -33,16 +33,15 @@ use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
- * LiveDocumentCheckResponseData Class Doc Comment
+ * BiometricCheckRequestData Class Doc Comment
  *
  * @category Class
- * @description Response object containing necessary information to start the enduser live document check on the client side.
  * @package  Irisnet\API\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
+class BiometricCheckRequestData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +50,7 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
       *
       * @var string
       */
-    protected static $openAPIModelName = 'LiveDocumentCheckResponseData';
+    protected static $openAPIModelName = 'BiometricCheckRequestData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,9 +58,11 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'eventId' => 'string',
-        'identToken' => 'string',
-        'endUserIdentUrl' => 'string'
+        'callback' => '\Irisnet\API\Client\Model\Callback',
+        'frontImage' => 'string',
+        'selfieImage' => 'string',
+        'minimumAcceptedAge' => 'int',
+        'documentHolderId' => 'string'
     ];
 
     /**
@@ -72,9 +73,11 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'eventId' => null,
-        'identToken' => null,
-        'endUserIdentUrl' => 'uri'
+        'callback' => null,
+        'frontImage' => null,
+        'selfieImage' => null,
+        'minimumAcceptedAge' => 'int32',
+        'documentHolderId' => null
     ];
 
     /**
@@ -83,9 +86,11 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'eventId' => false,
-        'identToken' => false,
-        'endUserIdentUrl' => false
+        'callback' => false,
+        'frontImage' => false,
+        'selfieImage' => false,
+        'minimumAcceptedAge' => false,
+        'documentHolderId' => false
     ];
 
     /**
@@ -174,9 +179,11 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'eventId' => 'eventId',
-        'identToken' => 'identToken',
-        'endUserIdentUrl' => 'endUserIdentUrl'
+        'callback' => 'callback',
+        'frontImage' => 'frontImage',
+        'selfieImage' => 'selfieImage',
+        'minimumAcceptedAge' => 'minimumAcceptedAge',
+        'documentHolderId' => 'documentHolderId'
     ];
 
     /**
@@ -185,9 +192,11 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'eventId' => 'setEventId',
-        'identToken' => 'setIdentToken',
-        'endUserIdentUrl' => 'setEndUserIdentUrl'
+        'callback' => 'setCallback',
+        'frontImage' => 'setFrontImage',
+        'selfieImage' => 'setSelfieImage',
+        'minimumAcceptedAge' => 'setMinimumAcceptedAge',
+        'documentHolderId' => 'setDocumentHolderId'
     ];
 
     /**
@@ -196,9 +205,11 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'eventId' => 'getEventId',
-        'identToken' => 'getIdentToken',
-        'endUserIdentUrl' => 'getEndUserIdentUrl'
+        'callback' => 'getCallback',
+        'frontImage' => 'getFrontImage',
+        'selfieImage' => 'getSelfieImage',
+        'minimumAcceptedAge' => 'getMinimumAcceptedAge',
+        'documentHolderId' => 'getDocumentHolderId'
     ];
 
     /**
@@ -258,9 +269,11 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('eventId', $data ?? [], null);
-        $this->setIfExists('identToken', $data ?? [], null);
-        $this->setIfExists('endUserIdentUrl', $data ?? [], null);
+        $this->setIfExists('callback', $data ?? [], null);
+        $this->setIfExists('frontImage', $data ?? [], null);
+        $this->setIfExists('selfieImage', $data ?? [], null);
+        $this->setIfExists('minimumAcceptedAge', $data ?? [], null);
+        $this->setIfExists('documentHolderId', $data ?? [], null);
     }
 
     /**
@@ -290,6 +303,12 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
     {
         $invalidProperties = [];
 
+        if ($this->container['callback'] === null) {
+            $invalidProperties[] = "'callback' can't be null";
+        }
+        if ($this->container['selfieImage'] === null) {
+            $invalidProperties[] = "'selfieImage' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -306,82 +325,136 @@ class LiveDocumentCheckResponseData implements ModelInterface, ArrayAccess, \Jso
 
 
     /**
-     * Gets eventId
+     * Gets callback
      *
-     * @return string|null
+     * @return \Irisnet\API\Client\Model\Callback
      */
-    public function getEventId()
+    public function getCallback()
     {
-        return $this->container['eventId'];
+        return $this->container['callback'];
     }
 
     /**
-     * Sets eventId
+     * Sets callback
      *
-     * @param string|null $eventId unique id of this live document check
+     * @param \Irisnet\API\Client\Model\Callback $callback callback
      *
      * @return self
      */
-    public function setEventId($eventId)
+    public function setCallback($callback)
     {
-        if (is_null($eventId)) {
-            throw new \InvalidArgumentException('non-nullable eventId cannot be null');
+        if (is_null($callback)) {
+            throw new \InvalidArgumentException('non-nullable callback cannot be null');
         }
-        $this->container['eventId'] = $eventId;
+        $this->container['callback'] = $callback;
 
         return $this;
     }
 
     /**
-     * Gets identToken
+     * Gets frontImage
      *
      * @return string|null
      */
-    public function getIdentToken()
+    public function getFrontImage()
     {
-        return $this->container['identToken'];
+        return $this->container['frontImage'];
     }
 
     /**
-     * Sets identToken
+     * Sets frontImage
      *
-     * @param string|null $identToken token to secure the live document check, might be null since already incorporated into endUserIdentUrl
+     * @param string|null $frontImage The base64-encoded front image of the document to be checked in either jpg or png file format.
      *
      * @return self
      */
-    public function setIdentToken($identToken)
+    public function setFrontImage($frontImage)
     {
-        if (is_null($identToken)) {
-            throw new \InvalidArgumentException('non-nullable identToken cannot be null');
+        if (is_null($frontImage)) {
+            throw new \InvalidArgumentException('non-nullable frontImage cannot be null');
         }
-        $this->container['identToken'] = $identToken;
+        $this->container['frontImage'] = $frontImage;
 
         return $this;
     }
 
     /**
-     * Gets endUserIdentUrl
+     * Gets selfieImage
      *
-     * @return string|null
+     * @return string
      */
-    public function getEndUserIdentUrl()
+    public function getSelfieImage()
     {
-        return $this->container['endUserIdentUrl'];
+        return $this->container['selfieImage'];
     }
 
     /**
-     * Sets endUserIdentUrl
+     * Sets selfieImage
      *
-     * @param string|null $endUserIdentUrl URL to send the enduser to, to start the live document check
+     * @param string $selfieImage The base64-encoded selfie image to be checked in either jpg or png file format.
      *
      * @return self
      */
-    public function setEndUserIdentUrl($endUserIdentUrl)
+    public function setSelfieImage($selfieImage)
     {
-        if (is_null($endUserIdentUrl)) {
-            throw new \InvalidArgumentException('non-nullable endUserIdentUrl cannot be null');
+        if (is_null($selfieImage)) {
+            throw new \InvalidArgumentException('non-nullable selfieImage cannot be null');
         }
-        $this->container['endUserIdentUrl'] = $endUserIdentUrl;
+        $this->container['selfieImage'] = $selfieImage;
+
+        return $this;
+    }
+
+    /**
+     * Gets minimumAcceptedAge
+     *
+     * @return int|null
+     */
+    public function getMinimumAcceptedAge()
+    {
+        return $this->container['minimumAcceptedAge'];
+    }
+
+    /**
+     * Sets minimumAcceptedAge
+     *
+     * @param int|null $minimumAcceptedAge The minimum age in years accepted for a DocumentCheck, if applicable. Defaults to 18 if not specified.
+     *
+     * @return self
+     */
+    public function setMinimumAcceptedAge($minimumAcceptedAge)
+    {
+        if (is_null($minimumAcceptedAge)) {
+            throw new \InvalidArgumentException('non-nullable minimumAcceptedAge cannot be null');
+        }
+        $this->container['minimumAcceptedAge'] = $minimumAcceptedAge;
+
+        return $this;
+    }
+
+    /**
+     * Gets documentHolderId
+     *
+     * @return string|null
+     */
+    public function getDocumentHolderId()
+    {
+        return $this->container['documentHolderId'];
+    }
+
+    /**
+     * Sets documentHolderId
+     *
+     * @param string|null $documentHolderId The documentHolderId from a previous successful DocumentCheck.
+     *
+     * @return self
+     */
+    public function setDocumentHolderId($documentHolderId)
+    {
+        if (is_null($documentHolderId)) {
+            throw new \InvalidArgumentException('non-nullable documentHolderId cannot be null');
+        }
+        $this->container['documentHolderId'] = $documentHolderId;
 
         return $this;
     }

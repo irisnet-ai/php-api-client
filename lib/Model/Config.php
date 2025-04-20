@@ -266,7 +266,6 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     public const KYC_CHECK_PARAMETERS_ADD_ENCODINGS_TO_RESULT = 'addEncodingsToResult';
     public const KYC_CHECK_PARAMETERS_I_FRAME_FLOW = 'iFrameFlow';
     public const KYC_CHECK_PARAMETERS_REDIRECT_FLOW = 'redirectFlow';
-    public const KYC_CHECK_PARAMETERS_REDIRECT_ON_MOBILE = 'redirectOnMobile';
     public const PROTOTYPES_NUDITY_CHECK = 'nudityCheck';
     public const PROTOTYPES_AGE_ESTIMATION = 'ageEstimation';
     public const PROTOTYPES_ILLEGAL_SYMBOLS = 'illegalSymbols';
@@ -304,7 +303,6 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
             self::KYC_CHECK_PARAMETERS_ADD_ENCODINGS_TO_RESULT,
             self::KYC_CHECK_PARAMETERS_I_FRAME_FLOW,
             self::KYC_CHECK_PARAMETERS_REDIRECT_FLOW,
-            self::KYC_CHECK_PARAMETERS_REDIRECT_ON_MOBILE,
         ];
     }
 
