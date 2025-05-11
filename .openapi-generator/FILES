@@ -49,6 +49,7 @@ lib/Api/ConfigurationManagementApi.php
 lib/Api/DetailedConfigurationParametersApi.php
 lib/ApiException.php
 lib/Configuration.php
+lib/FormDataProcessor.php
 lib/HeaderSelector.php
 lib/Model/AgeVerificationAttribute.php
 lib/Model/AgeVerificationDetection.php
@@ -88,5 +89,3 @@ lib/Model/Rectangle.php
 lib/Model/Summary.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Model/BiometricCheckRequestDataTest.php
-test/Model/PoaCheckRequestDataTest.php
