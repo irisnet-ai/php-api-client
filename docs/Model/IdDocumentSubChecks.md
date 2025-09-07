@@ -20,8 +20,14 @@ Name | Type | Description | Notes
 **ageValidationCheck** | **string** | Indicates if the extracted age is greater than or equal to a predefined minimum accepted age | [optional]
 **spoofedImageAnalysis** | **string** | Indicates whether the selfie image is spoofed, copied from the Internet, or is a known deny-listed image | [optional]
 **faceLivenessCheck** | **string** | Indicates if the selfie image is genuine and not a photo of an image or of a screen | [optional]
-**voiceChallengeCheck** | **string** | Indicates if the enduser had answered correctly during the voice challenge. | [optional]
-**actionChallengeCheck** | **string** | Indicates if the enduser had moved correctly during the actions challenge. | [optional]
+**voiceChallengeCheck** | **string** | Indicates if the enduser had answered correctly during the voice challenge | [optional]
+**actionChallengeCheck** | **string** | Indicates if the enduser had moved correctly during the actions challenge | [optional]
+**firstNameConsistency** | **string** | Indicates if the first name on the document and the MRZ are consistent | [optional]
+**lastNameConsistency** | **string** | Indicates if the last name on the document and the MRZ are consistent | [optional]
+**dobConsistency** | **string** | Indicates if the date of birth on the document and the MRZ are consistent | [optional]
+**documentNumberConsistency** | **string** | Indicates if the document number on the document and the MRZ are consistent | [optional]
+**issuingDateConsistency** | **string** | Indicates if the issuing date on the document and the MRZ are consistent | [optional]
+**expirationDateConsistency** | **string** | Indicates if the expiration date on the document and the MRZ are consistent | [optional]
 **knownFacesCheck** | **string** | Indicates if the selfie image matches an aready existing client/customer | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
