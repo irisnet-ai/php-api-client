@@ -62,7 +62,7 @@ class CheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
         'summary' => '\Irisnet\API\Client\Model\Summary',
         'encodings' => '\Irisnet\API\Client\Model\Encoded[]',
         'brokenRules' => '\Irisnet\API\Client\Model\BrokenRule[]',
-        'detections' => '\Irisnet\API\Client\Model\Detection[]',
+        'detections' => '\Irisnet\API\Client\Model\CheckResultDetectionsInner[]',
         'events' => '\Irisnet\API\Client\Model\Event[]',
         'notifications' => '\Irisnet\API\Client\Model\ApiNotice[]',
         'checkId' => 'string'
@@ -417,7 +417,7 @@ class CheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets detections
      *
-     * @return \Irisnet\API\Client\Model\Detection[]|null
+     * @return \Irisnet\API\Client\Model\CheckResultDetectionsInner[]|null
      */
     public function getDetections()
     {
@@ -427,7 +427,7 @@ class CheckResult implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets detections
      *
-     * @param \Irisnet\API\Client\Model\Detection[]|null $detections detections
+     * @param \Irisnet\API\Client\Model\CheckResultDetectionsInner[]|null $detections detections
      *
      * @return self
      */

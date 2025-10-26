@@ -634,7 +634,7 @@ class BalanceEndpointsApi
     {
 
 
-        $resourcePath = '/v2/info/';
+        $resourcePath = '/v2/info';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

@@ -94,17 +94,18 @@ Class | Method | HTTP request | Description
 *AICheckOperationsApi* | [**checkImage**](docs/Api/AICheckOperationsApi.md#checkimage) | **POST** /v2/check-image/{configId} | Check an image with the AI.
 *AICheckOperationsApi* | [**checkPoaDocument**](docs/Api/AICheckOperationsApi.md#checkpoadocument) | **POST** /v2/check-poa-document/{configId} | Perform an proof of address check with the AI.
 *AICheckOperationsApi* | [**checkStream**](docs/Api/AICheckOperationsApi.md#checkstream) | **POST** /v2/check-stream/{configId} | Check a stream with the AI.
+*AICheckOperationsApi* | [**checkText**](docs/Api/AICheckOperationsApi.md#checktext) | **POST** /v2/check-text/{configId} | Check a text with the AI.
 *AICheckOperationsApi* | [**checkVideo**](docs/Api/AICheckOperationsApi.md#checkvideo) | **POST** /v2/check-video/{configId} | Check a video with the AI.
 *AICheckOperationsApi* | [**faceAuthentication**](docs/Api/AICheckOperationsApi.md#faceauthentication) | **POST** /v2/face-authentication/{configId} | Perform a face authentication for a given selfie with the AI.
 *AICheckOperationsApi* | [**liveDocumentCheck**](docs/Api/AICheckOperationsApi.md#livedocumentcheck) | **POST** /v2/check-live-id-document/{configId} | Start a guided live id document check with the AI.
 *BalanceEndpointsApi* | [**getCost**](docs/Api/BalanceEndpointsApi.md#getcost) | **GET** /v2/cost/{configId} | Get the cost of the configuration for a single image.
-*BalanceEndpointsApi* | [**getLicenseInfo**](docs/Api/BalanceEndpointsApi.md#getlicenseinfo) | **GET** /v2/info/ | Get information for the given license key.
+*BalanceEndpointsApi* | [**getLicenseInfo**](docs/Api/BalanceEndpointsApi.md#getlicenseinfo) | **GET** /v2/info | Get information for the given license key.
 *BalanceEndpointsApi* | [**getVideoCost**](docs/Api/BalanceEndpointsApi.md#getvideocost) | **GET** /v2/cost/{configId}/{frames} | Get the cost of the configuration for moving images.
 *BalanceEndpointsApi* | [**getVideoCost1**](docs/Api/BalanceEndpointsApi.md#getvideocost1) | **GET** /v2/cost/{configId}/{fps}/{duration} | Get the cost of the configuration for moving images.
 *ConfigurationManagementApi* | [**deleteConfig**](docs/Api/ConfigurationManagementApi.md#deleteconfig) | **DELETE** /v2/config/{configId} | Delete an AI configuration.
-*ConfigurationManagementApi* | [**getAllConfigs**](docs/Api/ConfigurationManagementApi.md#getallconfigs) | **GET** /v2/config/ | List all saved AI configurations.
+*ConfigurationManagementApi* | [**getAllConfigs**](docs/Api/ConfigurationManagementApi.md#getallconfigs) | **GET** /v2/config | List all saved AI configurations.
 *ConfigurationManagementApi* | [**getConfig**](docs/Api/ConfigurationManagementApi.md#getconfig) | **GET** /v2/config/{configId} | Get a specific AI configuration.
-*ConfigurationManagementApi* | [**setConfig**](docs/Api/ConfigurationManagementApi.md#setconfig) | **POST** /v2/config/ | Create a new AI configuration.
+*ConfigurationManagementApi* | [**setConfig**](docs/Api/ConfigurationManagementApi.md#setconfig) | **POST** /v2/config | Create a new AI configuration.
 *DetailedConfigurationParametersApi* | [**clearParameters**](docs/Api/DetailedConfigurationParametersApi.md#clearparameters) | **DELETE** /v2/config/parameters/{configId} | Delete the parameters of the AI configuration.
 *DetailedConfigurationParametersApi* | [**getParameters**](docs/Api/DetailedConfigurationParametersApi.md#getparameters) | **GET** /v2/config/parameters/{configId} | Get the parameters of the AI configuration.
 *DetailedConfigurationParametersApi* | [**setParameters**](docs/Api/DetailedConfigurationParametersApi.md#setparameters) | **POST** /v2/config/parameters/{configId} | Set parameters to the given AI configuration.
@@ -114,7 +115,10 @@ Class | Method | HTTP request | Description
 - [AgeVerificationAttribute](docs/Model/AgeVerificationAttribute.md)
 - [AgeVerificationDetection](docs/Model/AgeVerificationDetection.md)
 - [AgeVerificationSubChecks](docs/Model/AgeVerificationSubChecks.md)
+- [AiClassification](docs/Model/AiClassification.md)
+- [AiPrototype](docs/Model/AiPrototype.md)
 - [ApiNotice](docs/Model/ApiNotice.md)
+- [Attribute](docs/Model/Attribute.md)
 - [BaseAttribute](docs/Model/BaseAttribute.md)
 - [BaseDetection](docs/Model/BaseDetection.md)
 - [BiometricCheckRequestData](docs/Model/BiometricCheckRequestData.md)
@@ -122,6 +126,7 @@ Class | Method | HTTP request | Description
 - [BrokenRule](docs/Model/BrokenRule.md)
 - [Callback](docs/Model/Callback.md)
 - [CheckResult](docs/Model/CheckResult.md)
+- [CheckResultDetectionsInner](docs/Model/CheckResultDetectionsInner.md)
 - [Config](docs/Model/Config.md)
 - [Coordinates](docs/Model/Coordinates.md)
 - [Data](docs/Model/Data.md)
@@ -135,17 +140,25 @@ Class | Method | HTTP request | Description
 - [IdDocumentAttribute](docs/Model/IdDocumentAttribute.md)
 - [IdDocumentDetection](docs/Model/IdDocumentDetection.md)
 - [IdDocumentSubChecks](docs/Model/IdDocumentSubChecks.md)
+- [ImageAnalysisDetection](docs/Model/ImageAnalysisDetection.md)
 - [KnownFace](docs/Model/KnownFace.md)
 - [KycUiParameter](docs/Model/KycUiParameter.md)
+- [LanguageAttribute](docs/Model/LanguageAttribute.md)
 - [LicenseInfo](docs/Model/LicenseInfo.md)
 - [LiveDocumentCheckRequestData](docs/Model/LiveDocumentCheckRequestData.md)
 - [LiveDocumentCheckResponseData](docs/Model/LiveDocumentCheckResponseData.md)
 - [Param](docs/Model/Param.md)
 - [ParamSet](docs/Model/ParamSet.md)
 - [PoaCheckRequestData](docs/Model/PoaCheckRequestData.md)
+- [PoaDocumentAttribute](docs/Model/PoaDocumentAttribute.md)
+- [PoaDocumentDetection](docs/Model/PoaDocumentDetection.md)
+- [PoaDocumentSubChecks](docs/Model/PoaDocumentSubChecks.md)
 - [Pricing](docs/Model/Pricing.md)
 - [Rectangle](docs/Model/Rectangle.md)
+- [Segment](docs/Model/Segment.md)
 - [Summary](docs/Model/Summary.md)
+- [TextDetection](docs/Model/TextDetection.md)
+- [ValueAttribute](docs/Model/ValueAttribute.md)
 
 ## Authorization
 
@@ -175,6 +188,6 @@ info@irisnet.de
 This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
 
 - API version: `v2`
-    - Package version: `3.7.6`
+    - Package version: `4.1.3`
     - Generator version: `7.14.0`
 - Build package: `org.openapitools.codegen.languages.PhpClientCodegen`

@@ -309,6 +309,10 @@ class BiometricCheckRequestData implements ModelInterface, ArrayAccess, \JsonSer
         if ($this->container['selfieImage'] === null) {
             $invalidProperties[] = "'selfieImage' can't be null";
         }
+        if ((mb_strlen($this->container['selfieImage']) < 1)) {
+            $invalidProperties[] = "invalid value for 'selfieImage', the character length must be bigger than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -400,6 +404,11 @@ class BiometricCheckRequestData implements ModelInterface, ArrayAccess, \JsonSer
         if (is_null($selfieImage)) {
             throw new \InvalidArgumentException('non-nullable selfieImage cannot be null');
         }
+
+        if ((mb_strlen($selfieImage) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $selfieImage when calling BiometricCheckRequestData., must be bigger than or equal to 1.');
+        }
+
         $this->container['selfieImage'] = $selfieImage;
 
         return $this;

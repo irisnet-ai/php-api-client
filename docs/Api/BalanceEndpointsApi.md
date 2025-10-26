@@ -5,7 +5,7 @@ All URIs are relative to https://api.irisnet.de, except if the operation defines
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**getCost()**](BalanceEndpointsApi.md#getCost) | **GET** /v2/cost/{configId} | Get the cost of the configuration for a single image. |
-| [**getLicenseInfo()**](BalanceEndpointsApi.md#getLicenseInfo) | **GET** /v2/info/ | Get information for the given license key. |
+| [**getLicenseInfo()**](BalanceEndpointsApi.md#getLicenseInfo) | **GET** /v2/info | Get information for the given license key. |
 | [**getVideoCost()**](BalanceEndpointsApi.md#getVideoCost) | **GET** /v2/cost/{configId}/{frames} | Get the cost of the configuration for moving images. |
 | [**getVideoCost1()**](BalanceEndpointsApi.md#getVideoCost1) | **GET** /v2/cost/{configId}/{fps}/{duration} | Get the cost of the configuration for moving images. |
 

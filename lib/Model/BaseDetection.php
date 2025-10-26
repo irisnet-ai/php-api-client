@@ -28,6 +28,8 @@
  */
 
 namespace Irisnet\API\Client\Model;
+
+use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
@@ -40,7 +42,7 @@ use \Irisnet\API\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BaseDetection extends Detection
+class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -57,12 +59,13 @@ class BaseDetection extends Detection
       * @var string[]
       */
     protected static $openAPITypes = [
+        'type' => 'string',
         'classification' => 'string',
         'group' => 'string',
         'id' => 'int',
         'probability' => 'int',
         'coordinates' => '\Irisnet\API\Client\Model\Coordinates',
-        'attributes' => '\Irisnet\API\Client\Model\BaseAttribute[]'
+        'attributes' => '\Irisnet\API\Client\Model\Attribute[]'
     ];
 
     /**
@@ -73,6 +76,7 @@ class BaseDetection extends Detection
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'type' => null,
         'classification' => null,
         'group' => null,
         'id' => 'int32',
@@ -87,6 +91,7 @@ class BaseDetection extends Detection
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'type' => false,
         'classification' => false,
         'group' => false,
         'id' => false,
@@ -109,7 +114,7 @@ class BaseDetection extends Detection
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes + parent::openAPITypes();
+        return self::$openAPITypes;
     }
 
     /**
@@ -119,7 +124,7 @@ class BaseDetection extends Detection
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats + parent::openAPIFormats();
+        return self::$openAPIFormats;
     }
 
     /**
@@ -129,7 +134,7 @@ class BaseDetection extends Detection
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables + parent::openAPINullables();
+        return self::$openAPINullables;
     }
 
     /**
@@ -181,6 +186,7 @@ class BaseDetection extends Detection
      * @var string[]
      */
     protected static $attributeMap = [
+        'type' => 'type',
         'classification' => 'classification',
         'group' => 'group',
         'id' => 'id',
@@ -195,6 +201,7 @@ class BaseDetection extends Detection
      * @var string[]
      */
     protected static $setters = [
+        'type' => 'setType',
         'classification' => 'setClassification',
         'group' => 'setGroup',
         'id' => 'setId',
@@ -209,6 +216,7 @@ class BaseDetection extends Detection
      * @var string[]
      */
     protected static $getters = [
+        'type' => 'getType',
         'classification' => 'getClassification',
         'group' => 'getGroup',
         'id' => 'getId',
@@ -225,7 +233,7 @@ class BaseDetection extends Detection
      */
     public static function attributeMap()
     {
-        return parent::attributeMap() + self::$attributeMap;
+        return self::$attributeMap;
     }
 
     /**
@@ -235,7 +243,7 @@ class BaseDetection extends Detection
      */
     public static function setters()
     {
-        return parent::setters() + self::$setters;
+        return self::$setters;
     }
 
     /**
@@ -245,7 +253,7 @@ class BaseDetection extends Detection
      */
     public static function getters()
     {
-        return parent::getters() + self::$getters;
+        return self::$getters;
     }
 
     /**
@@ -259,6 +267,12 @@ class BaseDetection extends Detection
     }
 
 
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
 
     /**
      * Constructor
@@ -268,8 +282,7 @@ class BaseDetection extends Detection
      */
     public function __construct(?array $data = null)
     {
-        parent::__construct($data);
-
+        $this->setIfExists('type', $data ?? [], null);
         $this->setIfExists('classification', $data ?? [], null);
         $this->setIfExists('group', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -303,7 +316,7 @@ class BaseDetection extends Detection
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = parent::listInvalidProperties();
+        $invalidProperties = [];
 
         return $invalidProperties;
     }
@@ -319,6 +332,33 @@ class BaseDetection extends Detection
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets type
+     *
+     * @return string|null
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string|null $type Used as a type discriminator for json to object conversion.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
 
     /**
      * Gets classification
@@ -458,7 +498,7 @@ class BaseDetection extends Detection
     /**
      * Gets attributes
      *
-     * @return \Irisnet\API\Client\Model\BaseAttribute[]|null
+     * @return \Irisnet\API\Client\Model\Attribute[]|null
      */
     public function getAttributes()
     {
@@ -468,7 +508,7 @@ class BaseDetection extends Detection
     /**
      * Sets attributes
      *
-     * @param \Irisnet\API\Client\Model\BaseAttribute[]|null $attributes Attributes characterizing the _base_ detection.
+     * @param \Irisnet\API\Client\Model\Attribute[]|null $attributes Attributes characterizing the _base_ detection.
      *
      * @return self
      */

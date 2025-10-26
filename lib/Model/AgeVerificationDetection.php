@@ -577,7 +577,7 @@ class AgeVerificationDetection extends Detection
     /**
      * Sets processedChecks
      *
-     * @param \Irisnet\API\Client\Model\AgeVerificationSubChecks|null $processedChecks processedChecks
+     * @param \Irisnet\API\Client\Model\AgeVerificationSubChecks|null $processedChecks The sub-checks that were processed
      *
      * @return self
      */

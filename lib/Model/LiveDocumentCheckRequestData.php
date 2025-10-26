@@ -342,7 +342,7 @@ class LiveDocumentCheckRequestData implements ModelInterface, ArrayAccess, \Json
     /**
      * Sets callback
      *
-     * @param \Irisnet\API\Client\Model\Callback $callback callback
+     * @param \Irisnet\API\Client\Model\Callback $callback The URL the final check result is being sent to.
      *
      * @return self
      */

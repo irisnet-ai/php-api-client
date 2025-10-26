@@ -727,7 +727,7 @@ class IdDocumentDetection extends Detection
     /**
      * Sets processedChecks
      *
-     * @param \Irisnet\API\Client\Model\IdDocumentSubChecks|null $processedChecks processedChecks
+     * @param \Irisnet\API\Client\Model\IdDocumentSubChecks|null $processedChecks The sub-checks that were processed
      *
      * @return self
      */

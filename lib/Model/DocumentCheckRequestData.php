@@ -354,6 +354,10 @@ class DocumentCheckRequestData implements ModelInterface, ArrayAccess, \JsonSeri
         if ($this->container['frontImage'] === null) {
             $invalidProperties[] = "'frontImage' can't be null";
         }
+        if ((mb_strlen($this->container['frontImage']) < 1)) {
+            $invalidProperties[] = "invalid value for 'frontImage', the character length must be bigger than or equal to 1.";
+        }
+
         $allowedValues = $this->getDocumentTypeAllowableValues();
         if (!is_null($this->container['documentType']) && !in_array($this->container['documentType'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -427,6 +431,11 @@ class DocumentCheckRequestData implements ModelInterface, ArrayAccess, \JsonSeri
         if (is_null($frontImage)) {
             throw new \InvalidArgumentException('non-nullable frontImage cannot be null');
         }
+
+        if ((mb_strlen($frontImage) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $frontImage when calling DocumentCheckRequestData., must be bigger than or equal to 1.');
+        }
+
         $this->container['frontImage'] = $frontImage;
 
         return $this;

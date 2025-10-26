@@ -59,7 +59,8 @@ class Coordinates implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'rectangles' => '\Irisnet\API\Client\Model\Rectangle[]'
+        'rectangles' => '\Irisnet\API\Client\Model\Rectangle[]',
+        'segments' => '\Irisnet\API\Client\Model\Segment[]'
     ];
 
     /**
@@ -70,7 +71,8 @@ class Coordinates implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'rectangles' => null
+        'rectangles' => null,
+        'segments' => null
     ];
 
     /**
@@ -79,7 +81,8 @@ class Coordinates implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'rectangles' => false
+        'rectangles' => false,
+        'segments' => false
     ];
 
     /**
@@ -168,7 +171,8 @@ class Coordinates implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'rectangles' => 'rectangles'
+        'rectangles' => 'rectangles',
+        'segments' => 'segments'
     ];
 
     /**
@@ -177,7 +181,8 @@ class Coordinates implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'rectangles' => 'setRectangles'
+        'rectangles' => 'setRectangles',
+        'segments' => 'setSegments'
     ];
 
     /**
@@ -186,7 +191,8 @@ class Coordinates implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'rectangles' => 'getRectangles'
+        'rectangles' => 'getRectangles',
+        'segments' => 'getSegments'
     ];
 
     /**
@@ -247,6 +253,7 @@ class Coordinates implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('rectangles', $data ?? [], null);
+        $this->setIfExists('segments', $data ?? [], null);
     }
 
     /**
@@ -314,6 +321,33 @@ class Coordinates implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable rectangles cannot be null');
         }
         $this->container['rectangles'] = $rectangles;
+
+        return $this;
+    }
+
+    /**
+     * Gets segments
+     *
+     * @return \Irisnet\API\Client\Model\Segment[]|null
+     */
+    public function getSegments()
+    {
+        return $this->container['segments'];
+    }
+
+    /**
+     * Sets segments
+     *
+     * @param \Irisnet\API\Client\Model\Segment[]|null $segments segments
+     *
+     * @return self
+     */
+    public function setSegments($segments)
+    {
+        if (is_null($segments)) {
+            throw new \InvalidArgumentException('non-nullable segments cannot be null');
+        }
+        $this->container['segments'] = $segments;
 
         return $this;
     }

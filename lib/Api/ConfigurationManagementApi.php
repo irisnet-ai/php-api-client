@@ -550,7 +550,7 @@ class ConfigurationManagementApi
     {
 
 
-        $resourcePath = '/v2/config/';
+        $resourcePath = '/v2/config';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -629,7 +629,7 @@ class ConfigurationManagementApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\Config
+     * @return \Irisnet\API\Client\Model\Config|\Irisnet\API\Client\Model\ApiNotice
      */
     public function getConfig($configId, string $contentType = self::contentTypes['getConfig'][0])
     {
@@ -647,7 +647,7 @@ class ConfigurationManagementApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\Config, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Irisnet\API\Client\Model\Config|\Irisnet\API\Client\Model\ApiNotice, HTTP status code, HTTP response headers (array of strings)
      */
     public function getConfigWithHttpInfo($configId, string $contentType = self::contentTypes['getConfig'][0])
     {
@@ -677,15 +677,15 @@ class ConfigurationManagementApi
 
 
             switch($statusCode) {
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Irisnet\API\Client\Model\ApiNotice',
-                        $request,
-                        $response,
-                    );
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Irisnet\API\Client\Model\Config',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Irisnet\API\Client\Model\ApiNotice',
                         $request,
                         $response,
                     );
@@ -713,18 +713,18 @@ class ConfigurationManagementApi
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Irisnet\API\Client\Model\ApiNotice',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\Config',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\ApiNotice',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -916,7 +916,7 @@ class ConfigurationManagementApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\Config|\Irisnet\API\Client\Model\ApiNotice
+     * @return \Irisnet\API\Client\Model\Config|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice
      */
     public function setConfig($config, string $contentType = self::contentTypes['setConfig'][0])
     {
@@ -934,7 +934,7 @@ class ConfigurationManagementApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\Config|\Irisnet\API\Client\Model\ApiNotice, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Irisnet\API\Client\Model\Config|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice, HTTP status code, HTTP response headers (array of strings)
      */
     public function setConfigWithHttpInfo($config, string $contentType = self::contentTypes['setConfig'][0])
     {
@@ -964,15 +964,15 @@ class ConfigurationManagementApi
 
 
             switch($statusCode) {
-                case 400:
-                    return $this->handleResponseWithDataType(
-                        '\Irisnet\API\Client\Model\ApiNotice',
-                        $request,
-                        $response,
-                    );
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Irisnet\API\Client\Model\Config',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Irisnet\API\Client\Model\ApiNotice',
                         $request,
                         $response,
                     );
@@ -1006,18 +1006,18 @@ class ConfigurationManagementApi
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Irisnet\API\Client\Model\ApiNotice',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\Config',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\ApiNotice',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1130,7 +1130,7 @@ class ConfigurationManagementApi
         }
 
 
-        $resourcePath = '/v2/config/';
+        $resourcePath = '/v2/config';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

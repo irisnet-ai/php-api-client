@@ -36,7 +36,6 @@ use \Irisnet\API\Client\ObjectSerializer;
  * KnownFace Class Doc Comment
  *
  * @category Class
- * @description A list of known faces, describing which other documentHolders match this documentHolder with a certain similarity
  * @package  Irisnet\API\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

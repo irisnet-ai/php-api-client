@@ -266,16 +266,6 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     public const KYC_CHECK_PARAMETERS_ADD_ENCODINGS_TO_RESULT = 'addEncodingsToResult';
     public const KYC_CHECK_PARAMETERS_I_FRAME_FLOW = 'iFrameFlow';
     public const KYC_CHECK_PARAMETERS_REDIRECT_FLOW = 'redirectFlow';
-    public const PROTOTYPES_NUDITY_CHECK = 'nudityCheck';
-    public const PROTOTYPES_AGE_ESTIMATION = 'ageEstimation';
-    public const PROTOTYPES_ILLEGAL_SYMBOLS = 'illegalSymbols';
-    public const PROTOTYPES_TEXT_RECOGNITION = 'textRecognition';
-    public const PROTOTYPES_ATTRIBUTES_CHECK = 'attributesCheck';
-    public const PROTOTYPES_BODY_ATTRIBUTES = 'bodyAttributes';
-    public const PROTOTYPES_NIPPLE_CHECK = 'nippleCheck';
-    public const PROTOTYPES_UNWANTED_SUBSTANCES = 'unwantedSubstances';
-    public const PROTOTYPES_VIOLENCE_CHECK = 'violenceCheck';
-    public const PROTOTYPES_SELFIE_CHECK = 'selfieCheck';
 
     /**
      * Gets allowable values of the enum
@@ -303,27 +293,6 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
             self::KYC_CHECK_PARAMETERS_ADD_ENCODINGS_TO_RESULT,
             self::KYC_CHECK_PARAMETERS_I_FRAME_FLOW,
             self::KYC_CHECK_PARAMETERS_REDIRECT_FLOW,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getPrototypesAllowableValues()
-    {
-        return [
-            self::PROTOTYPES_NUDITY_CHECK,
-            self::PROTOTYPES_AGE_ESTIMATION,
-            self::PROTOTYPES_ILLEGAL_SYMBOLS,
-            self::PROTOTYPES_TEXT_RECOGNITION,
-            self::PROTOTYPES_ATTRIBUTES_CHECK,
-            self::PROTOTYPES_BODY_ATTRIBUTES,
-            self::PROTOTYPES_NIPPLE_CHECK,
-            self::PROTOTYPES_UNWANTED_SUBSTANCES,
-            self::PROTOTYPES_VIOLENCE_CHECK,
-            self::PROTOTYPES_SELFIE_CHECK,
         ];
     }
 
@@ -518,15 +487,6 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($prototypes)) {
             throw new \InvalidArgumentException('non-nullable prototypes cannot be null');
-        }
-        $allowedValues = $this->getPrototypesAllowableValues();
-        if (array_diff($prototypes, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'prototypes', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
         }
 
 

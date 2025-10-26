@@ -5,9 +5,9 @@ All URIs are relative to https://api.irisnet.de, except if the operation defines
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**deleteConfig()**](ConfigurationManagementApi.md#deleteConfig) | **DELETE** /v2/config/{configId} | Delete an AI configuration. |
-| [**getAllConfigs()**](ConfigurationManagementApi.md#getAllConfigs) | **GET** /v2/config/ | List all saved AI configurations. |
+| [**getAllConfigs()**](ConfigurationManagementApi.md#getAllConfigs) | **GET** /v2/config | List all saved AI configurations. |
 | [**getConfig()**](ConfigurationManagementApi.md#getConfig) | **GET** /v2/config/{configId} | Get a specific AI configuration. |
-| [**setConfig()**](ConfigurationManagementApi.md#setConfig) | **POST** /v2/config/ | Create a new AI configuration. |
+| [**setConfig()**](ConfigurationManagementApi.md#setConfig) | **POST** /v2/config | Create a new AI configuration. |
 
 
 ## `deleteConfig()`

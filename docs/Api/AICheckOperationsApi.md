@@ -9,6 +9,7 @@ All URIs are relative to https://api.irisnet.de, except if the operation defines
 | [**checkImage()**](AICheckOperationsApi.md#checkImage) | **POST** /v2/check-image/{configId} | Check an image with the AI. |
 | [**checkPoaDocument()**](AICheckOperationsApi.md#checkPoaDocument) | **POST** /v2/check-poa-document/{configId} | Perform an proof of address check with the AI. |
 | [**checkStream()**](AICheckOperationsApi.md#checkStream) | **POST** /v2/check-stream/{configId} | Check a stream with the AI. |
+| [**checkText()**](AICheckOperationsApi.md#checkText) | **POST** /v2/check-text/{configId} | Check a text with the AI. |
 | [**checkVideo()**](AICheckOperationsApi.md#checkVideo) | **POST** /v2/check-video/{configId} | Check a video with the AI. |
 | [**faceAuthentication()**](AICheckOperationsApi.md#faceAuthentication) | **POST** /v2/face-authentication/{configId} | Perform a face authentication for a given selfie with the AI. |
 | [**liveDocumentCheck()**](AICheckOperationsApi.md#liveDocumentCheck) | **POST** /v2/check-live-id-document/{configId} | Start a guided live id document check with the AI. |
@@ -341,6 +342,72 @@ try {
 
 - **Content-Type**: Not defined
 - **Accept**: `application/x-ndjson`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `checkText()`
+
+```php
+checkText($configId, $data, $detail): \Irisnet\API\Client\Model\CheckResult
+```
+
+Check a text with the AI.
+
+The response (_CheckResult_ schema) is returned immediately after the request.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: LICENSE-KEY
+$config = Irisnet\API\Client\Configuration::getDefaultConfiguration()->setApiKey('LICENSE-KEY', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Irisnet\API\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('LICENSE-KEY', 'Bearer');
+
+
+$apiInstance = new Irisnet\API\Client\Api\AICheckOperationsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$configId = 'configId_example'; // string | The configuration id from the Basic Configuration operations.
+$data = {"data":"This is an example text."}; // \Irisnet\API\Client\Model\Data | The text that needs to be checked.
+$detail = 1; // int | Set the detail level of the response.  * _1_ - The response only contains the _Summary_ and possibly the _Encoded_ schemas for basic information's (better API performance). * _2_ - Additionally lists all broken rules (_BrokenRule_ schema) according to the configuration parameters that were requested. * _3_ - Also shows detections (e.g. _BaseDetection_ schema) that contains extended features to each found object.
+
+try {
+    $result = $apiInstance->checkText($configId, $data, $detail);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AICheckOperationsApi->checkText: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **configId** | **string**| The configuration id from the Basic Configuration operations. | |
+| **data** | [**\Irisnet\API\Client\Model\Data**](../Model/Data.md)| The text that needs to be checked. | |
+| **detail** | **int**| Set the detail level of the response.  * _1_ - The response only contains the _Summary_ and possibly the _Encoded_ schemas for basic information&#39;s (better API performance). * _2_ - Additionally lists all broken rules (_BrokenRule_ schema) according to the configuration parameters that were requested. * _3_ - Also shows detections (e.g. _BaseDetection_ schema) that contains extended features to each found object. | [optional] [default to 1] |
+
+### Return type
+
+[**\Irisnet\API\Client\Model\CheckResult**](../Model/CheckResult.md)
+
+### Authorization
+
+[LICENSE-KEY](../../README.md#LICENSE-KEY)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

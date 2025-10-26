@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **faceLivenessCheckScore** | **int** | Indicates the liveness score of the selfie image | [optional]
 **documentFrontLivenessScore** | **int** | Indicates the liveness score of the front side image of the document | [optional]
 **documentBackLivenessScore** | **int** | Indicates the liveness score of the back side image of the document | [optional]
-**processedChecks** | [**\Irisnet\API\Client\Model\IdDocumentSubChecks**](IdDocumentSubChecks.md) |  | [optional]
+**processedChecks** | [**\Irisnet\API\Client\Model\IdDocumentSubChecks**](IdDocumentSubChecks.md) | The sub-checks that were processed | [optional]
 **attributes** | [**\Irisnet\API\Client\Model\IdDocumentAttribute[]**](IdDocumentAttribute.md) | Attributes of the _idDocument_ detection. | [optional]
 **documentHolderId** | **string** | The id of the documentHolder | [optional]
 **knownFaces** | [**\Irisnet\API\Client\Model\KnownFace[]**](KnownFace.md) | A list of known faces, describing which other documentHolders match this documentHolder with a certain similarity | [optional]

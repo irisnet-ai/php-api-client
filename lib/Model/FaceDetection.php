@@ -62,7 +62,7 @@ class FaceDetection extends Detection
         'id' => 'int',
         'probability' => 'int',
         'coordinates' => '\Irisnet\API\Client\Model\Coordinates',
-        'attributes' => '\Irisnet\API\Client\Model\BaseAttribute[]',
+        'attributes' => '\Irisnet\API\Client\Model\Attribute[]',
         'subDetections' => '\Irisnet\API\Client\Model\Detection[]'
     ];
 
@@ -465,7 +465,7 @@ class FaceDetection extends Detection
     /**
      * Gets attributes
      *
-     * @return \Irisnet\API\Client\Model\BaseAttribute[]|null
+     * @return \Irisnet\API\Client\Model\Attribute[]|null
      */
     public function getAttributes()
     {
@@ -475,7 +475,7 @@ class FaceDetection extends Detection
     /**
      * Sets attributes
      *
-     * @param \Irisnet\API\Client\Model\BaseAttribute[]|null $attributes Attributes characterizing the _face_ detection. Mainly contains attributes that were activated with the _ageEstimation_ prototype.
+     * @param \Irisnet\API\Client\Model\Attribute[]|null $attributes Attributes characterizing the _face_ detection. Mainly contains attributes that were activated with the _ageEstimation_ prototype.
      *
      * @return self
      */

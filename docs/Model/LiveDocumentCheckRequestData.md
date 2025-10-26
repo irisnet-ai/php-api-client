@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**callback** | [**\Irisnet\API\Client\Model\Callback**](Callback.md) |  |
+**callback** | [**\Irisnet\API\Client\Model\Callback**](Callback.md) | The URL the final check result is being sent to. |
 **statusUrl** | **string** | The URL to send the intermediate status requests to. If not set, no intermediate status requests will be sent. | [optional]
 **endUserRedirectUrl** | **string** | If set the enduser is being redirected to this URL after the check is finished. | [optional]
 **tokenValidityInSeconds** | **int** | The validity duration of a started ident process in seconds. Defaults to 3600 seconds &#x3D; 60 minutes. | [optional]

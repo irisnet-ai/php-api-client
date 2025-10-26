@@ -90,6 +90,9 @@ class AICheckOperationsApi
         'checkStream' => [
             'application/json',
         ],
+        'checkText' => [
+            'application/json',
+        ],
         'checkVideo' => [
             'application/json',
         ],
@@ -773,7 +776,7 @@ class AICheckOperationsApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult|\Irisnet\API\Client\Model\ApiNotice
+     * @return \Irisnet\API\Client\Model\CheckResult|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice
      */
     public function checkImage($configId, $url = null, $detail = 1, $imageEncode = false, $data = null, string $contentType = self::contentTypes['checkImage'][0])
     {
@@ -795,7 +798,7 @@ class AICheckOperationsApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult|\Irisnet\API\Client\Model\ApiNotice, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Irisnet\API\Client\Model\CheckResult|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkImageWithHttpInfo($configId, $url = null, $detail = 1, $imageEncode = false, $data = null, string $contentType = self::contentTypes['checkImage'][0])
     {
@@ -825,12 +828,6 @@ class AICheckOperationsApi
 
 
             switch($statusCode) {
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Irisnet\API\Client\Model\ApiNotice',
-                        $request,
-                        $response,
-                    );
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Irisnet\API\Client\Model\CheckResult',
@@ -838,6 +835,12 @@ class AICheckOperationsApi
                         $response,
                     );
                 case 402:
+                    return $this->handleResponseWithDataType(
+                        '\Irisnet\API\Client\Model\ApiNotice',
+                        $request,
+                        $response,
+                    );
+                case 404:
                     return $this->handleResponseWithDataType(
                         '\Irisnet\API\Client\Model\ApiNotice',
                         $request,
@@ -867,14 +870,6 @@ class AICheckOperationsApi
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Irisnet\API\Client\Model\ApiNotice',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -884,6 +879,14 @@ class AICheckOperationsApi
                     $e->setResponseObject($data);
                     throw $e;
                 case 402:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\ApiNotice',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\ApiNotice',
@@ -1444,7 +1447,7 @@ class AICheckOperationsApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult[]|\Irisnet\API\Client\Model\ApiNotice
+     * @return \Irisnet\API\Client\Model\CheckResult[]|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice
      */
     public function checkStream($configId, $inUrl, $outUrl = null, $cycleLength = 500, $checkRate = 0, string $contentType = self::contentTypes['checkStream'][0])
     {
@@ -1466,7 +1469,7 @@ class AICheckOperationsApi
      *
      * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\CheckResult[]|\Irisnet\API\Client\Model\ApiNotice, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Irisnet\API\Client\Model\CheckResult[]|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice, HTTP status code, HTTP response headers (array of strings)
      */
     public function checkStreamWithHttpInfo($configId, $inUrl, $outUrl = null, $cycleLength = 500, $checkRate = 0, string $contentType = self::contentTypes['checkStream'][0])
     {
@@ -1496,12 +1499,6 @@ class AICheckOperationsApi
 
 
             switch($statusCode) {
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Irisnet\API\Client\Model\ApiNotice',
-                        $request,
-                        $response,
-                    );
                 case 200:
                     return $this->handleResponseWithDataType(
                         '\Irisnet\API\Client\Model\CheckResult[]',
@@ -1509,6 +1506,12 @@ class AICheckOperationsApi
                         $response,
                     );
                 case 402:
+                    return $this->handleResponseWithDataType(
+                        '\Irisnet\API\Client\Model\ApiNotice',
+                        $request,
+                        $response,
+                    );
+                case 404:
                     return $this->handleResponseWithDataType(
                         '\Irisnet\API\Client\Model\ApiNotice',
                         $request,
@@ -1538,14 +1541,6 @@ class AICheckOperationsApi
             );
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Irisnet\API\Client\Model\ApiNotice',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -1555,6 +1550,14 @@ class AICheckOperationsApi
                     $e->setResponseObject($data);
                     throw $e;
                 case 402:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\ApiNotice',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\ApiNotice',
@@ -1804,6 +1807,347 @@ class AICheckOperationsApi
     }
 
     /**
+     * Operation checkText
+     *
+     * Check a text with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\Data $data The text that needs to be checked. (required)
+     * @param  int|null $detail Set the detail level of the response.  * _1_ - The response only contains the _Summary_ and possibly the _Encoded_ schemas for basic information&#39;s (better API performance). * _2_ - Additionally lists all broken rules (_BrokenRule_ schema) according to the configuration parameters that were requested. * _3_ - Also shows detections (e.g. _BaseDetection_ schema) that contains extended features to each found object. (optional, default to 1)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkText'] to see the possible values for this operation
+     *
+     * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Irisnet\API\Client\Model\CheckResult|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice
+     */
+    public function checkText($configId, $data, $detail = 1, string $contentType = self::contentTypes['checkText'][0])
+    {
+        list($response) = $this->checkTextWithHttpInfo($configId, $data, $detail, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation checkTextWithHttpInfo
+     *
+     * Check a text with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\Data $data The text that needs to be checked. (required)
+     * @param  int|null $detail Set the detail level of the response.  * _1_ - The response only contains the _Summary_ and possibly the _Encoded_ schemas for basic information&#39;s (better API performance). * _2_ - Additionally lists all broken rules (_BrokenRule_ schema) according to the configuration parameters that were requested. * _3_ - Also shows detections (e.g. _BaseDetection_ schema) that contains extended features to each found object. (optional, default to 1)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkText'] to see the possible values for this operation
+     *
+     * @throws \Irisnet\API\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Irisnet\API\Client\Model\CheckResult|\Irisnet\API\Client\Model\ApiNotice|\Irisnet\API\Client\Model\ApiNotice, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function checkTextWithHttpInfo($configId, $data, $detail = 1, string $contentType = self::contentTypes['checkText'][0])
+    {
+        $request = $this->checkTextRequest($configId, $data, $detail, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Irisnet\API\Client\Model\CheckResult',
+                        $request,
+                        $response,
+                    );
+                case 402:
+                    return $this->handleResponseWithDataType(
+                        '\Irisnet\API\Client\Model\ApiNotice',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Irisnet\API\Client\Model\ApiNotice',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Irisnet\API\Client\Model\CheckResult',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\CheckResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 402:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\ApiNotice',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Irisnet\API\Client\Model\ApiNotice',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation checkTextAsync
+     *
+     * Check a text with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\Data $data The text that needs to be checked. (required)
+     * @param  int|null $detail Set the detail level of the response.  * _1_ - The response only contains the _Summary_ and possibly the _Encoded_ schemas for basic information&#39;s (better API performance). * _2_ - Additionally lists all broken rules (_BrokenRule_ schema) according to the configuration parameters that were requested. * _3_ - Also shows detections (e.g. _BaseDetection_ schema) that contains extended features to each found object. (optional, default to 1)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkText'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function checkTextAsync($configId, $data, $detail = 1, string $contentType = self::contentTypes['checkText'][0])
+    {
+        return $this->checkTextAsyncWithHttpInfo($configId, $data, $detail, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation checkTextAsyncWithHttpInfo
+     *
+     * Check a text with the AI.
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\Data $data The text that needs to be checked. (required)
+     * @param  int|null $detail Set the detail level of the response.  * _1_ - The response only contains the _Summary_ and possibly the _Encoded_ schemas for basic information&#39;s (better API performance). * _2_ - Additionally lists all broken rules (_BrokenRule_ schema) according to the configuration parameters that were requested. * _3_ - Also shows detections (e.g. _BaseDetection_ schema) that contains extended features to each found object. (optional, default to 1)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkText'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function checkTextAsyncWithHttpInfo($configId, $data, $detail = 1, string $contentType = self::contentTypes['checkText'][0])
+    {
+        $returnType = '\Irisnet\API\Client\Model\CheckResult';
+        $request = $this->checkTextRequest($configId, $data, $detail, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'checkText'
+     *
+     * @param  string $configId The configuration id from the Basic Configuration operations. (required)
+     * @param  \Irisnet\API\Client\Model\Data $data The text that needs to be checked. (required)
+     * @param  int|null $detail Set the detail level of the response.  * _1_ - The response only contains the _Summary_ and possibly the _Encoded_ schemas for basic information&#39;s (better API performance). * _2_ - Additionally lists all broken rules (_BrokenRule_ schema) according to the configuration parameters that were requested. * _3_ - Also shows detections (e.g. _BaseDetection_ schema) that contains extended features to each found object. (optional, default to 1)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['checkText'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function checkTextRequest($configId, $data, $detail = 1, string $contentType = self::contentTypes['checkText'][0])
+    {
+
+        // verify the required parameter 'configId' is set
+        if ($configId === null || (is_array($configId) && count($configId) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $configId when calling checkText'
+            );
+        }
+
+        // verify the required parameter 'data' is set
+        if ($data === null || (is_array($data) && count($data) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $data when calling checkText'
+            );
+        }
+
+        if ($detail !== null && $detail > 3) {
+            throw new \InvalidArgumentException('invalid value for "$detail" when calling AICheckOperationsApi.checkText, must be smaller than or equal to 3.');
+        }
+        if ($detail !== null && $detail < 0) {
+            throw new \InvalidArgumentException('invalid value for "$detail" when calling AICheckOperationsApi.checkText, must be bigger than or equal to 0.');
+        }
+        
+
+        $resourcePath = '/v2/check-text/{configId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $detail,
+            'detail', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($configId !== null) {
+            $resourcePath = str_replace(
+                '{' . 'configId' . '}',
+                ObjectSerializer::toPathValue($configId),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($data)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($data));
+            } else {
+                $httpBody = $data;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('LICENSE-KEY');
+        if ($apiKey !== null) {
+            $headers['LICENSE-KEY'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation checkVideo
      *
      * Check a video with the AI.
@@ -1872,7 +2216,7 @@ class AICheckOperationsApi
             return [null, $statusCode, $response->getHeaders()];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 404:
+                case 402:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\ApiNotice',
@@ -1880,7 +2224,7 @@ class AICheckOperationsApi
                     );
                     $e->setResponseObject($data);
                     throw $e;
-                case 402:
+                case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Irisnet\API\Client\Model\ApiNotice',
