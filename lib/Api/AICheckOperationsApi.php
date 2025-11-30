@@ -1130,7 +1130,7 @@ class AICheckOperationsApi
     /**
      * Operation checkPoaDocument
      *
-     * Perform an proof of address check with the AI.
+     * Perform a proof of address check with the AI.
      *
      * @param  string $configId The configuration id from the Basic Configuration operations. (required)
      * @param  \Irisnet\API\Client\Model\PoaCheckRequestData $poaCheckRequestData The PoaCheckRequestData containing data needed for the proof of address check. The DocumentType in the request data must be either &#39;utility_bill&#39; or &#39;bank_statement&#39;. (required)
@@ -1149,7 +1149,7 @@ class AICheckOperationsApi
     /**
      * Operation checkPoaDocumentWithHttpInfo
      *
-     * Perform an proof of address check with the AI.
+     * Perform a proof of address check with the AI.
      *
      * @param  string $configId The configuration id from the Basic Configuration operations. (required)
      * @param  \Irisnet\API\Client\Model\PoaCheckRequestData $poaCheckRequestData The PoaCheckRequestData containing data needed for the proof of address check. The DocumentType in the request data must be either &#39;utility_bill&#39; or &#39;bank_statement&#39;. (required)
@@ -1249,7 +1249,7 @@ class AICheckOperationsApi
     /**
      * Operation checkPoaDocumentAsync
      *
-     * Perform an proof of address check with the AI.
+     * Perform a proof of address check with the AI.
      *
      * @param  string $configId The configuration id from the Basic Configuration operations. (required)
      * @param  \Irisnet\API\Client\Model\PoaCheckRequestData $poaCheckRequestData The PoaCheckRequestData containing data needed for the proof of address check. The DocumentType in the request data must be either &#39;utility_bill&#39; or &#39;bank_statement&#39;. (required)
@@ -1271,7 +1271,7 @@ class AICheckOperationsApi
     /**
      * Operation checkPoaDocumentAsyncWithHttpInfo
      *
-     * Perform an proof of address check with the AI.
+     * Perform a proof of address check with the AI.
      *
      * @param  string $configId The configuration id from the Basic Configuration operations. (required)
      * @param  \Irisnet\API\Client\Model\PoaCheckRequestData $poaCheckRequestData The PoaCheckRequestData containing data needed for the proof of address check. The DocumentType in the request data must be either &#39;utility_bill&#39; or &#39;bank_statement&#39;. (required)

@@ -7,7 +7,7 @@ All URIs are relative to https://api.irisnet.de, except if the operation defines
 | [**ageVerification()**](AICheckOperationsApi.md#ageVerification) | **POST** /v2/age-verification/{configId} | Perform an age verfication check for a given selfie with the AI. |
 | [**checkIdDocument()**](AICheckOperationsApi.md#checkIdDocument) | **POST** /v2/check-id-document/{configId} | Check an id document with the AI. |
 | [**checkImage()**](AICheckOperationsApi.md#checkImage) | **POST** /v2/check-image/{configId} | Check an image with the AI. |
-| [**checkPoaDocument()**](AICheckOperationsApi.md#checkPoaDocument) | **POST** /v2/check-poa-document/{configId} | Perform an proof of address check with the AI. |
+| [**checkPoaDocument()**](AICheckOperationsApi.md#checkPoaDocument) | **POST** /v2/check-poa-document/{configId} | Perform a proof of address check with the AI. |
 | [**checkStream()**](AICheckOperationsApi.md#checkStream) | **POST** /v2/check-stream/{configId} | Check a stream with the AI. |
 | [**checkText()**](AICheckOperationsApi.md#checkText) | **POST** /v2/check-text/{configId} | Check a text with the AI. |
 | [**checkVideo()**](AICheckOperationsApi.md#checkVideo) | **POST** /v2/check-video/{configId} | Check a video with the AI. |
@@ -219,7 +219,7 @@ try {
 checkPoaDocument($configId, $poaCheckRequestData): \Irisnet\API\Client\Model\CheckResult
 ```
 
-Perform an proof of address check with the AI.
+Perform a proof of address check with the AI.
 
 The response (_CheckResult_ schema) containing only the checkId and possibly ApiNotices is returned immediately after the request. The actual body (_CheckResult_ schema) is sent to the _callbackUrl_ after the AI has finished processing.
 

@@ -113,14 +113,3 @@ lib/Model/TextDetection.php
 lib/Model/ValueAttribute.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Model/AiClassificationTest.php
-test/Model/AiPrototypeTest.php
-test/Model/AttributeTest.php
-test/Model/ImageAnalysisDetectionTest.php
-test/Model/LanguageAttributeTest.php
-test/Model/PoaDocumentAttributeTest.php
-test/Model/PoaDocumentDetectionTest.php
-test/Model/PoaDocumentSubChecksTest.php
-test/Model/SegmentTest.php
-test/Model/TextDetectionTest.php
-test/Model/ValueAttributeTest.php
