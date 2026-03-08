@@ -63,6 +63,7 @@ class KycUiParameter implements ModelInterface, ArrayAccess, \JsonSerializable
         'backgroundColor' => 'string',
         'textColor' => 'string',
         'logo' => 'string',
+        'logoBackgroundColor' => 'string',
         'language' => 'string'
     ];
 
@@ -78,6 +79,7 @@ class KycUiParameter implements ModelInterface, ArrayAccess, \JsonSerializable
         'backgroundColor' => null,
         'textColor' => null,
         'logo' => null,
+        'logoBackgroundColor' => null,
         'language' => null
     ];
 
@@ -91,6 +93,7 @@ class KycUiParameter implements ModelInterface, ArrayAccess, \JsonSerializable
         'backgroundColor' => false,
         'textColor' => false,
         'logo' => false,
+        'logoBackgroundColor' => false,
         'language' => false
     ];
 
@@ -184,6 +187,7 @@ class KycUiParameter implements ModelInterface, ArrayAccess, \JsonSerializable
         'backgroundColor' => 'backgroundColor',
         'textColor' => 'textColor',
         'logo' => 'logo',
+        'logoBackgroundColor' => 'logoBackgroundColor',
         'language' => 'language'
     ];
 
@@ -197,6 +201,7 @@ class KycUiParameter implements ModelInterface, ArrayAccess, \JsonSerializable
         'backgroundColor' => 'setBackgroundColor',
         'textColor' => 'setTextColor',
         'logo' => 'setLogo',
+        'logoBackgroundColor' => 'setLogoBackgroundColor',
         'language' => 'setLanguage'
     ];
 
@@ -210,6 +215,7 @@ class KycUiParameter implements ModelInterface, ArrayAccess, \JsonSerializable
         'backgroundColor' => 'getBackgroundColor',
         'textColor' => 'getTextColor',
         'logo' => 'getLogo',
+        'logoBackgroundColor' => 'getLogoBackgroundColor',
         'language' => 'getLanguage'
     ];
 
@@ -274,6 +280,7 @@ class KycUiParameter implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('backgroundColor', $data ?? [], '333333');
         $this->setIfExists('textColor', $data ?? [], '000000');
         $this->setIfExists('logo', $data ?? [], null);
+        $this->setIfExists('logoBackgroundColor', $data ?? [], 'ffffff');
         $this->setIfExists('language', $data ?? [], null);
     }
 
@@ -423,6 +430,33 @@ class KycUiParameter implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable logo cannot be null');
         }
         $this->container['logo'] = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Gets logoBackgroundColor
+     *
+     * @return string|null
+     */
+    public function getLogoBackgroundColor()
+    {
+        return $this->container['logoBackgroundColor'];
+    }
+
+    /**
+     * Sets logoBackgroundColor
+     *
+     * @param string|null $logoBackgroundColor The logo background color in hex format (rrggbb).
+     *
+     * @return self
+     */
+    public function setLogoBackgroundColor($logoBackgroundColor)
+    {
+        if (is_null($logoBackgroundColor)) {
+            throw new \InvalidArgumentException('non-nullable logoBackgroundColor cannot be null');
+        }
+        $this->container['logoBackgroundColor'] = $logoBackgroundColor;
 
         return $this;
     }

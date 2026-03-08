@@ -28,8 +28,6 @@
  */
 
 namespace Irisnet\API\Client\Model;
-
-use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
@@ -42,7 +40,7 @@ use \Irisnet\API\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
+class BaseDetection extends Detection
 {
     public const DISCRIMINATOR = null;
 
@@ -59,7 +57,6 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'type' => 'string',
         'classification' => 'string',
         'group' => 'string',
         'id' => 'int',
@@ -76,7 +73,6 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'type' => null,
         'classification' => null,
         'group' => null,
         'id' => 'int32',
@@ -91,7 +87,6 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'type' => false,
         'classification' => false,
         'group' => false,
         'id' => false,
@@ -114,7 +109,7 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -124,7 +119,7 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -134,7 +129,7 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -186,7 +181,6 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
         'classification' => 'classification',
         'group' => 'group',
         'id' => 'id',
@@ -201,7 +195,6 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
         'classification' => 'setClassification',
         'group' => 'setGroup',
         'id' => 'setId',
@@ -216,7 +209,6 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
         'classification' => 'getClassification',
         'group' => 'getGroup',
         'id' => 'getId',
@@ -233,7 +225,7 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -243,7 +235,7 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -253,7 +245,7 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -267,12 +259,6 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -282,7 +268,8 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], null);
+        parent::__construct($data);
+
         $this->setIfExists('classification', $data ?? [], null);
         $this->setIfExists('group', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
@@ -316,7 +303,7 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         return $invalidProperties;
     }
@@ -332,33 +319,6 @@ class BaseDetection implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets type
-     *
-     * @return string|null
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string|null $type Used as a type discriminator for json to object conversion.
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
-        }
-        $this->container['type'] = $type;
-
-        return $this;
-    }
 
     /**
      * Gets classification

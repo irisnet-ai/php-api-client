@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **string** | Used as a type discriminator for json to object conversion. | [optional]
 **classification** | **string** | The classification of the recognized object. | [optional]
 **group** | **string** | The group of the classification. | [optional]
 **id** | **int** | The id of the detection object. | [optional]
