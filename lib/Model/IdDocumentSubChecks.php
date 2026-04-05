@@ -67,6 +67,7 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
         'photoLocation' => 'string',
         'blacklistCheck' => 'string',
         'photocopyCheck' => 'string',
+        'tamperingCheck' => 'string',
         'specimenCheck' => 'string',
         'documentModelIdentification' => 'string',
         'documentLivenessCheck' => 'string',
@@ -102,6 +103,7 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
         'photoLocation' => null,
         'blacklistCheck' => null,
         'photocopyCheck' => null,
+        'tamperingCheck' => null,
         'specimenCheck' => null,
         'documentModelIdentification' => null,
         'documentLivenessCheck' => null,
@@ -135,6 +137,7 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
         'photoLocation' => false,
         'blacklistCheck' => false,
         'photocopyCheck' => false,
+        'tamperingCheck' => false,
         'specimenCheck' => false,
         'documentModelIdentification' => false,
         'documentLivenessCheck' => false,
@@ -248,6 +251,7 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
         'photoLocation' => 'photoLocation',
         'blacklistCheck' => 'blacklistCheck',
         'photocopyCheck' => 'photocopyCheck',
+        'tamperingCheck' => 'tamperingCheck',
         'specimenCheck' => 'specimenCheck',
         'documentModelIdentification' => 'documentModelIdentification',
         'documentLivenessCheck' => 'documentLivenessCheck',
@@ -281,6 +285,7 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
         'photoLocation' => 'setPhotoLocation',
         'blacklistCheck' => 'setBlacklistCheck',
         'photocopyCheck' => 'setPhotocopyCheck',
+        'tamperingCheck' => 'setTamperingCheck',
         'specimenCheck' => 'setSpecimenCheck',
         'documentModelIdentification' => 'setDocumentModelIdentification',
         'documentLivenessCheck' => 'setDocumentLivenessCheck',
@@ -314,6 +319,7 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
         'photoLocation' => 'getPhotoLocation',
         'blacklistCheck' => 'getBlacklistCheck',
         'photocopyCheck' => 'getPhotocopyCheck',
+        'tamperingCheck' => 'getTamperingCheck',
         'specimenCheck' => 'getSpecimenCheck',
         'documentModelIdentification' => 'getDocumentModelIdentification',
         'documentLivenessCheck' => 'getDocumentLivenessCheck',
@@ -398,6 +404,9 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
     public const PHOTOCOPY_CHECK_PASSED = 'passed';
     public const PHOTOCOPY_CHECK_FAILED = 'failed';
     public const PHOTOCOPY_CHECK_NOT_PROCESSED = 'not_processed';
+    public const TAMPERING_CHECK_PASSED = 'passed';
+    public const TAMPERING_CHECK_FAILED = 'failed';
+    public const TAMPERING_CHECK_NOT_PROCESSED = 'not_processed';
     public const SPECIMEN_CHECK_PASSED = 'passed';
     public const SPECIMEN_CHECK_FAILED = 'failed';
     public const SPECIMEN_CHECK_NOT_PROCESSED = 'not_processed';
@@ -559,6 +568,20 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
             self::PHOTOCOPY_CHECK_PASSED,
             self::PHOTOCOPY_CHECK_FAILED,
             self::PHOTOCOPY_CHECK_NOT_PROCESSED,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTamperingCheckAllowableValues()
+    {
+        return [
+            self::TAMPERING_CHECK_PASSED,
+            self::TAMPERING_CHECK_FAILED,
+            self::TAMPERING_CHECK_NOT_PROCESSED,
         ];
     }
 
@@ -823,6 +846,7 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('photoLocation', $data ?? [], null);
         $this->setIfExists('blacklistCheck', $data ?? [], null);
         $this->setIfExists('photocopyCheck', $data ?? [], null);
+        $this->setIfExists('tamperingCheck', $data ?? [], null);
         $this->setIfExists('specimenCheck', $data ?? [], null);
         $this->setIfExists('documentModelIdentification', $data ?? [], null);
         $this->setIfExists('documentLivenessCheck', $data ?? [], null);
@@ -937,6 +961,15 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'photocopyCheck', must be one of '%s'",
                 $this->container['photocopyCheck'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getTamperingCheckAllowableValues();
+        if (!is_null($this->container['tamperingCheck']) && !in_array($this->container['tamperingCheck'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'tamperingCheck', must be one of '%s'",
+                $this->container['tamperingCheck'],
                 implode("', '", $allowedValues)
             );
         }
@@ -1401,6 +1434,43 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
             );
         }
         $this->container['photocopyCheck'] = $photocopyCheck;
+
+        return $this;
+    }
+
+    /**
+     * Gets tamperingCheck
+     *
+     * @return string|null
+     */
+    public function getTamperingCheck()
+    {
+        return $this->container['tamperingCheck'];
+    }
+
+    /**
+     * Sets tamperingCheck
+     *
+     * @param string|null $tamperingCheck Indicates whether the document image has been digitally tampered with
+     *
+     * @return self
+     */
+    public function setTamperingCheck($tamperingCheck)
+    {
+        if (is_null($tamperingCheck)) {
+            throw new \InvalidArgumentException('non-nullable tamperingCheck cannot be null');
+        }
+        $allowedValues = $this->getTamperingCheckAllowableValues();
+        if (!in_array($tamperingCheck, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'tamperingCheck', must be one of '%s'",
+                    $tamperingCheck,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['tamperingCheck'] = $tamperingCheck;
 
         return $this;
     }

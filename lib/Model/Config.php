@@ -262,6 +262,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
     public const KYC_CHECK_PARAMETERS_LIVE_AGE_VERIFICATION_CHECK = 'liveAgeVerificationCheck';
     public const KYC_CHECK_PARAMETERS_LIVE_FACE_AUTHENTICATION = 'liveFaceAuthentication';
     public const KYC_CHECK_PARAMETERS_VIDEO_UPLOAD_IDENTIFICATION = 'videoUploadIdentification';
+    public const KYC_CHECK_PARAMETERS_VIDEO_UPLOAD_AGE_VERIFICATION_CHECK = 'videoUploadAgeVerificationCheck';
     public const KYC_CHECK_PARAMETERS_CONSIDER_KNOWN_FACES = 'considerKnownFaces';
     public const KYC_CHECK_PARAMETERS_ADD_ENCODINGS_TO_RESULT = 'addEncodingsToResult';
     public const KYC_CHECK_PARAMETERS_I_FRAME_FLOW = 'iFrameFlow';
@@ -289,6 +290,7 @@ class Config implements ModelInterface, ArrayAccess, \JsonSerializable
             self::KYC_CHECK_PARAMETERS_LIVE_AGE_VERIFICATION_CHECK,
             self::KYC_CHECK_PARAMETERS_LIVE_FACE_AUTHENTICATION,
             self::KYC_CHECK_PARAMETERS_VIDEO_UPLOAD_IDENTIFICATION,
+            self::KYC_CHECK_PARAMETERS_VIDEO_UPLOAD_AGE_VERIFICATION_CHECK,
             self::KYC_CHECK_PARAMETERS_CONSIDER_KNOWN_FACES,
             self::KYC_CHECK_PARAMETERS_ADD_ENCODINGS_TO_RESULT,
             self::KYC_CHECK_PARAMETERS_I_FRAME_FLOW,

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **photoLocation** | **string** | Indicates whether the photo is in the correct location for a given document type | [optional]
 **blacklistCheck** | **string** | Indicates whether a competent authority deny-listed the ID document | [optional]
 **photocopyCheck** | **string** | Indicates whether the document is a photocopy | [optional]
+**tamperingCheck** | **string** | Indicates whether the document image has been digitally tampered with | [optional]
 **specimenCheck** | **string** | Indicates whether the document has been copied from the Internet | [optional]
 **documentModelIdentification** | **string** | Indicates whether the document model has been identified and whether or not the document conforms to official specifications | [optional]
 **documentLivenessCheck** | **string** | Indicates if the document image is genuine and not a photo of an image or of a screen | [optional]
