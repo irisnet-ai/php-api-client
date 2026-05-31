@@ -1,6 +1,6 @@
 <?php
 /**
- * ParamSet
+ * AgeAttribute
  *
  * PHP version 8.1
  *
@@ -28,21 +28,19 @@
  */
 
 namespace Irisnet\API\Client\Model;
-
-use \ArrayAccess;
 use \Irisnet\API\Client\ObjectSerializer;
 
 /**
- * ParamSet Class Doc Comment
+ * AgeAttribute Class Doc Comment
  *
  * @category Class
- * @description A set of parameters/rules that describe how the AI should behave.
+ * @description Attributes qualifying the _numericAgeEstimation_ classification.
  * @package  Irisnet\API\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
+class AgeAttribute extends Attribute
 {
     public const DISCRIMINATOR = null;
 
@@ -51,7 +49,7 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ParamSet';
+    protected static $openAPIModelName = 'AgeAttribute';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,12 +57,10 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'thresh' => 'float',
-        'grey' => 'int',
-        'minDuration' => 'int',
-        'abortOnSeverity' => 'int',
-        'params' => '\Irisnet\API\Client\Model\Param[]',
-        'kycUiParameters' => '\Irisnet\API\Client\Model\KycUiParameter'
+        'age' => 'int',
+        'ageMin' => 'int',
+        'ageMax' => 'int',
+        'probability' => 'int'
     ];
 
     /**
@@ -75,12 +71,10 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'thresh' => 'float',
-        'grey' => 'int32',
-        'minDuration' => 'int32',
-        'abortOnSeverity' => 'int32',
-        'params' => null,
-        'kycUiParameters' => null
+        'age' => 'int32',
+        'ageMin' => 'int32',
+        'ageMax' => 'int32',
+        'probability' => 'int32'
     ];
 
     /**
@@ -89,12 +83,10 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'thresh' => false,
-        'grey' => false,
-        'minDuration' => false,
-        'abortOnSeverity' => false,
-        'params' => false,
-        'kycUiParameters' => false
+        'age' => false,
+        'ageMin' => false,
+        'ageMax' => false,
+        'probability' => false
     ];
 
     /**
@@ -111,7 +103,7 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPITypes()
     {
-        return self::$openAPITypes;
+        return self::$openAPITypes + parent::openAPITypes();
     }
 
     /**
@@ -121,7 +113,7 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function openAPIFormats()
     {
-        return self::$openAPIFormats;
+        return self::$openAPIFormats + parent::openAPIFormats();
     }
 
     /**
@@ -131,7 +123,7 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static function openAPINullables(): array
     {
-        return self::$openAPINullables;
+        return self::$openAPINullables + parent::openAPINullables();
     }
 
     /**
@@ -183,12 +175,10 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'thresh' => 'thresh',
-        'grey' => 'grey',
-        'minDuration' => 'minDuration',
-        'abortOnSeverity' => 'abortOnSeverity',
-        'params' => 'params',
-        'kycUiParameters' => 'kycUiParameters'
+        'age' => 'age',
+        'ageMin' => 'ageMin',
+        'ageMax' => 'ageMax',
+        'probability' => 'probability'
     ];
 
     /**
@@ -197,12 +187,10 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'thresh' => 'setThresh',
-        'grey' => 'setGrey',
-        'minDuration' => 'setMinDuration',
-        'abortOnSeverity' => 'setAbortOnSeverity',
-        'params' => 'setParams',
-        'kycUiParameters' => 'setKycUiParameters'
+        'age' => 'setAge',
+        'ageMin' => 'setAgeMin',
+        'ageMax' => 'setAgeMax',
+        'probability' => 'setProbability'
     ];
 
     /**
@@ -211,12 +199,10 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'thresh' => 'getThresh',
-        'grey' => 'getGrey',
-        'minDuration' => 'getMinDuration',
-        'abortOnSeverity' => 'getAbortOnSeverity',
-        'params' => 'getParams',
-        'kycUiParameters' => 'getKycUiParameters'
+        'age' => 'getAge',
+        'ageMin' => 'getAgeMin',
+        'ageMax' => 'getAgeMax',
+        'probability' => 'getProbability'
     ];
 
     /**
@@ -227,7 +213,7 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -237,7 +223,7 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -247,7 +233,7 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -261,12 +247,6 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -276,12 +256,12 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('thresh', $data ?? [], 0.5);
-        $this->setIfExists('grey', $data ?? [], 127);
-        $this->setIfExists('minDuration', $data ?? [], 100);
-        $this->setIfExists('abortOnSeverity', $data ?? [], -1);
-        $this->setIfExists('params', $data ?? [], null);
-        $this->setIfExists('kycUiParameters', $data ?? [], null);
+        parent::__construct($data);
+
+        $this->setIfExists('age', $data ?? [], null);
+        $this->setIfExists('ageMin', $data ?? [], null);
+        $this->setIfExists('ageMax', $data ?? [], null);
+        $this->setIfExists('probability', $data ?? [], null);
     }
 
     /**
@@ -309,35 +289,7 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
-
-        if (!is_null($this->container['thresh']) && ($this->container['thresh'] > 1.0)) {
-            $invalidProperties[] = "invalid value for 'thresh', must be smaller than or equal to 1.0.";
-        }
-
-        if (!is_null($this->container['thresh']) && ($this->container['thresh'] < 0.0)) {
-            $invalidProperties[] = "invalid value for 'thresh', must be bigger than or equal to 0.0.";
-        }
-
-        if (!is_null($this->container['grey']) && ($this->container['grey'] > 255)) {
-            $invalidProperties[] = "invalid value for 'grey', must be smaller than or equal to 255.";
-        }
-
-        if (!is_null($this->container['grey']) && ($this->container['grey'] < 0)) {
-            $invalidProperties[] = "invalid value for 'grey', must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['minDuration']) && ($this->container['minDuration'] > 250)) {
-            $invalidProperties[] = "invalid value for 'minDuration', must be smaller than or equal to 250.";
-        }
-
-        if (!is_null($this->container['minDuration']) && ($this->container['minDuration'] < 50)) {
-            $invalidProperties[] = "invalid value for 'minDuration', must be bigger than or equal to 50.";
-        }
-
-        if (!is_null($this->container['abortOnSeverity']) && ($this->container['abortOnSeverity'] < -1)) {
-            $invalidProperties[] = "invalid value for 'abortOnSeverity', must be bigger than or equal to -1.";
-        }
+        $invalidProperties = parent::listInvalidProperties();
 
         return $invalidProperties;
     }
@@ -355,192 +307,109 @@ class ParamSet implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets thresh
-     *
-     * @return float|null
-     */
-    public function getThresh()
-    {
-        return $this->container['thresh'];
-    }
-
-    /**
-     * Sets thresh
-     *
-     * @param float|null $thresh Threshold when an object can be recognized. Lowering the value will increase the probability of recognizing objects. A threshold of 0.5 would mean, that 50% of an object like a face must be visible, to be detected.Setting the value too low however, can cause false positives.
-     *
-     * @return self
-     */
-    public function setThresh($thresh)
-    {
-        if (is_null($thresh)) {
-            throw new \InvalidArgumentException('non-nullable thresh cannot be null');
-        }
-
-        if (($thresh > 1.0)) {
-            throw new \InvalidArgumentException('invalid value for $thresh when calling ParamSet., must be smaller than or equal to 1.0.');
-        }
-        if (($thresh < 0.0)) {
-            throw new \InvalidArgumentException('invalid value for $thresh when calling ParamSet., must be bigger than or equal to 0.0.');
-        }
-
-        $this->container['thresh'] = $thresh;
-
-        return $this;
-    }
-
-    /**
-     * Gets grey
+     * Gets age
      *
      * @return int|null
      */
-    public function getGrey()
+    public function getAge()
     {
-        return $this->container['grey'];
+        return $this->container['age'];
     }
 
     /**
-     * Sets grey
+     * Sets age
      *
-     * @param int|null $grey A grey scale color to use for frame or masking. '0' will represent black, while the maximum '255' will be white.
+     * @param int|null $age The estimated age of the person in years.
      *
      * @return self
      */
-    public function setGrey($grey)
+    public function setAge($age)
     {
-        if (is_null($grey)) {
-            throw new \InvalidArgumentException('non-nullable grey cannot be null');
+        if (is_null($age)) {
+            throw new \InvalidArgumentException('non-nullable age cannot be null');
         }
-
-        if (($grey > 255)) {
-            throw new \InvalidArgumentException('invalid value for $grey when calling ParamSet., must be smaller than or equal to 255.');
-        }
-        if (($grey < 0)) {
-            throw new \InvalidArgumentException('invalid value for $grey when calling ParamSet., must be bigger than or equal to 0.');
-        }
-
-        $this->container['grey'] = $grey;
+        $this->container['age'] = $age;
 
         return $this;
     }
 
     /**
-     * Gets minDuration
+     * Gets ageMin
      *
      * @return int|null
      */
-    public function getMinDuration()
+    public function getAgeMin()
     {
-        return $this->container['minDuration'];
+        return $this->container['ageMin'];
     }
 
     /**
-     * Sets minDuration
+     * Sets ageMin
      *
-     * @param int|null $minDuration Set the overall minimum duration in milliseconds for a rule to be broken in moving images.
+     * @param int|null $ageMin The estimated minimum age of the person in years.
      *
      * @return self
      */
-    public function setMinDuration($minDuration)
+    public function setAgeMin($ageMin)
     {
-        if (is_null($minDuration)) {
-            throw new \InvalidArgumentException('non-nullable minDuration cannot be null');
+        if (is_null($ageMin)) {
+            throw new \InvalidArgumentException('non-nullable ageMin cannot be null');
         }
-
-        if (($minDuration > 250)) {
-            throw new \InvalidArgumentException('invalid value for $minDuration when calling ParamSet., must be smaller than or equal to 250.');
-        }
-        if (($minDuration < 50)) {
-            throw new \InvalidArgumentException('invalid value for $minDuration when calling ParamSet., must be bigger than or equal to 50.');
-        }
-
-        $this->container['minDuration'] = $minDuration;
+        $this->container['ageMin'] = $ageMin;
 
         return $this;
     }
 
     /**
-     * Gets abortOnSeverity
+     * Gets ageMax
      *
      * @return int|null
      */
-    public function getAbortOnSeverity()
+    public function getAgeMax()
     {
-        return $this->container['abortOnSeverity'];
+        return $this->container['ageMax'];
     }
 
     /**
-     * Sets abortOnSeverity
+     * Sets ageMax
      *
-     * @param int|null $abortOnSeverity Set a severity on which to automatically stop the check operation. Works with moving images.Use '-1' to ignore this option.
+     * @param int|null $ageMax The estimated maximum age of the person in years.
      *
      * @return self
      */
-    public function setAbortOnSeverity($abortOnSeverity)
+    public function setAgeMax($ageMax)
     {
-        if (is_null($abortOnSeverity)) {
-            throw new \InvalidArgumentException('non-nullable abortOnSeverity cannot be null');
+        if (is_null($ageMax)) {
+            throw new \InvalidArgumentException('non-nullable ageMax cannot be null');
         }
-
-        if (($abortOnSeverity < -1)) {
-            throw new \InvalidArgumentException('invalid value for $abortOnSeverity when calling ParamSet., must be bigger than or equal to -1.');
-        }
-
-        $this->container['abortOnSeverity'] = $abortOnSeverity;
+        $this->container['ageMax'] = $ageMax;
 
         return $this;
     }
 
     /**
-     * Gets params
+     * Gets probability
      *
-     * @return \Irisnet\API\Client\Model\Param[]|null
+     * @return int|null
      */
-    public function getParams()
+    public function getProbability()
     {
-        return $this->container['params'];
+        return $this->container['probability'];
     }
 
     /**
-     * Sets params
+     * Sets probability
      *
-     * @param \Irisnet\API\Client\Model\Param[]|null $params A list of parameter sets that describe the rules of the objects.
+     * @param int|null $probability The probability of the estimated age.
      *
      * @return self
      */
-    public function setParams($params)
+    public function setProbability($probability)
     {
-        if (is_null($params)) {
-            throw new \InvalidArgumentException('non-nullable params cannot be null');
+        if (is_null($probability)) {
+            throw new \InvalidArgumentException('non-nullable probability cannot be null');
         }
-        $this->container['params'] = $params;
-
-        return $this;
-    }
-
-    /**
-     * Gets kycUiParameters
-     *
-     * @return \Irisnet\API\Client\Model\KycUiParameter|null
-     */
-    public function getKycUiParameters()
-    {
-        return $this->container['kycUiParameters'];
-    }
-
-    /**
-     * Sets kycUiParameters
-     *
-     * @param \Irisnet\API\Client\Model\KycUiParameter|null $kycUiParameters kycUiParameters
-     *
-     * @return self
-     */
-    public function setKycUiParameters($kycUiParameters)
-    {
-        if (is_null($kycUiParameters)) {
-            throw new \InvalidArgumentException('non-nullable kycUiParameters cannot be null');
-        }
-        $this->container['kycUiParameters'] = $kycUiParameters;
+        $this->container['probability'] = $probability;
 
         return $this;
     }

@@ -84,7 +84,8 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
         'documentNumberConsistency' => 'string',
         'issuingDateConsistency' => 'string',
         'expirationDateConsistency' => 'string',
-        'knownFacesCheck' => 'string'
+        'knownFacesCheck' => 'string',
+        'faceSimilarityCheck' => 'string'
     ];
 
     /**
@@ -120,7 +121,8 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
         'documentNumberConsistency' => null,
         'issuingDateConsistency' => null,
         'expirationDateConsistency' => null,
-        'knownFacesCheck' => null
+        'knownFacesCheck' => null,
+        'faceSimilarityCheck' => null
     ];
 
     /**
@@ -154,7 +156,8 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
         'documentNumberConsistency' => false,
         'issuingDateConsistency' => false,
         'expirationDateConsistency' => false,
-        'knownFacesCheck' => false
+        'knownFacesCheck' => false,
+        'faceSimilarityCheck' => false
     ];
 
     /**
@@ -268,7 +271,8 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
         'documentNumberConsistency' => 'documentNumberConsistency',
         'issuingDateConsistency' => 'issuingDateConsistency',
         'expirationDateConsistency' => 'expirationDateConsistency',
-        'knownFacesCheck' => 'knownFacesCheck'
+        'knownFacesCheck' => 'knownFacesCheck',
+        'faceSimilarityCheck' => 'faceSimilarityCheck'
     ];
 
     /**
@@ -302,7 +306,8 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
         'documentNumberConsistency' => 'setDocumentNumberConsistency',
         'issuingDateConsistency' => 'setIssuingDateConsistency',
         'expirationDateConsistency' => 'setExpirationDateConsistency',
-        'knownFacesCheck' => 'setKnownFacesCheck'
+        'knownFacesCheck' => 'setKnownFacesCheck',
+        'faceSimilarityCheck' => 'setFaceSimilarityCheck'
     ];
 
     /**
@@ -336,7 +341,8 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
         'documentNumberConsistency' => 'getDocumentNumberConsistency',
         'issuingDateConsistency' => 'getIssuingDateConsistency',
         'expirationDateConsistency' => 'getExpirationDateConsistency',
-        'knownFacesCheck' => 'getKnownFacesCheck'
+        'knownFacesCheck' => 'getKnownFacesCheck',
+        'faceSimilarityCheck' => 'getFaceSimilarityCheck'
     ];
 
     /**
@@ -458,6 +464,9 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
     public const KNOWN_FACES_CHECK_PASSED = 'passed';
     public const KNOWN_FACES_CHECK_FAILED = 'failed';
     public const KNOWN_FACES_CHECK_NOT_PROCESSED = 'not_processed';
+    public const FACE_SIMILARITY_CHECK_PASSED = 'passed';
+    public const FACE_SIMILARITY_CHECK_FAILED = 'failed';
+    public const FACE_SIMILARITY_CHECK_NOT_PROCESSED = 'not_processed';
 
     /**
      * Gets allowable values of the enum
@@ -824,6 +833,20 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
     }
 
     /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getFaceSimilarityCheckAllowableValues()
+    {
+        return [
+            self::FACE_SIMILARITY_CHECK_PASSED,
+            self::FACE_SIMILARITY_CHECK_FAILED,
+            self::FACE_SIMILARITY_CHECK_NOT_PROCESSED,
+        ];
+    }
+
+    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -864,6 +887,7 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
         $this->setIfExists('issuingDateConsistency', $data ?? [], null);
         $this->setIfExists('expirationDateConsistency', $data ?? [], null);
         $this->setIfExists('knownFacesCheck', $data ?? [], null);
+        $this->setIfExists('faceSimilarityCheck', $data ?? [], null);
     }
 
     /**
@@ -1123,6 +1147,15 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'knownFacesCheck', must be one of '%s'",
                 $this->container['knownFacesCheck'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getFaceSimilarityCheckAllowableValues();
+        if (!is_null($this->container['faceSimilarityCheck']) && !in_array($this->container['faceSimilarityCheck'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'faceSimilarityCheck', must be one of '%s'",
+                $this->container['faceSimilarityCheck'],
                 implode("', '", $allowedValues)
             );
         }
@@ -2100,6 +2133,43 @@ class IdDocumentSubChecks implements ModelInterface, ArrayAccess, \JsonSerializa
             );
         }
         $this->container['knownFacesCheck'] = $knownFacesCheck;
+
+        return $this;
+    }
+
+    /**
+     * Gets faceSimilarityCheck
+     *
+     * @return string|null
+     */
+    public function getFaceSimilarityCheck()
+    {
+        return $this->container['faceSimilarityCheck'];
+    }
+
+    /**
+     * Sets faceSimilarityCheck
+     *
+     * @param string|null $faceSimilarityCheck Indicates if the selfie image and the ID document image belong to the same person
+     *
+     * @return self
+     */
+    public function setFaceSimilarityCheck($faceSimilarityCheck)
+    {
+        if (is_null($faceSimilarityCheck)) {
+            throw new \InvalidArgumentException('non-nullable faceSimilarityCheck cannot be null');
+        }
+        $allowedValues = $this->getFaceSimilarityCheckAllowableValues();
+        if (!in_array($faceSimilarityCheck, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'faceSimilarityCheck', must be one of '%s'",
+                    $faceSimilarityCheck,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['faceSimilarityCheck'] = $faceSimilarityCheck;
 
         return $this;
     }

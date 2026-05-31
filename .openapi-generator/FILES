@@ -7,11 +7,10 @@ docs/Api/AICheckOperationsApi.md
 docs/Api/BalanceEndpointsApi.md
 docs/Api/ConfigurationManagementApi.md
 docs/Api/DetailedConfigurationParametersApi.md
+docs/Model/AgeAttribute.md
 docs/Model/AgeVerificationAttribute.md
 docs/Model/AgeVerificationDetection.md
 docs/Model/AgeVerificationSubChecks.md
-docs/Model/AiClassification.md
-docs/Model/AiPrototype.md
 docs/Model/ApiNotice.md
 docs/Model/Attribute.md
 docs/Model/BaseAttribute.md
@@ -63,11 +62,10 @@ lib/ApiException.php
 lib/Configuration.php
 lib/FormDataProcessor.php
 lib/HeaderSelector.php
+lib/Model/AgeAttribute.php
 lib/Model/AgeVerificationAttribute.php
 lib/Model/AgeVerificationDetection.php
 lib/Model/AgeVerificationSubChecks.php
-lib/Model/AiClassification.php
-lib/Model/AiPrototype.php
 lib/Model/ApiNotice.php
 lib/Model/Attribute.php
 lib/Model/BaseAttribute.php
@@ -113,3 +111,4 @@ lib/Model/TextDetection.php
 lib/Model/ValueAttribute.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
+test/Model/AgeAttributeTest.php

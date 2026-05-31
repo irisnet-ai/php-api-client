@@ -67,8 +67,7 @@ class Param implements ModelInterface, ArrayAccess, \JsonSerializable
         'drawMode' => 'int',
         'grey' => 'int',
         'scale' => 'float',
-        'ignore' => 'bool',
-        'prototypeObject' => '\Irisnet\API\Client\Model\AiPrototype'
+        'ignore' => 'bool'
     ];
 
     /**
@@ -87,8 +86,7 @@ class Param implements ModelInterface, ArrayAccess, \JsonSerializable
         'drawMode' => 'int32',
         'grey' => 'int32',
         'scale' => 'float',
-        'ignore' => null,
-        'prototypeObject' => null
+        'ignore' => null
     ];
 
     /**
@@ -105,8 +103,7 @@ class Param implements ModelInterface, ArrayAccess, \JsonSerializable
         'drawMode' => false,
         'grey' => false,
         'scale' => false,
-        'ignore' => false,
-        'prototypeObject' => false
+        'ignore' => false
     ];
 
     /**
@@ -203,8 +200,7 @@ class Param implements ModelInterface, ArrayAccess, \JsonSerializable
         'drawMode' => 'drawMode',
         'grey' => 'grey',
         'scale' => 'scale',
-        'ignore' => 'ignore',
-        'prototypeObject' => 'prototypeObject'
+        'ignore' => 'ignore'
     ];
 
     /**
@@ -221,8 +217,7 @@ class Param implements ModelInterface, ArrayAccess, \JsonSerializable
         'drawMode' => 'setDrawMode',
         'grey' => 'setGrey',
         'scale' => 'setScale',
-        'ignore' => 'setIgnore',
-        'prototypeObject' => 'setPrototypeObject'
+        'ignore' => 'setIgnore'
     ];
 
     /**
@@ -239,8 +234,7 @@ class Param implements ModelInterface, ArrayAccess, \JsonSerializable
         'drawMode' => 'getDrawMode',
         'grey' => 'getGrey',
         'scale' => 'getScale',
-        'ignore' => 'getIgnore',
-        'prototypeObject' => 'getPrototypeObject'
+        'ignore' => 'getIgnore'
     ];
 
     /**
@@ -502,7 +496,6 @@ class Param implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('grey', $data ?? [], 127);
         $this->setIfExists('scale', $data ?? [], 1.0);
         $this->setIfExists('ignore', $data ?? [], false);
-        $this->setIfExists('prototypeObject', $data ?? [], null);
     }
 
     /**
@@ -890,33 +883,6 @@ class Param implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable ignore cannot be null');
         }
         $this->container['ignore'] = $ignore;
-
-        return $this;
-    }
-
-    /**
-     * Gets prototypeObject
-     *
-     * @return \Irisnet\API\Client\Model\AiPrototype|null
-     */
-    public function getPrototypeObject()
-    {
-        return $this->container['prototypeObject'];
-    }
-
-    /**
-     * Sets prototypeObject
-     *
-     * @param \Irisnet\API\Client\Model\AiPrototype|null $prototypeObject prototypeObject
-     *
-     * @return self
-     */
-    public function setPrototypeObject($prototypeObject)
-    {
-        if (is_null($prototypeObject)) {
-            throw new \InvalidArgumentException('non-nullable prototypeObject cannot be null');
-        }
-        $this->container['prototypeObject'] = $prototypeObject;
 
         return $this;
     }

@@ -30,5 +30,6 @@ Name | Type | Description | Notes
 **issuingDateConsistency** | **string** | Indicates if the issuing date on the document and the MRZ are consistent | [optional]
 **expirationDateConsistency** | **string** | Indicates if the expiration date on the document and the MRZ are consistent | [optional]
 **knownFacesCheck** | **string** | Indicates if the selfie image matches an aready existing client/customer | [optional]
+**faceSimilarityCheck** | **string** | Indicates if the selfie image and the ID document image belong to the same person | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -13,6 +13,5 @@ Name | Type | Description | Notes
 **grey** | **int** | A grey scale color used in combination of _drawMode_ &#39;2&#39; or &#39;3&#39;. &#39;0&#39; will represent black, while the maximum &#39;255&#39; will be white. | [optional] [default to 127]
 **scale** | **float** | Scale of the bounds around the classification object. Specify a value to increase or decrease the size of the bounds. This is applied to the resulting media as well as the JSON coordinates. | [optional] [default to 1.0]
 **ignore** | **bool** | A shorthand to ignore the classification object. This is equal to setting _min&#x3D;0_, _max&#x3D;-1_ and _drawMode&#x3D;0_. | [optional] [default to false]
-**prototypeObject** | [**\Irisnet\API\Client\Model\AiPrototype**](AiPrototype.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
